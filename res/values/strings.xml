@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Book My Skills</string>
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_close">drawer_close</string>
+    
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item >Home</item>
+        <item >Login/Join</item>
+        <item >Search</item>
+        <item >Privacy Policy</item>
+        <item >Terms &amp; Conditions</item>
+        <item >Contact Us</item>
+    </string-array>
+    
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_register</item>
+        <item>@drawable/ic_search</item>
+        <item>@drawable/ic_privacy</item>
+        <item>@drawable/ic_terms</item>
+        <item>@drawable/ic_contactus</item>
+    </array>
+    
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="action_settings">Settings</string>
+</resources>

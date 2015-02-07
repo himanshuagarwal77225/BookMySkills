@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="actionbar_color">#d12e72</color>
+    <color name="drawer_arrow_second_color">#303f9f</color>
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#e91e63</color>
+    <color name="list_background_pressed">#b71156</color>
+    <color name="list_divider">#272727</color>
+    <color name="counter_text_bg">#626262</color>
+    <color name="counter_text_color">#c5c4c4</color>
+
+</resources>
