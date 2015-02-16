@@ -26,72 +26,81 @@
                 android:layout_margin="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo" />
-            <EditText
-                android:id="@+id/userNameEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@drawable/edit_text"
-                android:drawableLeft="@drawable/user_name"
-                android:drawablePadding="10dp"
-                android:gravity="center|left"
-                android:hint="User Name*"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-                android:textColor="@color/actionbar_color" />
 
-            <EditText
-                android:id="@+id/emailNameEditText"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/stage1LinearLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@drawable/edit_text"
-                android:drawableLeft="@drawable/email_icon"
-                android:drawablePadding="10dp"
-                android:gravity="center|left"
-                android:hint="Email*"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-                android:textColor="@color/actionbar_color" />
-            <EditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@drawable/edit_text"
-                android:drawableLeft="@drawable/password_icon"
-                android:drawablePadding="10dp"
-                android:gravity="center|left"
-                android:hint="Password*"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:textColor="@color/actionbar_color" />
+                android:orientation="vertical" >
 
-            
-
-            <com.andexert.library.RippleView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                ripple:rv_framerate="20"
-                ripple:rv_type="rectangle" >
-
-                <Button
-                    android:id="@+id/registerButton"
+                <EditText
+                    android:id="@+id/userNameEditText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@drawable/button_bg"
-                    android:drawableLeft="@drawable/add_user"
-                    android:padding="5dp"
-                    android:text="Register"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@android:color/white" />
-            </com.andexert.library.RippleView>
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/user_name"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="User Name*"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/emailNameEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/email_icon"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Email*"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/passwordEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edit_text"
+                    android:drawableLeft="@drawable/password_icon"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Password*"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <com.andexert.library.RippleView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    ripple:rv_framerate="20"
+                    ripple:rv_type="rectangle" >
+
+                    <Button
+                        android:id="@+id/registerButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/button_bg"
+                        android:drawableLeft="@drawable/add_user"
+                        android:gravity="center"
+                        android:paddingLeft="40dp"
+                        android:paddingRight="30dp"
+                        android:text="Next"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@android:color/white" />
+                </com.andexert.library.RippleView>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

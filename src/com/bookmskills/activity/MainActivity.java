@@ -2,19 +2,20 @@ package com.bookmskills.activity;
 
 import java.util.ArrayList;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -24,7 +25,7 @@ import com.bookmyskills.model.NavDrawerItem;
 import com.ikimuhendis.ldrawer.ActionBarDrawerToggle;
 import com.ikimuhendis.ldrawer.DrawerArrowDrawable;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -43,6 +44,7 @@ public class MainActivity extends Activity {
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
+	public static String reg_account;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -54,6 +56,10 @@ public class MainActivity extends Activity {
 		ab.setHomeButtonEnabled(true);
 		ab.setDisplayShowHomeEnabled(true);
 		ab.setIcon(R.drawable.ic_launcher);
+
+		if (getAccount() != null) {
+			reg_account = getAccount();
+		}
 
 		mTitle = mDrawerTitle = getTitle();
 		// load slide menu items
@@ -225,6 +231,17 @@ public class MainActivity extends Activity {
 			mDrawerLayout.closeDrawer(mDrawerList);
 		} else {
 			super.onBackPressed();
+		}
+	}
+
+	public String getAccount() {
+		AccountManager manager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+		Account[] list = manager.getAccountsByType("com.google");
+		if (list.length != 0) {
+			String email = list[0].name;
+			return email;
+		} else {
+			return null;
 		}
 	}
 

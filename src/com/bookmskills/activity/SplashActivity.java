@@ -48,7 +48,7 @@ public class SplashActivity extends Activity {
 
 		shimmer = new Shimmer();
 
-		shimmer.setRepeatCount(15).setDuration(500).setStartDelay(300)
+		shimmer.setRepeatCount(10).setDuration(800).setStartDelay(300)
 				.setDirection(Shimmer.ANIMATION_DIRECTION_LTR)
 				.setAnimatorListener(new Animator.AnimatorListener() {
 

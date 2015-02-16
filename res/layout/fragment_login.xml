@@ -40,7 +40,7 @@
                 android:hint="User Name*"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
-                android:textColor="@color/actionbar_color" />
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/passwordEditText"
@@ -55,7 +55,7 @@
                 android:hint="Password*"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textColor="@color/actionbar_color" />
+                android:textColor="@android:color/black" />
 
             <com.andexert.library.RippleView
                 android:layout_width="wrap_content"
@@ -72,7 +72,9 @@
                     android:layout_gravity="center"
                     android:background="@drawable/button_bg"
                     android:drawableLeft="@drawable/login"
-                    android:padding="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="30dp"
                     android:text="Login"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white" />
@@ -93,7 +95,9 @@
                     android:layout_gravity="center"
                     android:background="@drawable/button_bg"
                     android:drawableLeft="@drawable/add_user"
-                    android:padding="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="30dp"
                     android:text="Register"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white" />
