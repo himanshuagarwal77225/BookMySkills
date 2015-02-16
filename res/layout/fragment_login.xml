@@ -29,11 +29,10 @@
 
             <EditText
                 android:id="@+id/userNameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:background="@drawable/edit_text"
                 android:drawableLeft="@drawable/user_name"
                 android:drawablePadding="10dp"
                 android:gravity="center|left"
@@ -44,11 +43,10 @@
 
             <EditText
                 android:id="@+id/passwordEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:background="@drawable/edit_text"
                 android:drawableLeft="@drawable/password_icon"
                 android:drawablePadding="10dp"
                 android:gravity="center|left"
@@ -67,14 +65,13 @@
 
                 <Button
                     android:id="@+id/loginButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/button_bg"
                     android:drawableLeft="@drawable/login"
                     android:gravity="center"
-                    android:paddingLeft="40dp"
-                    android:paddingRight="30dp"
+                    android:paddingLeft="90dp"
+                    android:paddingRight="80dp"
                     android:text="Login"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white" />
@@ -90,14 +87,13 @@
 
                 <Button
                     android:id="@+id/registerButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/button_bg"
                     android:drawableLeft="@drawable/add_user"
                     android:gravity="center"
-                    android:paddingLeft="40dp"
-                    android:paddingRight="30dp"
+                    android:paddingLeft="90dp"
+                    android:paddingRight="80dp"
                     android:text="Register"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white" />

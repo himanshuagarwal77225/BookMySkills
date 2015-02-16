@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.bookmyskills.R;
 
@@ -28,10 +30,15 @@ public class RegisterFragment extends Fragment {
 	private EditText userNameEditText;
 	private EditText emailNameEditText;
 	private EditText passwordEditText;
+	private EditText cnfPasswordEditText;
+	private RadioGroup radioTypeGroup;
+	private RadioButton typeRadioButton;
 
 	private String userName;
 	private String email;
 	private String password;
+	private String cnfPassword;
+	private String userType;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +56,9 @@ public class RegisterFragment extends Fragment {
 				.findViewById(R.id.passwordEditText);
 		emailNameEditText = (EditText) rootView
 				.findViewById(R.id.emailNameEditText);
+		cnfPasswordEditText = (EditText) rootView
+				.findViewById(R.id.cnfPasswordEditText);
+		radioTypeGroup = (RadioGroup)rootView.findViewById(R.id.radioType);
 
 		registerButton.setOnClickListener(new OnClickListener() {
 
@@ -58,6 +68,11 @@ public class RegisterFragment extends Fragment {
 				userName = userNameEditText.getText().toString().trim();
 				email = emailNameEditText.getText().toString().trim();
 				password = passwordEditText.getText().toString().trim();
+				cnfPassword = cnfPasswordEditText.getText().toString().trim();
+				int selectedRadioID = radioTypeGroup.getCheckedRadioButtonId();
+				typeRadioButton = (RadioButton) rootView
+						.findViewById(selectedRadioID);
+				userType = typeRadioButton.getText().toString().trim();
 
 				if (userName != null && !TextUtils.isEmpty(userName)) {
 					if (email != null && !TextUtils.isEmpty(email)) {
@@ -65,7 +80,27 @@ public class RegisterFragment extends Fragment {
 								.matches()) {
 							if (password != null
 									&& !TextUtils.isEmpty(password)) {
-								showDialog();
+								if (cnfPassword != null
+										&& !TextUtils.isEmpty(cnfPassword)) {
+									if (password.equals(cnfPassword)) {
+										if (userType != null
+												&& !TextUtils.isEmpty(userType)) {
+											showDialog();
+										} else {
+											typeRadioButton
+													.setError("Select Type");
+											radioTypeGroup.requestFocus();
+										}
+									} else {
+										cnfPasswordEditText
+												.setError("Password Does't Match");
+										cnfPasswordEditText.requestFocus();
+									}
+								} else {
+									cnfPasswordEditText
+											.setError("Enter Confirm Password");
+									cnfPasswordEditText.requestFocus();
+								}
 							} else {
 								passwordEditText.setError("Enter Password");
 								passwordEditText.requestFocus();
@@ -92,7 +127,8 @@ public class RegisterFragment extends Fragment {
 		final Dialog dialog = new Dialog(getActivity());
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.progress_bar);
-		dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		dialog.getWindow().setBackgroundDrawable(
+				new ColorDrawable(android.graphics.Color.TRANSPARENT));
 		dialog.show();
 	}
 }
