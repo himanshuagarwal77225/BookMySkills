@@ -3,7 +3,6 @@ package com.bookmskills.activity;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.Fragment;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -27,6 +27,7 @@ public class RegisterFragment extends Fragment {
 
 	View rootView;
 	private Button registerButton;
+	private Button previousButton;
 	private EditText userNameEditText;
 	private EditText emailNameEditText;
 	private EditText passwordEditText;
@@ -39,6 +40,12 @@ public class RegisterFragment extends Fragment {
 	private String password;
 	private String cnfPassword;
 	private String userType;
+	private LinearLayout stage1LinearLayout;
+	private LinearLayout stage2LinearLayout;
+	private LinearLayout stage3LinearLayout;
+	private boolean stage1 = false;
+	private boolean stage2 = false;
+	private boolean stage3 = false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,7 +56,7 @@ public class RegisterFragment extends Fragment {
 				false);
 
 		registerButton = (Button) rootView.findViewById(R.id.registerButton);
-
+		previousButton = (Button) rootView.findViewById(R.id.previousButton);
 		userNameEditText = (EditText) rootView
 				.findViewById(R.id.userNameEditText);
 		passwordEditText = (EditText) rootView
@@ -58,7 +65,14 @@ public class RegisterFragment extends Fragment {
 				.findViewById(R.id.emailNameEditText);
 		cnfPasswordEditText = (EditText) rootView
 				.findViewById(R.id.cnfPasswordEditText);
-		radioTypeGroup = (RadioGroup)rootView.findViewById(R.id.radioType);
+		radioTypeGroup = (RadioGroup) rootView.findViewById(R.id.radioType);
+		stage1LinearLayout = (LinearLayout) rootView
+				.findViewById(R.id.stage1LinearLayout);
+		stage2LinearLayout = (LinearLayout) rootView
+				.findViewById(R.id.stage2LinearLayout);
+
+		stage3LinearLayout = (LinearLayout) rootView
+				.findViewById(R.id.stage3LinearLayout);
 
 		registerButton.setOnClickListener(new OnClickListener() {
 
@@ -86,6 +100,15 @@ public class RegisterFragment extends Fragment {
 										if (userType != null
 												&& !TextUtils.isEmpty(userType)) {
 											showDialog();
+											stage1 = true;
+											stage1LinearLayout
+													.setVisibility(View.GONE);
+											stage2LinearLayout
+													.setVisibility(View.VISIBLE);
+											stage3LinearLayout
+													.setVisibility(View.VISIBLE);
+											previousButton
+													.setVisibility(View.VISIBLE);
 										} else {
 											typeRadioButton
 													.setError("Select Type");

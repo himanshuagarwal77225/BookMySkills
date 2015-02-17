@@ -120,11 +120,328 @@
                         android:layout_margin="10dp"
                         android:text="Work" />
                 </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stage2LinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" >
+
+                    <EditText
+                        android:id="@+id/educationEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/education"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Education*"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/addMoreEducationButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@android:drawable/ic_input_add" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" >
+
+                    <EditText
+                        android:id="@+id/certificationsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/certificate"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Certification"
+                        android:inputType="textEmailAddress"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/addMoreCertificateButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@android:drawable/ic_input_add" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <EditText
+                        android:id="@+id/skills1EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".2"
+                        android:drawableLeft="@drawable/skills"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Skills 1*"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".4" />
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight=".4" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" >
+
+                    <EditText
+                        android:id="@+id/skills2EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/skills"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Skills 2*"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/addMoreSkillsButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@android:drawable/ic_input_add" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stage3LinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/addressEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/education"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Address*"
+                    android:inputType="textPostalAddress"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/cityEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/certificate"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="City*"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/stateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/skills"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="State*"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/countryEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/skills"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Country*"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/pincodeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/skills"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Pincode*"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/phnNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/skills"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Phone Number*"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/dobEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/skills"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="DOB*"
+                    android:inputType="date"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+                
+                <EditText
+                    android:id="@+id/workingHrsEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/skills"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Working Hours*"
+                    android:inputType="date"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+                
+                <EditText
+                    android:id="@+id/priceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/skills"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Hourly Price*"
+                    android:inputType="date"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="Preffered Contact Medium" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal" >
+
+                    <CheckBox
+                        android:id="@+id/checkBox1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="Email" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="Phone" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:text="Push Notifications" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
 
                 <com.andexert.library.RippleView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight=".5"
+                    ripple:rv_framerate="20"
+                    ripple:rv_type="rectangle" >
+
+                    <Button
+                        android:id="@+id/previousButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:drawableLeft="@drawable/previous"
+                        android:gravity="center"
+                        android:text="Previous"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@android:color/white"
+                        android:visibility="gone" />
+                </com.andexert.library.RippleView>
+
+                <com.andexert.library.RippleView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".5"
                     ripple:rv_framerate="20"
                     ripple:rv_type="rectangle" >
 
@@ -134,10 +451,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/add_user"
+                        android:drawableRight="@drawable/next"
                         android:gravity="center"
-                        android:paddingLeft="90dp"
-                        android:paddingRight="80dp"
                         android:text="Next"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@android:color/white" />
