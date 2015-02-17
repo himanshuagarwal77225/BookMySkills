@@ -288,7 +288,7 @@
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/countryEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -297,8 +297,9 @@
                     android:drawableLeft="@drawable/country"
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
-                    android:hint="Country*"
+                    android:prompt="@string/country_"
                     android:padding="10dp"
+                    android:spinnerMode="dropdown"
                     android:textColor="@android:color/black" />
 
                 <EditText
@@ -376,7 +377,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:text="Preffered Contact Medium" />
+                    android:text="Preffered Contact Medium*" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -385,7 +386,7 @@
                     android:orientation="horizontal" >
 
                     <CheckBox
-                        android:id="@+id/checkBox1"
+                        android:id="@+id/emaileCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -393,7 +394,7 @@
                         android:text="Email" />
 
                     <CheckBox
-                        android:id="@+id/checkBox2"
+                        android:id="@+id/phoneCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -401,7 +402,7 @@
                         android:text="Phone" />
 
                     <CheckBox
-                        android:id="@+id/checkBox3"
+                        android:id="@+id/pushNotificationCheckBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

@@ -2490,14 +2490,14 @@ containing a value of this type.
         public static final int book_now=0x7f0b0017;
         public static final int button_accept=0x7f0b0065;
         public static final int button_cancel=0x7f0b0064;
-        public static final int buttonflat=0x7f0b0096;
+        public static final int buttonflat=0x7f0b0099;
         public static final int buyButton=0x7f0b0013;
         public static final int buy_now=0x7f0b0018;
         public static final int buy_with_google=0x7f0b0019;
         public static final int certificationsEditText=0x7f0b007a;
-        public static final int checkBox1=0x7f0b008b;
-        public static final int checkBox2=0x7f0b008c;
-        public static final int checkBox3=0x7f0b008d;
+        public static final int checkBox1=0x7f0b0090;
+        public static final int checkBox2=0x7f0b0091;
+        public static final int checkBox3=0x7f0b0092;
         public static final int checkbox=0x7f0b003d;
         public static final int cityEditText=0x7f0b0083;
         public static final int classic=0x7f0b001a;
@@ -2520,6 +2520,7 @@ containing a value of this type.
         public static final int educationEditText=0x7f0b0078;
         public static final int emailNameEditText=0x7f0b0072;
         public static final int emailTextView=0x7f0b0069;
+        public static final int emaileCheckBox=0x7f0b008b;
         public static final int end=0x7f0b0030;
         public static final int expand_activities_button=0x7f0b0036;
         public static final int expanded_menu=0x7f0b003c;
@@ -2538,8 +2539,8 @@ containing a value of this type.
         public static final int list_item=0x7f0b0039;
         public static final int loginButton=0x7f0b006e;
         public static final int logoImageView=0x7f0b0058;
-        public static final int lookingTalentButton=0x7f0b0091;
-        public static final int lookingWorkButton=0x7f0b0090;
+        public static final int lookingTalentButton=0x7f0b0094;
+        public static final int lookingWorkButton=0x7f0b0093;
         public static final int main_layout=0x7f0b0056;
         public static final int map=0x7f0b006b;
         public static final int match_parent=0x7f0b0015;
@@ -2552,17 +2553,19 @@ containing a value of this type.
         public static final int nextButton=0x7f0b008f;
         public static final int none=0x7f0b000a;
         public static final int normal=0x7f0b000b;
-        public static final int number_indicator_spinner_content=0x7f0b0092;
+        public static final int number_indicator_spinner_content=0x7f0b0095;
         public static final int passwordEditText=0x7f0b006d;
         public static final int phnNumberEditText=0x7f0b0087;
+        public static final int phoneCheckBox=0x7f0b008c;
         public static final int pincodeEditText=0x7f0b0086;
         public static final int previousButton=0x7f0b008e;
         public static final int priceEditText=0x7f0b008a;
         public static final int production=0x7f0b0010;
-        public static final int progressBarCircularIndeterminate=0x7f0b0093;
-        public static final int progressBarCircularIndetermininate=0x7f0b0094;
+        public static final int progressBarCircularIndeterminate=0x7f0b0096;
+        public static final int progressBarCircularIndetermininate=0x7f0b0097;
         public static final int progress_circular=0x7f0b0007;
         public static final int progress_horizontal=0x7f0b0008;
+        public static final int pushNotificationCheckBox=0x7f0b008d;
         public static final int radio=0x7f0b003f;
         public static final int radioHire=0x7f0b0075;
         public static final int radioType=0x7f0b0074;
@@ -2586,7 +2589,7 @@ containing a value of this type.
         public static final int search_src_text=0x7f0b004e;
         public static final int search_voice_btn=0x7f0b0052;
         public static final int selectionDetails=0x7f0b0014;
-        public static final int shape_bacground=0x7f0b0098;
+        public static final int shape_bacground=0x7f0b009b;
         public static final int shimmer_tv=0x7f0b0057;
         public static final int shortcut=0x7f0b003e;
         public static final int showCustom=0x7f0b0024;
@@ -2595,7 +2598,7 @@ containing a value of this type.
         public static final int simpleRipple=0x7f0b001f;
         public static final int skills1EditText=0x7f0b007c;
         public static final int skills2EditText=0x7f0b007f;
-        public static final int snackbar=0x7f0b0095;
+        public static final int snackbar=0x7f0b0098;
         public static final int spinner1=0x7f0b007d;
         public static final int spinner2=0x7f0b007e;
         public static final int split_action_bar=0x7f0b0004;
@@ -2608,7 +2611,7 @@ containing a value of this type.
         public static final int tabMode=0x7f0b0021;
         public static final int tab_bar=0x7f0b005f;
         public static final int terrain=0x7f0b000d;
-        public static final int text=0x7f0b0097;
+        public static final int text=0x7f0b009a;
         public static final int textView1=0x7f0b0070;
         public static final int title=0x7f0b003b;
         public static final int up=0x7f0b0001;
@@ -2850,6 +2853,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060020;
+        public static final int country_=0x7f060038;
         public static final int create_calendar_message=0x7f060005;
         public static final int create_calendar_title=0x7f060004;
         public static final int decline=0x7f060003;

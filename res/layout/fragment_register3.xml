@@ -73,7 +73,7 @@
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/countryEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
                     android:drawableLeft="@drawable/country"
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
-                    android:hint="Country*"
+                    android:prompt="@string/country_"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
