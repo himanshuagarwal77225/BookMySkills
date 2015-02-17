@@ -39,23 +39,23 @@ public final class R {
 		public static final int thumbColor = 0x7f070018;
 	}
 	public static final class drawable {
-		public static final int background_button = 0x7f0200ac;
-		public static final int background_button_float = 0x7f0200ad;
-		public static final int background_button_rectangle = 0x7f0200ae;
-		public static final int background_checkbox = 0x7f0200af;
-		public static final int background_checkbox_check = 0x7f0200b0;
-		public static final int background_checkbox_uncheck = 0x7f0200b1;
-		public static final int background_progress = 0x7f0200b2;
-		public static final int background_switch_ball_uncheck = 0x7f0200b3;
-		public static final int background_transparent = 0x7f0200b4;
-		public static final int dialog_background = 0x7f0200d3;
-		public static final int float_button1_shadowp = 0x7f0200d7;
-		public static final int float_button_shadow1 = 0x7f0200d8;
-		public static final int ic_launcher = 0x7f0200dd;
-		public static final int ic_reloj_max = 0x7f0200e4;
-		public static final int shadow_down = 0x7f0200f4;
-		public static final int shadow_right = 0x7f0200f5;
-		public static final int sprite_check = 0x7f0200f9;
+		public static final int background_button = 0x7f0200ad;
+		public static final int background_button_float = 0x7f0200ae;
+		public static final int background_button_rectangle = 0x7f0200af;
+		public static final int background_checkbox = 0x7f0200b0;
+		public static final int background_checkbox_check = 0x7f0200b1;
+		public static final int background_checkbox_uncheck = 0x7f0200b2;
+		public static final int background_progress = 0x7f0200b3;
+		public static final int background_switch_ball_uncheck = 0x7f0200b4;
+		public static final int background_transparent = 0x7f0200b5;
+		public static final int dialog_background = 0x7f0200d7;
+		public static final int float_button1_shadowp = 0x7f0200db;
+		public static final int float_button_shadow1 = 0x7f0200dc;
+		public static final int ic_launcher = 0x7f0200e2;
+		public static final int ic_reloj_max = 0x7f0200e9;
+		public static final int shadow_down = 0x7f0200fb;
+		public static final int shadow_right = 0x7f0200fc;
+		public static final int sprite_check = 0x7f020100;
 	}
 	public static final class id {
 		public static final int blue = 0x7f0b005e;
