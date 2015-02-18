@@ -129,57 +129,71 @@
                 android:orientation="vertical"
                 android:visibility="gone" >
 
-                <FrameLayout
-                    android:layout_width="fill_parent"
+                <LinearLayout
+                    android:id="@+id/educationLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp" >
+                    android:orientation="vertical" >
 
-                    <EditText
-                        android:id="@+id/educationEditText"
-                        android:layout_width="match_parent"
+                    <FrameLayout
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/education"
-                        android:drawablePadding="10dp"
-                        android:gravity="center|left"
-                        android:hint="Education*"
-                        android:padding="10dp"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black" />
+                        android:layout_margin="10dp" >
 
-                    <Button
-                        android:id="@+id/addMoreEducationButton"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:background="@android:drawable/ic_input_add" />
-                </FrameLayout>
+                        <EditText
+                            android:id="@+id/educationEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawableLeft="@drawable/education"
+                            android:drawablePadding="10dp"
+                            android:gravity="center|left"
+                            android:hint="Education*"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textColor="@android:color/black" />
 
-                <FrameLayout
-                    android:layout_width="fill_parent"
+                        <Button
+                            android:id="@+id/addMoreEducationButton"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:background="@drawable/add_more" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/certificationLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp" >
+                    android:orientation="vertical" >
 
-                    <EditText
-                        android:id="@+id/certificationsEditText"
-                        android:layout_width="match_parent"
+                    <FrameLayout
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/certificate"
-                        android:drawablePadding="10dp"
-                        android:gravity="center|left"
-                        android:hint="Certification"
-                        android:inputType="textEmailAddress"
-                        android:padding="10dp"
-                        android:textColor="@android:color/black" />
+                        android:layout_margin="10dp" >
 
-                    <Button
-                        android:id="@+id/addMoreCertificateButton"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:background="@android:drawable/ic_input_add" />
-                </FrameLayout>
+                        <EditText
+                            android:id="@+id/certificationsEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:drawableLeft="@drawable/certificate"
+                            android:drawablePadding="10dp"
+                            android:gravity="center|left"
+                            android:hint="Certification"
+                            android:inputType="textEmailAddress"
+                            android:padding="10dp"
+                            android:textColor="@android:color/black" />
+
+                        <Button
+                            android:id="@+id/addMoreCertificateButton"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:background="@drawable/add_more" />
+                    </FrameLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -201,52 +215,99 @@
                         android:textColor="@android:color/black" />
 
                     <Spinner
-                        android:id="@+id/spinner1"
+                        android:id="@+id/ratingSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight=".4" />
+                        android:layout_weight=".4"
+                        android:entries="@array/rating_array"
+                        android:gravity="center"
+                        android:prompt="@string/rating_prompt" />
 
                     <Spinner
-                        android:id="@+id/spinner2"
+                        android:id="@+id/lastUserdSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight=".4" />
+                        android:layout_weight=".4"
+                        android:gravity="center"
+                        android:prompt="@string/last_used" />
                 </LinearLayout>
 
-                <FrameLayout
-                    android:layout_width="fill_parent"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp" >
+                    android:orientation="vertical" >
 
-                    <EditText
-                        android:id="@+id/skills2EditText"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/skills"
-                        android:drawablePadding="10dp"
-                        android:gravity="center|left"
-                        android:hint="Skills 2*"
-                        android:padding="10dp"
-                        android:textColor="@android:color/black" />
+                        android:orientation="horizontal" >
 
-                    <Button
-                        android:id="@+id/addMoreSkillsButton"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="right|center_vertical"
-                        android:background="@android:drawable/ic_input_add" />
-                </FrameLayout>
+                        <EditText
+                            android:id="@+id/skills2EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight=".2"
+                            android:drawableLeft="@drawable/skills"
+                            android:drawablePadding="10dp"
+                            android:gravity="center|left"
+                            android:hint="Skills 2*"
+                            android:padding="10dp"
+                            android:textColor="@android:color/black" />
+
+                        <Spinner
+                            android:id="@+id/rating2Spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight=".4"
+                            android:entries="@array/rating_array"
+                            android:gravity="center"
+                            android:prompt="@string/rating_prompt" />
+
+                        <Spinner
+                            android:id="@+id/lastUserd2Spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight=".4"
+                            android:gravity="center"
+                            android:prompt="@string/last_used" />
+
+                        <Button
+                            android:id="@+id/addMoreSkillsButton"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/add_more" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skillsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/skillsSubLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/stage3LinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="gone" >
 
                 <EditText
                     android:id="@+id/addressEditText"
@@ -297,8 +358,8 @@
                     android:drawableLeft="@drawable/country"
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
-                    android:prompt="@string/country_"
                     android:padding="10dp"
+                    android:prompt="@string/country_"
                     android:spinnerMode="dropdown"
                     android:textColor="@android:color/black" />
 
@@ -343,7 +404,7 @@
                     android:inputType="date"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
-                
+
                 <EditText
                     android:id="@+id/workingHrsEditText"
                     android:layout_width="match_parent"
@@ -357,7 +418,7 @@
                     android:inputType="date"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
-                
+
                 <EditText
                     android:id="@+id/priceEditText"
                     android:layout_width="match_parent"
@@ -371,6 +432,15 @@
                     android:inputType="date"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
+
+                <ImageView
+                    android:id="@+id/profilePicImageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:scaleType="fitCenter"
+                    android:src="@android:drawable/ic_menu_gallery" />
 
                 <TextView
                     android:layout_width="wrap_content"

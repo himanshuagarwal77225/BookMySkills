@@ -1,20 +1,39 @@
 package com.bookmskills.activity;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +44,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -68,10 +88,25 @@ public class RegisterFragment extends Fragment {
 	private Button addMoreEducationButton;
 	private Button addMoreCertificateButton;
 	private Button addMoreSkillsButton;
-	private String education;
-	private String certifications;
+	private String education[];
+	private String certifications[];
 	private String skills1;
 	private String skills2;
+	private Spinner lastUserdSpinner;
+	private ArrayList<EditText> educationMoreEditText = new ArrayList<EditText>();
+	private ArrayList<EditText> certificateMoreEditText = new ArrayList<EditText>();
+	private ArrayList<EditText> skillsMoreEditText = new ArrayList<EditText>();
+	private ArrayList<Spinner> skillRatingMoreSpinners = new ArrayList<Spinner>();
+	private ArrayList<Spinner> skillLastUsedMoreSpinners = new ArrayList<Spinner>();
+	private LinearLayout educationLayout;
+	private LinearLayout certificationLayout;
+	private LinearLayout skillsLayout;
+	private LinearLayout skillsSubLayout;
+	int educationid = 0;
+	int certificationId = 0;
+	int skillsRatingID = 0;
+	int skillID = 0;
+	int skillYearID = 0;
 
 	// Stage 3 Variables
 	private EditText addressEditText;
@@ -86,6 +121,7 @@ public class RegisterFragment extends Fragment {
 	private CheckBox emaileCheckBox;
 	private CheckBox phoneCheckBox;
 	private CheckBox pushNotificationCheckBox;
+	private ImageView profilePicImageView;
 	private String address;
 	private String city;
 	private String state;
@@ -100,7 +136,10 @@ public class RegisterFragment extends Fragment {
 	private int month;
 	private int day;
 	static final int DATE_PICKER_ID = 1111;
-	
+	// Activity result key for camera
+	static final int REQUEST_TAKE_PHOTO = 11111;
+	private static final int IMAGE_PICKER_SELECT = 1;
+
 	@Override
 	public void onAttach(Activity activity) {
 		myContext = (FragmentActivity) activity;
@@ -114,7 +153,6 @@ public class RegisterFragment extends Fragment {
 		getActivity().getActionBar().setTitle("Register");
 		rootView = inflater.inflate(R.layout.fragment_register, container,
 				false);
-		
 
 		registerButton = (Button) rootView.findViewById(R.id.registerButton);
 		previousButton = (Button) rootView.findViewById(R.id.previousButton);
@@ -149,6 +187,16 @@ public class RegisterFragment extends Fragment {
 				.findViewById(R.id.addMoreCertificateButton);
 		addMoreSkillsButton = (Button) rootView
 				.findViewById(R.id.addMoreSkillsButton);
+		lastUserdSpinner = (Spinner) rootView
+				.findViewById(R.id.lastUserdSpinner);
+		educationLayout = (LinearLayout) rootView
+				.findViewById(R.id.educationLayout);
+		certificationLayout = (LinearLayout) rootView
+				.findViewById(R.id.certificationLayout);
+		skillsLayout = (LinearLayout) rootView.findViewById(R.id.skillsLayout);
+		skillsSubLayout = (LinearLayout) rootView
+				.findViewById(R.id.skillsSubLayout);
+		lastUsedSpinnerPopulate();
 
 		// stage 3
 		addressEditText = (EditText) rootView
@@ -168,6 +216,17 @@ public class RegisterFragment extends Fragment {
 		pushNotificationCheckBox = (CheckBox) rootView
 				.findViewById(R.id.pushNotificationCheckBox);
 		citizenship = (Spinner) rootView.findViewById(R.id.countryEditText);
+		profilePicImageView = (ImageView) rootView
+				.findViewById(R.id.profilePicImageView);
+
+		profilePicImageView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				cameraDialog();
+			}
+		});
 
 		if (stage == 1) {
 			stage1LinearLayout.setVisibility(View.VISIBLE);
@@ -215,15 +274,63 @@ public class RegisterFragment extends Fragment {
 				stage--;
 			}
 		});
-		
-		dobEditText.setOnClickListener(new OnClickListener() {
-			
+
+		addMoreEducationButton.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				FragmentTransaction ft = myContext.getSupportFragmentManager().beginTransaction();
-				DialogFragment newFragment = new DatePickerDialogFragment(pickerListener);
-				newFragment.show(ft, "date_dialog"); 
+				educationLayout.addView(addMoreEditText("Qualification"));
+			}
+		});
+
+		addMoreCertificateButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				certificationLayout.addView(addMoreEditText("Certification"));
+			}
+		});
+		
+		
+
+		addMoreSkillsButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+
+				skillsSubLayout.setLayoutParams(params);
+				skillsLayout.setLayoutParams(params);
+				skillsSubLayout.addView(addMoreEditText("Skills"));
+				skillsSubLayout.addView(addMoreSpinner("Rating"));
+				skillsSubLayout.addView(addMoreSpinner("Last Used"));
+				
+				if (skillsLayout != null) {
+				    ViewGroup parent = (ViewGroup) skillsLayout.getParent();
+				    if (parent != null) {
+				        parent.removeView(skillsLayout);
+				    }
+				}
+				
+				
+				skillsLayout.addView(skillsSubLayout);
+			}
+		});
+
+		dobEditText.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				FragmentTransaction ft = myContext.getSupportFragmentManager()
+						.beginTransaction();
+				DialogFragment newFragment = new DatePickerDialogFragment(
+						pickerListener);
+				newFragment.show(ft, "date_dialog");
 			}
 		});
 		return rootView;
@@ -317,12 +424,32 @@ public class RegisterFragment extends Fragment {
 
 	public void stage2Validation() {
 
-		education = educationEditText.getText().toString().trim();
-		certifications = certificationsEditText.getText().toString().trim();
+		education = new String[educationMoreEditText.size() + 1];
+		education[0] = educationEditText.getText().toString().trim();
+		certifications = new String[certificateMoreEditText.size() + 1];
+		certifications[0] = certificationsEditText.getText().toString().trim();
 		skills1 = skills1EditText.getText().toString().trim();
 		skills2 = skills2EditText.getText().toString().trim();
 
-		if (education != null && !TextUtils.isEmpty(education)) {
+		for (int i = 0; i < educationMoreEditText.size(); i++) {
+			EditText educationEditText = educationMoreEditText.get(i);
+			String educationText = educationEditText.getText().toString()
+					.trim();
+			if (educationText != null && !TextUtils.isEmpty(educationText)) {
+				education[i + 1] = educationText;
+			}
+		}
+		for (int i = 0; i < certificateMoreEditText.size(); i++) {
+			EditText certificationEditText = certificateMoreEditText.get(i);
+			String certificationText = certificationEditText.getText()
+					.toString().trim();
+			if (certificationText != null
+					&& !TextUtils.isEmpty(certificationText)) {
+				certifications[i + 1] = certificationText;
+			}
+		}
+
+		if (education != null && !TextUtils.isEmpty(education[0])) {
 			if (skills1 != null && !TextUtils.isEmpty(skills1)) {
 				if (skills2 != null && !TextUtils.isEmpty(skills2)) {
 
@@ -431,8 +558,7 @@ public class RegisterFragment extends Fragment {
 	public void makeToast(String text) {
 		Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
 	}
-	
-	
+
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case DATE_PICKER_ID:
@@ -440,9 +566,27 @@ public class RegisterFragment extends Fragment {
 			// open datepicker dialog.
 			// set date picker for current date
 			// add pickerListener listner to date picker
-			return new DatePickerDialog(getActivity(), pickerListener, year, month, day);
+			return new DatePickerDialog(getActivity(), pickerListener, year,
+					month, day);
 		}
 		return null;
+	}
+
+	public void lastUsedSpinnerPopulate() {
+		ArrayList<String> years = new ArrayList<String>();
+		int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+		for (int i = thisYear; i >= 1900; i--) {
+			years.add(Integer.toString(i));
+		}
+
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_spinner_dropdown_item, years);
+
+		ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_spinner_item, years);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		lastUserdSpinner.setAdapter(adapter1);
 	}
 
 	private DatePickerDialog.OnDateSetListener pickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -463,4 +607,262 @@ public class RegisterFragment extends Fragment {
 
 		}
 	};
+
+	public void cameraDialog() {
+		AlertDialog.Builder getImageFrom = new AlertDialog.Builder(
+				getActivity());
+		getImageFrom.setTitle("Select:");
+		final CharSequence[] opsChars = { "Take Picture", "Open Gallery",
+				"Cancel" };
+		getImageFrom.setItems(opsChars,
+				new android.content.DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if (which == 0) {
+							dispatchTakePictureIntent();
+						} else if (which == 1) {
+							Intent i = new Intent(
+									Intent.ACTION_PICK,
+									android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+							startActivityForResult(i, IMAGE_PICKER_SELECT);
+						} else {
+							dialog.cancel();
+						}
+						dialog.dismiss();
+					}
+				});
+		getImageFrom.create().show();
+	}
+
+	/**
+	 * Start the camera by dispatching a camera intent.
+	 */
+	protected void dispatchTakePictureIntent() {
+		// Check if there is a camera.
+		Context context = getActivity();
+		PackageManager packageManager = context.getPackageManager();
+		if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA) == false) {
+			Toast.makeText(getActivity(),
+					"This device does not have a camera.", Toast.LENGTH_SHORT)
+					.show();
+			return;
+		}
+		// Camera exists? Then proceed...
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		// Ensure that there's a camera activity to handle the intent
+		MainActivity activity = (MainActivity) getActivity();
+		if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
+			// Create the File where the photo should go.
+			// If you don't do this, you may get a crash in some devices.
+			File photoFile = null;
+			try {
+				photoFile = createImageFile();
+			} catch (IOException ex) {
+				// Error occurred while creating the File
+				Toast toast = Toast.makeText(activity,
+						"There was a problem saving the photo...",
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+			// Continue only if the File was successfully created
+			if (photoFile != null) {
+				Uri fileUri = Uri.fromFile(photoFile);
+				activity.setCapturedImageURI(fileUri);
+				activity.setCurrentPhotoPath(fileUri.getPath());
+				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+						activity.getCapturedImageURI());
+				startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+			}
+		}
+	}
+
+	/**
+	 * The activity returns with the photo.
+	 * 
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 */
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_TAKE_PHOTO
+				&& resultCode == Activity.RESULT_OK) {
+			addPhotoToGallery();
+			MainActivity activity = (MainActivity) getActivity();
+			// Show the full sized image.
+			setFullImageFromFilePath(activity.getCurrentPhotoPath(),
+					profilePicImageView);
+
+		} else if (requestCode == IMAGE_PICKER_SELECT
+				&& resultCode == Activity.RESULT_OK) {
+			String path = getPathFromCameraData(data, this.getActivity());
+			Log.i("PICTURE", "Path: " + path);
+			if (path != null) {
+				setFullImageFromFilePath(path, profilePicImageView);
+			}
+		} else {
+			Toast.makeText(getActivity(), "Image Capture Failed",
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	/**
+	 * Creates the image file to which the image must be saved.
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
+	protected File createImageFile() throws IOException {
+		// Create an image file name
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+				.format(new Date(System.currentTimeMillis()));
+		String imageFileName = "JPEG_" + timeStamp + "_";
+		File storageDir = Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+		File image = File.createTempFile(imageFileName, /* prefix */
+				".jpg", /* suffix */
+				storageDir /* directory */
+		);
+		// Save a file: path for use with ACTION_VIEW intents
+		MainActivity activity = (MainActivity) getActivity();
+		activity.setCurrentPhotoPath("file:" + image.getAbsolutePath());
+		return image;
+	}
+
+	public static String getPathFromCameraData(Intent data, Context context) {
+		Uri selectedImage = data.getData();
+		String[] filePathColumn = { MediaStore.Images.Media.DATA };
+		Cursor cursor = context.getContentResolver().query(selectedImage,
+				filePathColumn, null, null, null);
+		cursor.moveToFirst();
+		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+		String picturePath = cursor.getString(columnIndex);
+		cursor.close();
+		return picturePath;
+	}
+
+	/**
+	 * Add the picture to the photo gallery. Must be called on all camera images
+	 * or they will disappear once taken.
+	 */
+	protected void addPhotoToGallery() {
+		Intent mediaScanIntent = new Intent(
+				Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		MainActivity activity = (MainActivity) getActivity();
+		File f = new File(activity.getCurrentPhotoPath());
+		Uri contentUri = Uri.fromFile(f);
+		mediaScanIntent.setData(contentUri);
+		this.getActivity().sendBroadcast(mediaScanIntent);
+	}
+
+	/**
+	 * Scale the photo down and fit it to our image views.
+	 * 
+	 * "Drastically increases performance" to set images using this technique.
+	 * Read more:http://developer.android.com/training/camera/photobasics.html
+	 */
+	private void setFullImageFromFilePath(String imagePath, ImageView imageView) {
+		// Get the dimensions of the View
+		int targetW = imageView.getWidth();
+		int targetH = imageView.getHeight();
+		// Get the dimensions of the bitmap
+		BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+		bmOptions.inJustDecodeBounds = true;
+		BitmapFactory.decodeFile(imagePath, bmOptions);
+		int photoW = bmOptions.outWidth;
+		int photoH = bmOptions.outHeight;
+		// Determine how much to scale down the image
+		int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+		// Decode the image file into a Bitmap sized to fill the View
+		bmOptions.inJustDecodeBounds = false;
+		bmOptions.inSampleSize = scaleFactor;
+		bmOptions.inPurgeable = true;
+		Bitmap bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
+		imageView.setImageBitmap(bitmap);
+	}
+
+	public EditText addMoreEditText(String hint) {
+
+		EditText editText = new EditText(getActivity());
+		if (hint.equalsIgnoreCase("Qualification")) {
+			editText.setId(educationid);
+			editText.setCompoundDrawablesWithIntrinsicBounds(
+					R.drawable.education, 0, 0, 0);
+			educationMoreEditText.add(editText);
+			educationid++;
+			editText.setHint(hint + " " + educationid);
+			LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+			editTextLayoutParams.setMargins(10, 10, 10, 10);
+			editText.setLayoutParams(editTextLayoutParams);
+			editText.setPadding(10, 10, 10, 10);
+			editText.setCompoundDrawablePadding(10);
+		} else if (hint.equalsIgnoreCase("Certification")) {
+			editText.setId(certificationId);
+			editText.setCompoundDrawablesWithIntrinsicBounds(
+					R.drawable.certificate, 0, 0, 0);
+			certificateMoreEditText.add(editText);
+			certificationId++;
+			editText.setHint(hint + " " + certificationId);
+			LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+			editTextLayoutParams.setMargins(10, 10, 10, 10);
+			editText.setLayoutParams(editTextLayoutParams);
+			editText.setPadding(10, 10, 10, 10);
+			editText.setCompoundDrawablePadding(10);
+		} else if (hint.equalsIgnoreCase("Skills")) {
+			editText.setId(skillID);
+			editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.skills,
+					0, 0, 0);
+			skillsMoreEditText.add(editText);
+			skillID++;
+			editText.setHint(hint + " " + skillID);
+			LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.2f);
+			editTextLayoutParams.setMargins(10, 10, 10, 10);
+			editText.setLayoutParams(editTextLayoutParams);
+			editText.setPadding(10, 10, 10, 10);
+			editText.setCompoundDrawablePadding(10);
+		}
+
+		return editText;
+	}
+
+	public Spinner addMoreSpinner(String hint) {
+
+		Spinner spinner = new Spinner(getActivity());
+		if (hint.equalsIgnoreCase("Rating")) {
+			spinner.setId(skillsRatingID);
+			skillRatingMoreSpinners.add(spinner);
+			skillsRatingID++;
+			spinner.setPromptId(R.string.rating_prompt);
+			ArrayAdapter<CharSequence> adapter;
+			adapter = ArrayAdapter.createFromResource(getActivity(),
+					R.array.rating_array, android.R.layout.simple_spinner_item);
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			spinner.setAdapter(adapter);
+
+		} else if (hint.equalsIgnoreCase("Last Used")) {
+			spinner.setId(skillYearID);
+			skillLastUsedMoreSpinners.add(spinner);
+			skillYearID++;
+			spinner.setPromptId(R.string.last_used);
+			ArrayList<String> years = new ArrayList<String>();
+			int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+			for (int i = thisYear; i >= 1900; i--) {
+				years.add(Integer.toString(i));
+			}
+
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+					getActivity(), android.R.layout.simple_spinner_item, years);
+			spinner.setAdapter(adapter);
+		}
+		LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.4f);
+		spinner.setLayoutParams(editTextLayoutParams);
+
+		return spinner;
+	}
+
 }
