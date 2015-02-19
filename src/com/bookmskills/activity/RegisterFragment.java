@@ -31,9 +31,9 @@ import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,9 +49,12 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bookmyskills.R;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 @SuppressLint("NewApi")
 public class RegisterFragment extends Fragment {
@@ -78,6 +81,7 @@ public class RegisterFragment extends Fragment {
 	private LinearLayout stage1LinearLayout;
 	private LinearLayout stage2LinearLayout;
 	private LinearLayout stage3LinearLayout;
+	private LinearLayout stageOrganizationLinearLayout;
 	private static int stage = 1;
 
 	// Stage 2 varaiables
@@ -85,17 +89,22 @@ public class RegisterFragment extends Fragment {
 	private EditText certificationsEditText;
 	private EditText skills1EditText;
 	private EditText skills2EditText;
+	private EditText workHr1EditText;
+	private EditText workHr2EditText;
 	private Button addMoreEducationButton;
 	private Button addMoreCertificateButton;
 	private Button addMoreSkillsButton;
 	private String education[];
+	private String workingHrs[];
 	private String certifications[];
-	private String skills1;
-	private String skills2;
-	private Spinner lastUserdSpinner;
+	private String skills[];
+	private String ratingLevel[];
+	private String experience[];
+	private Spinner lastUserdSpinner, lastUserd2Spinner;
 	private ArrayList<EditText> educationMoreEditText = new ArrayList<EditText>();
 	private ArrayList<EditText> certificateMoreEditText = new ArrayList<EditText>();
 	private ArrayList<EditText> skillsMoreEditText = new ArrayList<EditText>();
+	private ArrayList<EditText> skillsWorkHrMoreEditText = new ArrayList<EditText>();
 	private ArrayList<Spinner> skillRatingMoreSpinners = new ArrayList<Spinner>();
 	private ArrayList<Spinner> skillLastUsedMoreSpinners = new ArrayList<Spinner>();
 	private LinearLayout educationLayout;
@@ -107,6 +116,7 @@ public class RegisterFragment extends Fragment {
 	int skillsRatingID = 0;
 	int skillID = 0;
 	int skillYearID = 0;
+	int skillWorkHrID = 0;
 
 	// Stage 3 Variables
 	private EditText addressEditText;
@@ -116,19 +126,21 @@ public class RegisterFragment extends Fragment {
 	private EditText phnNumberEditText;
 	private EditText dobEditText;
 	private EditText workingHrsEditText;
-	private EditText priceEditText;
+	// private EditText priceEditText;
 	private Spinner citizenship;
 	private CheckBox emaileCheckBox;
 	private CheckBox phoneCheckBox;
 	private CheckBox pushNotificationCheckBox;
-	private ImageView profilePicImageView;
+	private CheckBox termsNPolicyCheckBox;
+	private CircleImageView profilePicImageView;
+	private TextView photoUserTextView;
 	private String address;
 	private String city;
 	private String state;
 	private String pincode;
 	private String phoneNumber;
 	private String dob;
-	private String workingHrs;
+
 	private String price;
 	private String country;
 	private String contactType;
@@ -139,6 +151,14 @@ public class RegisterFragment extends Fragment {
 	// Activity result key for camera
 	static final int REQUEST_TAKE_PHOTO = 11111;
 	private static final int IMAGE_PICKER_SELECT = 1;
+
+	// Stage Organization Layout
+	private EditText fullNameEditText;
+	private EditText organizationEditText;
+	private EditText websiteEditText;
+	private String fullName;
+	private String organization;
+	private String website;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -153,7 +173,6 @@ public class RegisterFragment extends Fragment {
 		getActivity().getActionBar().setTitle("Register");
 		rootView = inflater.inflate(R.layout.fragment_register, container,
 				false);
-
 		registerButton = (Button) rootView.findViewById(R.id.registerButton);
 		previousButton = (Button) rootView.findViewById(R.id.previousButton);
 		userNameEditText = (EditText) rootView
@@ -171,6 +190,8 @@ public class RegisterFragment extends Fragment {
 				.findViewById(R.id.stage2LinearLayout);
 		stage3LinearLayout = (LinearLayout) rootView
 				.findViewById(R.id.stage3LinearLayout);
+		stageOrganizationLinearLayout = (LinearLayout) rootView
+				.findViewById(R.id.stageOrganizationLinearLayout);
 
 		// stage 2
 		educationEditText = (EditText) rootView
@@ -181,6 +202,10 @@ public class RegisterFragment extends Fragment {
 				.findViewById(R.id.skills1EditText);
 		skills2EditText = (EditText) rootView
 				.findViewById(R.id.skills2EditText);
+		workHr1EditText = (EditText) rootView
+				.findViewById(R.id.workHr1EditText);
+		workHr2EditText = (EditText) rootView
+				.findViewById(R.id.workHr2EditText);
 		addMoreEducationButton = (Button) rootView
 				.findViewById(R.id.addMoreEducationButton);
 		addMoreCertificateButton = (Button) rootView
@@ -189,14 +214,16 @@ public class RegisterFragment extends Fragment {
 				.findViewById(R.id.addMoreSkillsButton);
 		lastUserdSpinner = (Spinner) rootView
 				.findViewById(R.id.lastUserdSpinner);
+		lastUserd2Spinner = (Spinner) rootView
+				.findViewById(R.id.lastUserd2Spinner);
 		educationLayout = (LinearLayout) rootView
 				.findViewById(R.id.educationLayout);
 		certificationLayout = (LinearLayout) rootView
 				.findViewById(R.id.certificationLayout);
 		skillsLayout = (LinearLayout) rootView.findViewById(R.id.skillsLayout);
-		skillsSubLayout = (LinearLayout) rootView
-				.findViewById(R.id.skillsSubLayout);
-		lastUsedSpinnerPopulate();
+		// skillsSubLayout = (LinearLayout)
+		// rootView.findViewById(R.id.skillsSubLayout);
+		// lastUsedSpinnerPopulate();
 
 		// stage 3
 		addressEditText = (EditText) rootView
@@ -208,16 +235,28 @@ public class RegisterFragment extends Fragment {
 		phnNumberEditText = (EditText) rootView
 				.findViewById(R.id.phnNumberEditText);
 		dobEditText = (EditText) rootView.findViewById(R.id.dobEditText);
-		workingHrsEditText = (EditText) rootView
-				.findViewById(R.id.workingHrsEditText);
-		priceEditText = (EditText) rootView.findViewById(R.id.priceEditText);
+		// workingHrsEditText = (EditText)
+		// rootView.findViewById(R.id.workingHrsEditText);
+		// priceEditText = (EditText) rootView.findViewById(R.id.priceEditText);
 		emaileCheckBox = (CheckBox) rootView.findViewById(R.id.emaileCheckBox);
 		phoneCheckBox = (CheckBox) rootView.findViewById(R.id.phoneCheckBox);
 		pushNotificationCheckBox = (CheckBox) rootView
 				.findViewById(R.id.pushNotificationCheckBox);
+		termsNPolicyCheckBox = (CheckBox) rootView
+				.findViewById(R.id.termsNPolicyCheckBox);
 		citizenship = (Spinner) rootView.findViewById(R.id.countryEditText);
-		profilePicImageView = (ImageView) rootView
+		profilePicImageView = (CircleImageView) rootView
 				.findViewById(R.id.profilePicImageView);
+		photoUserTextView = (TextView) rootView
+				.findViewById(R.id.photoUserTextView);
+
+		// Stage Organization Layout
+		fullNameEditText = (EditText) rootView
+				.findViewById(R.id.fullNameEditText);
+		organizationEditText = (EditText) rootView
+				.findViewById(R.id.organizationEditText);
+		websiteEditText = (EditText) rootView
+				.findViewById(R.id.websiteEditText);
 
 		profilePicImageView.setOnClickListener(new OnClickListener() {
 
@@ -234,7 +273,7 @@ public class RegisterFragment extends Fragment {
 			stage3LinearLayout.setVisibility(View.GONE);
 		}
 
-		getCountry();
+		// getCountry();
 
 		registerButton.setOnClickListener(new OnClickListener() {
 
@@ -243,8 +282,10 @@ public class RegisterFragment extends Fragment {
 				// TODO Auto-generated method stub
 				if (stage == 1) {
 					stage1Validation();
-				} else if (stage == 2) {
+				} else if (stage == 2 && userType.equalsIgnoreCase("Work")) {
 					stage2Validation();
+				} else if (stage == 2 && userType.equalsIgnoreCase("Hire")) {
+					stageOrganizationValidation();
 				} else if (stage == 3) {
 					stage3Validation();
 				}
@@ -261,15 +302,29 @@ public class RegisterFragment extends Fragment {
 					stage1LinearLayout.setVisibility(View.VISIBLE);
 					stage2LinearLayout.setVisibility(View.GONE);
 					stage3LinearLayout.setVisibility(View.GONE);
-				} else if (stage == 2) {
+					stageOrganizationLinearLayout.setVisibility(View.GONE);
+				} else if (stage == 2 && userType.equalsIgnoreCase("Work")) {
 					stage1LinearLayout.setVisibility(View.VISIBLE);
 					stage2LinearLayout.setVisibility(View.GONE);
 					stage3LinearLayout.setVisibility(View.GONE);
-				} else if (stage == 3) {
+					stageOrganizationLinearLayout.setVisibility(View.GONE);
+				} else if (stage == 3 && userType.equalsIgnoreCase("Work")) {
 					stage3Validation();
 					stage1LinearLayout.setVisibility(View.GONE);
 					stage2LinearLayout.setVisibility(View.VISIBLE);
 					stage3LinearLayout.setVisibility(View.GONE);
+					stageOrganizationLinearLayout.setVisibility(View.GONE);
+				} else if (stage == 2 && userType.equalsIgnoreCase("Hire")) {
+					stage1LinearLayout.setVisibility(View.VISIBLE);
+					stage2LinearLayout.setVisibility(View.GONE);
+					stage3LinearLayout.setVisibility(View.GONE);
+					stageOrganizationLinearLayout.setVisibility(View.GONE);
+				} else if (stage == 3 && userType.equalsIgnoreCase("Hire")) {
+					stage3Validation();
+					stage1LinearLayout.setVisibility(View.GONE);
+					stage2LinearLayout.setVisibility(View.GONE);
+					stage3LinearLayout.setVisibility(View.GONE);
+					stageOrganizationLinearLayout.setVisibility(View.VISIBLE);
 				}
 				stage--;
 			}
@@ -292,8 +347,6 @@ public class RegisterFragment extends Fragment {
 				certificationLayout.addView(addMoreEditText("Certification"));
 			}
 		});
-		
-		
 
 		addMoreSkillsButton.setOnClickListener(new OnClickListener() {
 
@@ -303,21 +356,18 @@ public class RegisterFragment extends Fragment {
 				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
+				LinearLayout skillsSubLayout = new LinearLayout(myContext);
+
 				skillsSubLayout.setLayoutParams(params);
 				skillsLayout.setLayoutParams(params);
 				skillsSubLayout.addView(addMoreEditText("Skills"));
+				skillsSubLayout.addView(addMoreEditText("Working Hours"));
+				skillsLayout.addView(skillsSubLayout);
+				skillsSubLayout = new LinearLayout(myContext);
 				skillsSubLayout.addView(addMoreSpinner("Rating"));
 				skillsSubLayout.addView(addMoreSpinner("Last Used"));
-				
-				if (skillsLayout != null) {
-				    ViewGroup parent = (ViewGroup) skillsLayout.getParent();
-				    if (parent != null) {
-				        parent.removeView(skillsLayout);
-				    }
-				}
-				
-				
 				skillsLayout.addView(skillsSubLayout);
+
 			}
 		});
 
@@ -385,39 +435,42 @@ public class RegisterFragment extends Fragment {
 									stage++;
 
 									stage1LinearLayout.setVisibility(View.GONE);
-									stage2LinearLayout
-											.setVisibility(View.VISIBLE);
+									if (userType.equalsIgnoreCase("Work")) {
+										stage2LinearLayout
+												.setVisibility(View.VISIBLE);
+									} else {
+										stageOrganizationLinearLayout
+												.setVisibility(View.VISIBLE);
+									}
 
 									previousButton.setVisibility(View.VISIBLE);
 								} else {
-									typeRadioButton.setError("Select Type");
+									makeToast("Select Type");
 									radioTypeGroup.requestFocus();
 								}
 							} else {
-								cnfPasswordEditText
-										.setError("Password Does't Match");
+								makeToast("Password Does't Match");
 								cnfPasswordEditText.requestFocus();
 							}
 						} else {
-							cnfPasswordEditText
-									.setError("Enter Confirm Password");
+							makeToast("Enter Confirm Password");
 							cnfPasswordEditText.requestFocus();
 						}
 					} else {
-						passwordEditText.setError("Enter Password");
+						makeToast("Enter Password");
 						passwordEditText.requestFocus();
 					}
 				} else {
-					emailNameEditText.setError("Invalid Email");
+					makeToast("Invalid Email");
 					emailNameEditText.requestFocus();
 				}
 			} else {
-				emailNameEditText.setError("Enter Email");
+				makeToast("Enter Email");
 				emailNameEditText.requestFocus();
 			}
 
 		} else {
-			userNameEditText.setError("Enter User Name");
+			makeToast("Enter User Name");
 			userNameEditText.requestFocus();
 		}
 	}
@@ -428,8 +481,12 @@ public class RegisterFragment extends Fragment {
 		education[0] = educationEditText.getText().toString().trim();
 		certifications = new String[certificateMoreEditText.size() + 1];
 		certifications[0] = certificationsEditText.getText().toString().trim();
-		skills1 = skills1EditText.getText().toString().trim();
-		skills2 = skills2EditText.getText().toString().trim();
+		skills = new String[skillsMoreEditText.size() + 2];
+		skills[0] = skills1EditText.getText().toString().trim();
+		skills[2] = skills2EditText.getText().toString().trim();
+		workingHrs = new String[skillsWorkHrMoreEditText.size() + 2];
+		workingHrs[0] = workHr1EditText.getText().toString().trim();
+		workingHrs[2] = workHr2EditText.getText().toString().trim();
 
 		for (int i = 0; i < educationMoreEditText.size(); i++) {
 			EditText educationEditText = educationMoreEditText.get(i);
@@ -448,28 +505,72 @@ public class RegisterFragment extends Fragment {
 				certifications[i + 1] = certificationText;
 			}
 		}
-
-		if (education != null && !TextUtils.isEmpty(education[0])) {
-			if (skills1 != null && !TextUtils.isEmpty(skills1)) {
-				if (skills2 != null && !TextUtils.isEmpty(skills2)) {
-
-					stage2LinearLayout.setVisibility(View.GONE);
-					stage3LinearLayout.setVisibility(View.VISIBLE);
-					stage++;
-
-				} else {
-					skills2EditText.requestFocus();
-					skills2EditText.setError("Enter Skill");
-				}
-			} else {
-				skills1EditText.requestFocus();
-				skills1EditText.setError("Enter Skill");
+		for (int i = 0; i < skillsMoreEditText.size(); i++) {
+			EditText skillsEditText = skillsMoreEditText.get(i);
+			String skillsText = skillsEditText.getText().toString().trim();
+			if (skillsEditText != null && !TextUtils.isEmpty(skillsText)) {
+				skills[i + 2] = skillsText;
 			}
-		} else {
-			educationEditText.setError("Enter Education");
-			educationEditText.requestFocus();
+		}
+		for (int i = 0; i < skillsWorkHrMoreEditText.size(); i++) {
+			EditText skillsHrEditText = skillsWorkHrMoreEditText.get(i);
+			String skillsHrText = skillsHrEditText.getText().toString().trim();
+			if (skillsHrEditText != null && !TextUtils.isEmpty(skillsHrText)) {
+				workingHrs[i + 2] = skillsHrText;
+			}
 		}
 
+		// if (education != null && !TextUtils.isEmpty(education[0])) {
+		if (skills[0] != null && !TextUtils.isEmpty(skills[0])) {
+			if (skills[1] != null && !TextUtils.isEmpty(skills[1])) {
+				if (workingHrs[0] != null && !TextUtils.isEmpty(workingHrs[0])) {
+					if (workingHrs[1] != null
+							&& !TextUtils.isEmpty(workingHrs[1])) {
+						stage2LinearLayout.setVisibility(View.GONE);
+						stage3LinearLayout.setVisibility(View.VISIBLE);
+						stage++;
+					} else {
+						workHr2EditText.requestFocus();
+						makeToast("Enter Working Hours");
+					}
+				} else {
+					workHr1EditText.requestFocus();
+					makeToast("Enter Working Hours");
+				}
+
+			} else {
+				skills2EditText.requestFocus();
+				makeToast("Enter Skill");
+			}
+		} else {
+			skills1EditText.requestFocus();
+			makeToast("Enter Skill");
+		}
+		// } else {
+		// makeToast("Enter Education");
+		// educationEditText.requestFocus();
+		// }
+
+	}
+
+	public void stageOrganizationValidation() {
+		fullName = fullNameEditText.getText().toString().trim();
+		organization = organizationEditText.getText().toString().trim();
+		website = websiteEditText.getText().toString().trim();
+
+		if (fullName != null && !TextUtils.isEmpty(fullName)) {
+			if (organization != null && !TextUtils.isEmpty(organization)) {
+				stageOrganizationLinearLayout.setVisibility(View.GONE);
+				stage3LinearLayout.setVisibility(View.VISIBLE);
+				stage++;
+			} else {
+				organizationEditText.requestFocus();
+				makeToast("Enter Organization Name");
+			}
+		} else {
+			fullNameEditText.requestFocus();
+			makeToast("Enter Full Name");
+		}
 	}
 
 	public void stage3Validation() {
@@ -480,8 +581,8 @@ public class RegisterFragment extends Fragment {
 		pincode = pincodeEditText.getText().toString().trim();
 		phoneNumber = phnNumberEditText.getText().toString().trim();
 		dob = dobEditText.getText().toString().trim();
-		workingHrs = workingHrsEditText.getText().toString().trim();
-		price = priceEditText.getText().toString().trim();
+		// workingHrs = workingHrsEditText.getText().toString().trim();
+		// price = priceEditText.getText().toString().trim();
 		contactType = "";
 		if (emaileCheckBox.isChecked()) {
 			contactType += emaileCheckBox.getText().toString().trim() + ",";
@@ -502,38 +603,41 @@ public class RegisterFragment extends Fragment {
 							if (phoneNumber != null
 									&& !TextUtils.isEmpty(phoneNumber)) {
 								if (dob != null && !TextUtils.isEmpty(dob)) {
-									if (workingHrs != null
-											&& !TextUtils.isEmpty(workingHrs)) {
-										if (price != null
-												&& !TextUtils.isEmpty(price)) {
-											if (contactType != null
-													&& !TextUtils
-															.isEmpty(contactType)) {
-												showDialog();
-											} else {
-												emaileCheckBox.requestFocus();
-												makeToast("Select Contact(s) Medium");
-											}
+									// if (workingHrs != null &&
+									// !TextUtils.isEmpty(workingHrs)) {
+									// if (price != null &&
+									// !TextUtils.isEmpty(price)) {
+									if (contactType != null
+											&& !TextUtils.isEmpty(contactType)) {
+										if (termsNPolicyCheckBox.isChecked()) {
+											showDialog();
+											makeToast("Thank You for registration");
 										} else {
-											priceEditText.requestFocus();
-											priceEditText
-													.setError("Enter Price");
+											termsNPolicyCheckBox.requestFocus();
+											makeToast("Please accept  the Terms and Conditions and Privacy Policy");
 										}
 									} else {
-										workingHrsEditText.requestFocus();
-										workingHrsEditText
-												.setError("Enter Working Hours");
+										emaileCheckBox.requestFocus();
+										makeToast("Select Contact(s) Medium");
 									}
+									// } else {
+									// priceEditText.requestFocus();
+									// makeToast("Enter Price");
+									// }
+									// } else {
+									// workingHrsEditText.requestFocus();
+									// makeToast("Enter Working Hours");
+									// }
 								} else {
 									dobEditText.requestFocus();
-									dobEditText.setError("Enter DOB");
+									makeToast("Enter DOB");
 								}
 							} else {
 								phnNumberEditText.requestFocus();
-								phnNumberEditText.setError("Enter Phone#");
+								makeToast("Enter Phone#");
 							}
 						} else {
-							pincodeEditText.setError("Enter Pincode");
+							makeToast("Enter Pincode");
 							pincodeEditText.requestFocus();
 						}
 					} else {
@@ -542,15 +646,15 @@ public class RegisterFragment extends Fragment {
 					}
 				} else {
 					stateEditText.requestFocus();
-					stateEditText.setError("Enter State");
+					makeToast("Enter State");
 				}
 			} else {
 				cityEditText.requestFocus();
-				cityEditText.setError("Enter City");
+				makeToast("Enter City");
 			}
 		} else {
 			addressEditText.requestFocus();
-			addressEditText.setError("Enter Address");
+			makeToast("Enter Address");
 		}
 
 	}
@@ -587,6 +691,8 @@ public class RegisterFragment extends Fragment {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		lastUserdSpinner.setAdapter(adapter1);
+
+		lastUserd2Spinner.setAdapter(adapter);
 	}
 
 	private DatePickerDialog.OnDateSetListener pickerListener = new DatePickerDialog.OnDateSetListener() {
@@ -780,11 +886,15 @@ public class RegisterFragment extends Fragment {
 		bmOptions.inPurgeable = true;
 		Bitmap bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
 		imageView.setImageBitmap(bitmap);
+		photoUserTextView.setVisibility(View.GONE);
 	}
 
 	public EditText addMoreEditText(String hint) {
 
 		EditText editText = new EditText(getActivity());
+
+		LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		if (hint.equalsIgnoreCase("Qualification")) {
 			editText.setId(educationid);
 			editText.setCompoundDrawablesWithIntrinsicBounds(
@@ -792,12 +902,6 @@ public class RegisterFragment extends Fragment {
 			educationMoreEditText.add(editText);
 			educationid++;
 			editText.setHint(hint + " " + educationid);
-			LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-			editTextLayoutParams.setMargins(10, 10, 10, 10);
-			editText.setLayoutParams(editTextLayoutParams);
-			editText.setPadding(10, 10, 10, 10);
-			editText.setCompoundDrawablePadding(10);
 		} else if (hint.equalsIgnoreCase("Certification")) {
 			editText.setId(certificationId);
 			editText.setCompoundDrawablesWithIntrinsicBounds(
@@ -805,26 +909,31 @@ public class RegisterFragment extends Fragment {
 			certificateMoreEditText.add(editText);
 			certificationId++;
 			editText.setHint(hint + " " + certificationId);
-			LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-			editTextLayoutParams.setMargins(10, 10, 10, 10);
-			editText.setLayoutParams(editTextLayoutParams);
-			editText.setPadding(10, 10, 10, 10);
-			editText.setCompoundDrawablePadding(10);
 		} else if (hint.equalsIgnoreCase("Skills")) {
 			editText.setId(skillID);
 			editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.skills,
 					0, 0, 0);
 			skillsMoreEditText.add(editText);
 			skillID++;
-			editText.setHint(hint + " " + skillID);
-			LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
-					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.2f);
-			editTextLayoutParams.setMargins(10, 10, 10, 10);
-			editText.setLayoutParams(editTextLayoutParams);
-			editText.setPadding(10, 10, 10, 10);
-			editText.setCompoundDrawablePadding(10);
+			editText.setHint(hint + " " + (skillID + 2));
+			editTextLayoutParams = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.5f);
+		} else if (hint.equalsIgnoreCase("Working Hours")) {
+			editText.setId(skillWorkHrID);
+			editText.setCompoundDrawablesWithIntrinsicBounds(
+					R.drawable.working_hours, 0, 0, 0);
+			skillsWorkHrMoreEditText.add(editText);
+			skillWorkHrID++;
+			editText.setHint(hint);
+			editText.setInputType(InputType.TYPE_CLASS_DATETIME);
+			editTextLayoutParams = new LinearLayout.LayoutParams(
+					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.5f);
 		}
+
+		editTextLayoutParams.setMargins(10, 10, 10, 10);
+		editText.setLayoutParams(editTextLayoutParams);
+		editText.setPadding(10, 10, 10, 10);
+		editText.setCompoundDrawablePadding(10);
 
 		return editText;
 	}
@@ -837,9 +946,9 @@ public class RegisterFragment extends Fragment {
 			skillRatingMoreSpinners.add(spinner);
 			skillsRatingID++;
 			spinner.setPromptId(R.string.rating_prompt);
-			ArrayAdapter<CharSequence> adapter;
-			adapter = ArrayAdapter.createFromResource(getActivity(),
-					R.array.rating_array, android.R.layout.simple_spinner_item);
+			ArrayAdapter<CharSequence> adapter = ArrayAdapter
+					.createFromResource(getActivity(), R.array.rating_array,
+							android.R.layout.simple_spinner_item);
 			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			spinner.setAdapter(adapter);
 
@@ -848,19 +957,17 @@ public class RegisterFragment extends Fragment {
 			skillLastUsedMoreSpinners.add(spinner);
 			skillYearID++;
 			spinner.setPromptId(R.string.last_used);
-			ArrayList<String> years = new ArrayList<String>();
-			int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-			for (int i = thisYear; i >= 1900; i--) {
-				years.add(Integer.toString(i));
-			}
-
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-					getActivity(), android.R.layout.simple_spinner_item, years);
+			ArrayAdapter<CharSequence> adapter = ArrayAdapter
+					.createFromResource(getActivity(),
+							R.array.experience_array,
+							android.R.layout.simple_spinner_item);
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			spinner.setAdapter(adapter);
 		}
-		LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.4f);
-		spinner.setLayoutParams(editTextLayoutParams);
+		LinearLayout.LayoutParams spinnerLayoutParams = new LinearLayout.LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 0.5f);
+		spinnerLayoutParams.setMargins(10, 10, 10, 10);
+		spinner.setLayoutParams(spinnerLayoutParams);
 
 		return spinner;
 	}

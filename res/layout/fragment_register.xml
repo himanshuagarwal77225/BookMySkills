@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -10,7 +11,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center|top"
         android:layout_margin="5dp"
         android:fillViewport="true" >
 
@@ -25,7 +26,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/stage1LinearLayout"
@@ -138,7 +140,8 @@
                     <FrameLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp" >
+                        android:layout_margin="10dp"
+                        android:visibility="gone" >
 
                         <EditText
                             android:id="@+id/educationEditText"
@@ -166,7 +169,8 @@
                     android:id="@+id/certificationLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:visibility="gone" >
 
                     <FrameLayout
                         android:layout_width="fill_parent"
@@ -206,7 +210,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:layout_weight=".2"
+                        android:layout_weight=".5"
                         android:drawableLeft="@drawable/skills"
                         android:drawablePadding="10dp"
                         android:gravity="center|left"
@@ -214,12 +218,34 @@
                         android:padding="10dp"
                         android:textColor="@android:color/black" />
 
+                    <EditText
+                        android:id="@+id/workHr1EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
+                        android:drawableLeft="@drawable/working_hours"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Working Hours*"
+                        android:inputType="time"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
                     <Spinner
                         android:id="@+id/ratingSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight=".4"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
                         android:entries="@array/rating_array"
                         android:gravity="center"
                         android:prompt="@string/rating_prompt" />
@@ -229,7 +255,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight=".4"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
+                        android:entries="@array/experience_array"
                         android:gravity="center"
                         android:prompt="@string/last_used" />
                 </LinearLayout>
@@ -250,7 +278,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
-                            android:layout_weight=".2"
+                            android:layout_weight=".5"
                             android:drawableLeft="@drawable/skills"
                             android:drawablePadding="10dp"
                             android:gravity="center|left"
@@ -258,12 +286,34 @@
                             android:padding="10dp"
                             android:textColor="@android:color/black" />
 
+                        <EditText
+                            android:id="@+id/workHr2EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight=".5"
+                            android:drawableLeft="@drawable/working_hours"
+                            android:drawablePadding="10dp"
+                            android:gravity="center|left"
+                            android:hint="Working Hours*"
+                            android:inputType="time"
+                            android:padding="10dp"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
                         <Spinner
                             android:id="@+id/rating2Spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight=".4"
+                            android:layout_margin="10dp"
+                            android:layout_weight=".5"
                             android:entries="@array/rating_array"
                             android:gravity="center"
                             android:prompt="@string/rating_prompt" />
@@ -273,7 +323,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight=".4"
+                            android:layout_margin="10dp"
+                            android:layout_weight=".5"
+                            android:entries="@array/experience_array"
                             android:gravity="center"
                             android:prompt="@string/last_used" />
 
@@ -292,14 +344,57 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
-
-                    <LinearLayout
-                        android:id="@+id/skillsSubLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
-                    </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/stageOrganizationLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <EditText
+                    android:id="@+id/fullNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/user_name"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Full Name*"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/organizationEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/organization"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Organization Name*"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/websiteEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/website"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:hint="Website"
+                    android:inputType="textUri"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -308,6 +403,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone" >
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_margin="10dp"
+                    android:visibility="visible" >
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profilePicImageView"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center|bottom"
+                        android:src="@drawable/circle_photo"
+                        app:border_color="@android:color/white"
+                        app:border_width="0dp" />
+
+                    <TextView
+                        android:id="@+id/photoUserTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:text="+\nPHOTO"
+                        android:textColor="@android:color/black" />
+                </FrameLayout>
 
                 <EditText
                     android:id="@+id/addressEditText"
@@ -357,10 +480,10 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/country"
                     android:drawablePadding="10dp"
+                    android:entries="@array/country_list"
                     android:gravity="center|left"
                     android:padding="10dp"
                     android:prompt="@string/country_"
-                    android:spinnerMode="dropdown"
                     android:textColor="@android:color/black" />
 
                 <EditText
@@ -372,7 +495,7 @@
                     android:drawableLeft="@drawable/pincode"
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
-                    android:hint="Pincode*"
+                    android:hint="Zipcode/Pincode*"
                     android:inputType="number"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
@@ -399,6 +522,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/calendar"
                     android:drawablePadding="10dp"
+                    android:editable="false"
                     android:gravity="center|left"
                     android:hint="DOB*"
                     android:inputType="date"
@@ -417,7 +541,8 @@
                     android:hint="Working Hours*"
                     android:inputType="date"
                     android:padding="10dp"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/priceEditText"
@@ -431,16 +556,8 @@
                     android:hint="Hourly Price*"
                     android:inputType="date"
                     android:padding="10dp"
-                    android:textColor="@android:color/black" />
-
-                <ImageView
-                    android:id="@+id/profilePicImageView"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:scaleType="fitCenter"
-                    android:src="@android:drawable/ic_menu_gallery" />
+                    android:textColor="@android:color/black"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -461,6 +578,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:checked="true"
                         android:text="Email" />
 
                     <CheckBox
@@ -477,8 +595,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:checked="true"
                         android:text="Push Notifications" />
                 </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/termsNPolicyCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="By registering you confirm that you accept the Terms and Conditions and Privacy Policy" />
             </LinearLayout>
 
             <LinearLayout

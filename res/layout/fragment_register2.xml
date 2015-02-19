@@ -42,7 +42,8 @@
                     <FrameLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp" >
+                        android:layout_margin="10dp"
+                        android:visibility="gone" >
 
                         <EditText
                             android:id="@+id/educationEditText"
@@ -76,7 +77,8 @@
                     <FrameLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp" >
+                        android:layout_margin="10dp"
+                        android:visibility="gone" >
 
                         <EditText
                             android:id="@+id/certificationsEditText"
@@ -111,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:layout_weight=".2"
+                        android:layout_weight=".5"
                         android:drawableLeft="@drawable/skills"
                         android:drawablePadding="10dp"
                         android:gravity="center|left"
@@ -119,12 +121,34 @@
                         android:padding="10dp"
                         android:textColor="@android:color/black" />
 
+                    <EditText
+                        android:id="@+id/workHr1EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
+                        android:drawableLeft="@drawable/working_hours"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Working Hours*"
+                        android:inputType="time"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
                     <Spinner
                         android:id="@+id/ratingSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight=".4"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
                         android:entries="@array/rating_array"
                         android:gravity="center"
                         android:prompt="@string/rating_prompt" />
@@ -134,19 +158,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight=".4"
+                        android:layout_margin="10dp"
+                        android:layout_weight=".5"
+                        android:entries="@array/experience_array"
                         android:gravity="center"
                         android:prompt="@string/last_used" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/skillsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
                     <LinearLayout
-                         android:id="@+id/skillsSubLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal" >
@@ -157,7 +181,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="10dp"
-                            android:layout_weight=".2"
+                            android:layout_weight=".5"
                             android:drawableLeft="@drawable/skills"
                             android:drawablePadding="10dp"
                             android:gravity="center|left"
@@ -165,12 +189,34 @@
                             android:padding="10dp"
                             android:textColor="@android:color/black" />
 
+                        <EditText
+                            android:id="@+id/workHr2EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:layout_weight=".5"
+                            android:drawableLeft="@drawable/working_hours"
+                            android:drawablePadding="10dp"
+                            android:gravity="center|left"
+                            android:hint="Working Hours*"
+                            android:inputType="time"
+                            android:padding="10dp"
+                            android:textColor="@android:color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
                         <Spinner
                             android:id="@+id/rating2Spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight=".4"
+                            android:layout_margin="10dp"
+                            android:layout_weight=".5"
                             android:entries="@array/rating_array"
                             android:gravity="center"
                             android:prompt="@string/rating_prompt" />
@@ -180,7 +226,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight=".4"
+                            android:layout_margin="10dp"
+                            android:layout_weight=".5"
                             android:gravity="center"
                             android:prompt="@string/last_used" />
 
@@ -189,7 +236,15 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
+                            android:layout_margin="10dp"
                             android:background="@drawable/add_more" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/skillsLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
                     </LinearLayout>
                 </LinearLayout>
 

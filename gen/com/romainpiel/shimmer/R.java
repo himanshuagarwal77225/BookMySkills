@@ -8,18 +8,18 @@ package com.romainpiel.shimmer;
 
 public final class R {
 	public static final class attr {
-		public static final int reflectionColor = 0x7f01003a;
+		public static final int reflectionColor = 0x7f01003c;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f0200e3;
-		public static final int mask = 0x7f0200f4;
-		public static final int spot_mask = 0x7f020100;
+		public static final int ic_launcher = 0x7f0200e4;
+		public static final int mask = 0x7f0200f5;
+		public static final int spot_mask = 0x7f020102;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f060023;
 	}
 	public static final class styleable {
-		public static final int[] ShimmerView = { 0x7f01003a };
+		public static final int[] ShimmerView = { 0x7f01003c };
 		public static final int ShimmerView_reflectionColor = 0;
 	}
 }
