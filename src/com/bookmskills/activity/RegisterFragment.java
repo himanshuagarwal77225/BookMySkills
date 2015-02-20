@@ -483,10 +483,10 @@ public class RegisterFragment extends Fragment {
 		certifications[0] = certificationsEditText.getText().toString().trim();
 		skills = new String[skillsMoreEditText.size() + 2];
 		skills[0] = skills1EditText.getText().toString().trim();
-		skills[2] = skills2EditText.getText().toString().trim();
+		skills[1] = skills2EditText.getText().toString().trim();
 		workingHrs = new String[skillsWorkHrMoreEditText.size() + 2];
 		workingHrs[0] = workHr1EditText.getText().toString().trim();
-		workingHrs[2] = workHr2EditText.getText().toString().trim();
+		workingHrs[1] = workHr2EditText.getText().toString().trim();
 
 		for (int i = 0; i < educationMoreEditText.size(); i++) {
 			EditText educationEditText = educationMoreEditText.get(i);
