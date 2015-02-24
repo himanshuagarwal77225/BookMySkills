@@ -5,26 +5,48 @@
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
 
-    <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
+    <!-- Nav Drawer Menu Items For Logged In User-->
+    <string-array name="nav_drawer_items_logged_in">
+        <item>Home</item>
+        <item>Search</item>
+        <item>Profile</item>
+        <item>Inbox</item>
+        <item>About</item>
+        <item>Settings</item>
+        <item>Logout</item>
+    </string-array>
+
+    <!-- Nav Drawer Menu Items For Not Logged In User-->
+    <string-array name="nav_drawer_items_not_logged_in">
         <item>Home</item>
         <item>Login/Join</item>
         <item>Search</item>
-        <item>Privacy Policy</item>
-        <item>Terms &amp; Conditions</item>
-        <item>Contact Us</item>
+        <item>About</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
-    <array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
+    <array name="nav_drawer_icons_logged_in">
+          <item>@drawable/ic_home</item>
         <item>@drawable/ic_register</item>
         <item>@drawable/ic_search</item>
         <item>@drawable/ic_privacy</item>
         <item>@drawable/ic_terms</item>
         <item>@drawable/ic_contactus</item>
+		<item>@drawable/ic_home</item>
     </array>
+  <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons_not_logged_in">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_register</item>
+        <item>@drawable/ic_search</item>
+        <item>@drawable/ic_contactus</item>        
+        <item>@drawable/ic_privacy</item>
+        <item>@drawable/ic_terms</item>
+    </array>
+    
+ 
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>

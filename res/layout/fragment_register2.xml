@@ -10,7 +10,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center|top"
         android:layout_margin="5dp"
         android:fillViewport="true" >
 
@@ -18,14 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo" />
+            
 
             <LinearLayout
                 android:id="@+id/stage2LinearLayout"
@@ -248,27 +241,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <com.andexert.library.RippleView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    ripple:rv_framerate="20"
-                    ripple:rv_type="rectangle" >
-
-                    <Button
-                        android:id="@+id/nextButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/next"
-                        android:gravity="center"
-                        android:paddingLeft="90dp"
-                        android:paddingRight="80dp"
-                        android:text="Next"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@android:color/white" />
-                </com.andexert.library.RippleView>
+                
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

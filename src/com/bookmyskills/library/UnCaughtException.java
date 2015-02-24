@@ -8,7 +8,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Date;
 import java.util.Locale;
 
-import com.bookmskills.activity.MainActivity;
+import com.bookmyskills.activity.MainActivity;
 
 
 import android.accounts.Account;

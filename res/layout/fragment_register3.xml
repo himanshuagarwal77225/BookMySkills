@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -11,7 +11,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center|top"
         android:layout_margin="5dp"
         android:fillViewport="true" >
 
@@ -20,34 +20,32 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-           
-            
             <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:visibility="visible" >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profilePicImageView"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center|bottom"
+                    android:src="@drawable/circle_photo"
+                    app:border_color="@android:color/white"
+                    app:border_width="0dp" />
+
+                <TextView
+                    android:id="@+id/photoUserTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:visibility="visible" >
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profilePicImageView"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:layout_centerInParent="true"
-                        android:layout_gravity="center|bottom"
-                        android:src="@drawable/circle_photo"
-                        app:border_color="@android:color/white"
-                        app:border_width="0dp" />
-
-                    <TextView
-                        android:id="@+id/photoUserTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:clickable="false"
-                        android:gravity="center"
-                        android:text="+\nPHOTO"
-                        android:textColor="@android:color/black" />
-                </FrameLayout>
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="+\nPHOTO"
+                    android:textColor="@android:color/black" />
+            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/stage3LinearLayout"
@@ -103,10 +101,10 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/country"
                     android:drawablePadding="10dp"
+                    android:entries="@array/country_list"
                     android:gravity="center|left"
                     android:padding="10dp"
                     android:prompt="@string/country_"
-                    android:entries="@array/country_list"
                     android:textColor="@android:color/black" />
 
                 <EditText
@@ -145,10 +143,10 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/calendar"
                     android:drawablePadding="10dp"
+                    android:editable="false"
                     android:gravity="center|left"
                     android:hint="DOB*"
                     android:inputType="date"
-                    android:editable="false"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
@@ -222,14 +220,12 @@
                 </LinearLayout>
 
                 <CheckBox
-                        android:id="@+id/termsNPolicyCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:text="By registering you confirm that you accept the Terms and Conditions and Privacy Policy" />
-                
-
+                    android:id="@+id/termsNPolicyCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="By registering you confirm that you accept the Terms and Conditions and Privacy Policy" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
