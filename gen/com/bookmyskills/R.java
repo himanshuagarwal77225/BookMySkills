@@ -39,10 +39,10 @@ public final class R {
  Keep them in order as the titles are in 
          */
         public static final int nav_drawer_icons_not_logged_in=0x7f0c0003;
-        /**  Nav Drawer Menu Items For Logged In User
+        /**  Nav Drawer Menu Items For Logged In User 
          */
         public static final int nav_drawer_items_logged_in=0x7f0c0000;
-        /**  Nav Drawer Menu Items For Not Logged In User
+        /**  Nav Drawer Menu Items For Not Logged In User 
          */
         public static final int nav_drawer_items_not_logged_in=0x7f0c0001;
         public static final int rating_array=0x7f0c0005;
@@ -2465,45 +2465,49 @@ containing a value of this type.
         public static final int ic_contactus=0x7f0200e3;
         public static final int ic_drawer=0x7f0200e4;
         public static final int ic_home=0x7f0200e5;
-        public static final int ic_launcher=0x7f0200e6;
-        public static final int ic_plusone_medium_off_client=0x7f0200e7;
-        public static final int ic_plusone_small_off_client=0x7f0200e8;
-        public static final int ic_plusone_standard_off_client=0x7f0200e9;
-        public static final int ic_plusone_tall_off_client=0x7f0200ea;
-        public static final int ic_privacy=0x7f0200eb;
-        public static final int ic_register=0x7f0200ec;
-        public static final int ic_reloj_max=0x7f0200ed;
-        public static final int ic_search=0x7f0200ee;
-        public static final int ic_terms=0x7f0200ef;
-        public static final int list_item_bg_normal=0x7f0200f0;
-        public static final int list_item_bg_pressed=0x7f0200f1;
-        public static final int list_selector=0x7f0200f2;
-        public static final int login=0x7f0200f3;
-        public static final int logo=0x7f0200f4;
-        public static final int looking_for_talent=0x7f0200f5;
-        public static final int looking_for_work=0x7f0200f6;
-        public static final int mask=0x7f0200f7;
-        public static final int next=0x7f0200f8;
-        public static final int organization=0x7f0200f9;
-        public static final int password_icon=0x7f0200fa;
-        public static final int phone=0x7f0200fb;
-        public static final int pincode=0x7f0200fc;
-        public static final int powered_by_google_dark=0x7f0200fd;
-        public static final int powered_by_google_light=0x7f0200fe;
-        public static final int previous=0x7f0200ff;
-        public static final int shadow_down=0x7f020100;
-        public static final int shadow_right=0x7f020101;
-        public static final int shape_rounded=0x7f020102;
-        public static final int shift_map=0x7f020103;
-        public static final int shift_map_selected=0x7f020104;
-        public static final int show_map=0x7f020105;
-        public static final int show_map_selected=0x7f020106;
-        public static final int skills=0x7f020107;
-        public static final int spot_mask=0x7f020108;
-        public static final int sprite_check=0x7f020109;
-        public static final int user_name=0x7f02010a;
-        public static final int website=0x7f02010b;
-        public static final int working_hours=0x7f02010c;
+        public static final int ic_inbox=0x7f0200e6;
+        public static final int ic_launcher=0x7f0200e7;
+        public static final int ic_logout=0x7f0200e8;
+        public static final int ic_plusone_medium_off_client=0x7f0200e9;
+        public static final int ic_plusone_small_off_client=0x7f0200ea;
+        public static final int ic_plusone_standard_off_client=0x7f0200eb;
+        public static final int ic_plusone_tall_off_client=0x7f0200ec;
+        public static final int ic_privacy=0x7f0200ed;
+        public static final int ic_profile=0x7f0200ee;
+        public static final int ic_register=0x7f0200ef;
+        public static final int ic_reloj_max=0x7f0200f0;
+        public static final int ic_search=0x7f0200f1;
+        public static final int ic_settings=0x7f0200f2;
+        public static final int ic_terms=0x7f0200f3;
+        public static final int list_item_bg_normal=0x7f0200f4;
+        public static final int list_item_bg_pressed=0x7f0200f5;
+        public static final int list_selector=0x7f0200f6;
+        public static final int login=0x7f0200f7;
+        public static final int logo=0x7f0200f8;
+        public static final int looking_for_talent=0x7f0200f9;
+        public static final int looking_for_work=0x7f0200fa;
+        public static final int mask=0x7f0200fb;
+        public static final int next=0x7f0200fc;
+        public static final int organization=0x7f0200fd;
+        public static final int password_icon=0x7f0200fe;
+        public static final int phone=0x7f0200ff;
+        public static final int pincode=0x7f020100;
+        public static final int powered_by_google_dark=0x7f020101;
+        public static final int powered_by_google_light=0x7f020102;
+        public static final int previous=0x7f020103;
+        public static final int shadow_down=0x7f020104;
+        public static final int shadow_right=0x7f020105;
+        public static final int shape_rounded=0x7f020106;
+        public static final int shift_map=0x7f020107;
+        public static final int shift_map_selected=0x7f020108;
+        public static final int show_map=0x7f020109;
+        public static final int show_map_selected=0x7f02010a;
+        public static final int skills=0x7f02010b;
+        public static final int spot_mask=0x7f02010c;
+        public static final int sprite_check=0x7f02010d;
+        public static final int user_name=0x7f02010e;
+        public static final int website=0x7f02010f;
+        public static final int working_hours=0x7f020110;
     }
     public static final class id {
         public static final int action_bar=0x7f090045;

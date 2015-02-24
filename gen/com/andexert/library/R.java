@@ -23,8 +23,8 @@ public final class R {
 		public static final int rippelColor = 0x7f06004a;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f0200e6;
-		public static final int shape_rounded = 0x7f020102;
+		public static final int ic_launcher = 0x7f0200e7;
+		public static final int shape_rounded = 0x7f020106;
 	}
 	public static final class id {
 		public static final int doubleRipple = 0x7f09002f;

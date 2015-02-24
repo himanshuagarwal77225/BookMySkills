@@ -11,9 +11,9 @@ public final class R {
 		public static final int reflectionColor = 0x7f0100e5;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f0200e6;
-		public static final int mask = 0x7f0200f7;
-		public static final int spot_mask = 0x7f020108;
+		public static final int ic_launcher = 0x7f0200e7;
+		public static final int mask = 0x7f0200fb;
+		public static final int spot_mask = 0x7f02010c;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f0a0010;
