@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
     android:orientation="vertical" >
 
     <ScrollView
@@ -112,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:checked="true"
+                        android:checked="false"
                         android:text="Hire" />
 
                     <RadioButton
@@ -120,6 +121,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:checked="true"
                         android:text="Work" />
                 </RadioGroup>
             </LinearLayout>
@@ -204,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
-                    <EditText
+                    <AutoCompleteTextView
                         android:id="@+id/skills1EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -272,7 +274,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal" >
 
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/skills2EditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
