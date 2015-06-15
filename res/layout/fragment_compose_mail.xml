@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <AutoCompleteTextView
+                android:id="@+id/txtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/user_name"
+                android:drawablePadding="10dp"
+                android:gravity="center|left"
+                android:hint="To*"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/editSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/email_subject"
+                android:drawablePadding="10dp"
+                android:gravity="center|left"
+                android:hint="Subject*"
+                android:padding="10dp"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/bodyEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/email_compose"
+                android:drawablePadding="10dp"
+                android:hint="Body*"
+                android:inputType="textMultiLine"
+                android:minLines="5"
+                android:padding="10dp" />
+
+            <com.customcontrols.rippleview.RippleView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                ripple:rv_framerate="20"
+                ripple:rv_type="rectangle" >
+
+                <Button
+                    android:id="@+id/sendButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/app_color"
+                    android:drawableLeft="@drawable/email_send"
+                    android:gravity="center"
+                    android:paddingLeft="90dp"
+                    android:paddingRight="80dp"
+                    android:text="Send"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/white" />
+            </com.customcontrols.rippleview.RippleView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

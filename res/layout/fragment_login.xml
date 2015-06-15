@@ -56,7 +56,18 @@
                 android:padding="10dp"
                 android:textColor="@android:color/black" />
 
-            <com.andexert.library.RippleView
+            <TextView
+                android:id="@+id/forgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:gravity="end"
+                android:padding="5dp"
+                android:text="@string/forgot_password_"
+                android:textColor="@color/app_color" />
+
+            <com.customcontrols.rippleview.RippleView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -69,6 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@color/app_color"
                     android:drawableLeft="@drawable/login"
                     android:gravity="center"
                     android:paddingLeft="90dp"
@@ -76,9 +88,9 @@
                     android:text="Login"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white" />
-            </com.andexert.library.RippleView>
+            </com.customcontrols.rippleview.RippleView>
 
-            <com.andexert.library.RippleView
+            <com.customcontrols.rippleview.RippleView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -91,6 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@color/app_color"
                     android:drawableLeft="@drawable/add_user"
                     android:gravity="center"
                     android:paddingLeft="90dp"
@@ -98,7 +111,7 @@
                     android:text="Register"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white" />
-            </com.andexert.library.RippleView>
+            </com.customcontrols.rippleview.RippleView>
         </LinearLayout>
     </ScrollView>
 

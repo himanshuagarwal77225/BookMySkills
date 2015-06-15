@@ -1,69 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ripple="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.bookmyskills"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/app_bg"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <com.customcontrols.springindicator.ScrollerViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:fillViewport="true" >
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:background="@android:color/transparent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <com.customcontrols.springindicator.SpringIndicator
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@android:color/transparent"
+        app:siIndicatorColor="@color/actionbar_color"
+        app:siIndicatorColors="@array/indicator_colors"
+        app:siRadiusMax="40dp"
+        app:siRadiusMin="40dp"
+        app:siSelectedTextColor="@android:color/white"
+        app:siTextColor="@color/actionbar_color"
+        app:siTextSize="14sp" />
 
-            <com.andexert.library.RippleView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                ripple:rv_framerate="20"
-                ripple:rv_type="rectangle" >
-
-                <Button
-                    android:id="@+id/privacyPolicyButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Privacy Policy" />
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                ripple:rv_framerate="20"
-                ripple:rv_type="rectangle" >
-
-                <Button
-                    android:id="@+id/termsNConditionButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Terms &amp; Condition" />
-            </com.andexert.library.RippleView>
-
-            <com.andexert.library.RippleView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                ripple:rv_framerate="20"
-                ripple:rv_type="rectangle" >
-
-                <Button
-                    android:id="@+id/contactUsButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Contact Us" />
-            </com.andexert.library.RippleView>
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+</RelativeLayout>

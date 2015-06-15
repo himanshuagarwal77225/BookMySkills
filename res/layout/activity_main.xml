@@ -14,10 +14,10 @@
 
     <ListView
         android:id="@+id/navdrawer"
-        android:layout_width="@dimen/navdrawer_width"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#e91e63"
+        android:background="#F06292"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"

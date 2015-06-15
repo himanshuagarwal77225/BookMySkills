@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.bookmyskills"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:background="@drawable/app_bg">
+    android:background="@drawable/app_bg" >
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -26,9 +27,8 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo" />
 
-            <com.romainpiel.shimmer.ShimmerTextView
+            <com.customcontrols.shimmertextview.ShimmerTextView
                 android:id="@+id/shimmer_tv"
-                style="@style/MyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -36,11 +36,10 @@
                 android:text="Book My Skills"
                 android:textColor="#444"
                 android:textSize="50sp" >
-            </com.romainpiel.shimmer.ShimmerTextView>
+            </com.customcontrols.shimmertextview.ShimmerTextView>
 
             <TextView
                 android:id="@+id/webLinkTextView"
-                style="@style/MyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -51,7 +50,7 @@
 
             <TextView
                 android:id="@+id/emailTextView"
-                style="@style/MyTextView"
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -61,7 +60,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                style="@style/MyTextView"
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

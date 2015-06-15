@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <com.andexert.library.RippleView
+            <com.customcontrols.rippleview.RippleView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/looking_for_work" />
-            </com.andexert.library.RippleView>
+            </com.customcontrols.rippleview.RippleView>
 
             <com.andexert.library.RippleView
                 android:layout_width="wrap_content"

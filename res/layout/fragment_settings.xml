@@ -18,28 +18,36 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
-                android:background="@color/actionbar_color"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Privacy"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/white" />
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-            <Switch
-                android:id="@+id/profileVisiblitySwitch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:checked="true"
-                android:text="Profile Visibility"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:layout_marginBottom="5dp"
+                    android:padding="10dp"
+                    android:text="Privacy"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/actionbar_color" />
+
+                <ToggleButton
+                    android:id="@+id/profileVisiblitySwitch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:layout_gravity="right"
+                    android:button="@drawable/toggle_selector"
+                    android:background="@android:color/transparent"
+                    android:checked="true"
+                    android:text="Profile Visibility"
+                    android:textOff=""
+                    android:textOn="" />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"

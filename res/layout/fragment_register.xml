@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res/com.bookmyskills"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_bg"
@@ -34,7 +34,8 @@
                 android:id="@+id/stage1LinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:visibility="visible" >
 
                 <EditText
                     android:id="@+id/userNameEditText"
@@ -204,20 +205,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/skills_gradient_bg"
+                    android:orientation="vertical" >
 
                     <AutoCompleteTextView
                         android:id="@+id/skills1EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_weight=".5"
                         android:drawableLeft="@drawable/skills"
                         android:drawablePadding="10dp"
                         android:gravity="center|left"
                         android:hint="Skills 1*"
-                        android:padding="10dp"
                         android:textColor="@android:color/black" />
 
                     <EditText
@@ -225,120 +225,80 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_weight=".5"
                         android:drawableLeft="@drawable/working_hours"
                         android:drawablePadding="10dp"
                         android:gravity="center|left"
                         android:hint="Working Hours*"
                         android:inputType="time"
-                        android:padding="10dp"
                         android:textColor="@android:color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal" >
 
                     <Spinner
-                        android:id="@+id/ratingSpinner"
+                        android:id="@+id/rating1Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_weight=".5"
-                        android:entries="@array/rating_array"
                         android:gravity="center"
                         android:prompt="@string/rating_prompt" />
 
                     <Spinner
-                        android:id="@+id/lastUserdSpinner"
+                        android:id="@+id/lastUsed1Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:layout_weight=".5"
-                        android:entries="@array/experience_array"
                         android:gravity="center"
                         android:prompt="@string/last_used" />
                 </LinearLayout>
 
+                <!-- <View -->
+                <!-- android:layout_width="match_parent" -->
+                <!-- android:layout_height="2dp" -->
+                <!-- android:background="@color/actionbar_color"/> -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/skills_gradient_bg"
                     android:orientation="vertical" >
 
-                    <LinearLayout
+                    <AutoCompleteTextView
+                        android:id="@+id/skills2EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/skills"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Skills 2*"
+                        android:textColor="@android:color/black" />
 
-                        <AutoCompleteTextView
-                            android:id="@+id/skills2EditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:layout_weight=".5"
-                            android:drawableLeft="@drawable/skills"
-                            android:drawablePadding="10dp"
-                            android:gravity="center|left"
-                            android:hint="Skills 2*"
-                            android:padding="10dp"
-                            android:textColor="@android:color/black" />
-
-                        <EditText
-                            android:id="@+id/workHr2EditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:layout_weight=".5"
-                            android:drawableLeft="@drawable/working_hours"
-                            android:drawablePadding="10dp"
-                            android:gravity="center|left"
-                            android:hint="Working Hours*"
-                            android:inputType="time"
-                            android:padding="10dp"
-                            android:textColor="@android:color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/workHr2EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/working_hours"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|left"
+                        android:hint="Working Hours*"
+                        android:inputType="time"
+                        android:textColor="@android:color/black" />
 
-                        <Spinner
-                            android:id="@+id/rating2Spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:layout_weight=".5"
-                            android:entries="@array/rating_array"
-                            android:gravity="center"
-                            android:prompt="@string/rating_prompt" />
+                    <Spinner
+                        android:id="@+id/rating2Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:prompt="@string/rating_prompt" />
 
-                        <Spinner
-                            android:id="@+id/lastUserd2Spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:layout_weight=".5"
-                            android:entries="@array/experience_array"
-                            android:gravity="center"
-                            android:prompt="@string/last_used" />
-
-                        <Button
-                            android:id="@+id/addMoreSkillsButton"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="right|center_vertical"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/add_more" />
-                    </LinearLayout>
+                    <Spinner
+                        android:id="@+id/lastUsed2Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:prompt="@string/last_used" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -413,7 +373,7 @@
                     android:layout_margin="10dp"
                     android:visibility="visible" >
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <com.customcontrols.circleimageview.CircleImageView
                         android:id="@+id/profilePicImageView"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
@@ -434,21 +394,34 @@
                         android:textColor="@android:color/black" />
                 </FrameLayout>
 
-                <EditText
-                    android:id="@+id/addressEditText"
+                <AutoCompleteTextView
+                    android:id="@+id/countryEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/address"
+                    android:drawableLeft="@drawable/country"
+                    android:drawablePadding="10dp"
+                    android:entries="@array/country_list"
+                    android:gravity="center|left"
+                    android:padding="10dp"
+                    android:prompt="@string/country_"
+                    android:textColor="@android:color/black" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/stateEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/city"
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
-                    android:hint="Address*"
-                    android:inputType="textPostalAddress"
+                    android:hint="State*"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/cityEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -462,30 +435,17 @@
                     android:textColor="@android:color/black" />
 
                 <EditText
-                    android:id="@+id/stateEditText"
+                    android:id="@+id/addressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/city"
+                    android:drawableLeft="@drawable/address"
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
-                    android:hint="State*"
+                    android:hint="Address*"
+                    android:inputType="textPostalAddress"
                     android:padding="10dp"
-                    android:textColor="@android:color/black" />
-
-                <Spinner
-                    android:id="@+id/countryEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/country"
-                    android:drawablePadding="10dp"
-                    android:entries="@array/country_list"
-                    android:gravity="center|left"
-                    android:padding="10dp"
-                    android:prompt="@string/country_"
                     android:textColor="@android:color/black" />
 
                 <EditText
@@ -524,10 +484,8 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/calendar"
                     android:drawablePadding="10dp"
-                    android:editable="false"
                     android:gravity="center|left"
                     android:hint="DOB*"
-                    android:inputType="date"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
@@ -610,12 +568,21 @@
                     android:text="By registering you confirm that you accept the Terms and Conditions and Privacy Policy" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/addMoreSkillsButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="10dp"
+                android:background="@drawable/add_more"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
-                <com.andexert.library.RippleView
+                <com.customcontrols.rippleview.RippleView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -629,15 +596,16 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:background="@color/app_color"
                         android:drawableLeft="@drawable/previous"
                         android:gravity="center"
                         android:text="Previous"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@android:color/white"
                         android:visibility="gone" />
-                </com.andexert.library.RippleView>
+                </com.customcontrols.rippleview.RippleView>
 
-                <com.andexert.library.RippleView
+                <com.customcontrols.rippleview.RippleView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -651,12 +619,13 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:background="@color/app_color"
                         android:drawableRight="@drawable/next"
                         android:gravity="center"
                         android:text="Next"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@android:color/white" />
-                </com.andexert.library.RippleView>
+                </com.customcontrols.rippleview.RippleView>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

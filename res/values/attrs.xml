@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ShimmerView">
+        <attr name="reflectionColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="font">
+        <attr name="fonttype">
+            <enum name="regular" value="0" />
+            <enum name="medium" value="1" />
+            <enum name="thin" value="2" />
+            <enum name="light" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <!-- Ripple View -->
+
+    <declare-styleable name="RippleView">
+        <attr name="rv_alpha" format="integer" />
+        <attr name="rv_framerate" format="integer" />
+        <attr name="rv_rippleDuration" format="integer" />
+        <attr name="rv_zoomDuration" format="integer" />
+        <attr name="rv_color" format="color" />
+        <attr name="rv_centered" format="boolean" />
+        <attr name="rv_type" format="enum">
+            <enum name="simpleRipple" value="0" />
+            <enum name="doubleRipple" value="1" />
+            <enum name="rectangle" value="2" />
+        </attr>
+        <attr name="rv_ripplePadding" format="dimension" />
+        <attr name="rv_zoom" format="boolean" />
+        <attr name="rv_zoomScale" format="float" />
+    </declare-styleable>
+
+    <!-- Spring Indicator -->
+
+    <declare-styleable name="SpringIndicator">
+
+        <!-- tab text color -->
+        <attr name="siTextColor" format="reference" />
+
+        <!-- tab text color which is selected -->
+        <attr name="siSelectedTextColor" format="reference" />
+
+        <!-- tab item bg -->
+        <attr name="siTextBg" format="reference" />
+
+        <!-- tab text size -->
+        <attr name="siTextSize" format="dimension" />
+
+        <!-- indicator bg color -->
+        <attr name="siIndicatorColor" format="reference" />
+
+        <!-- indicator bg colors. should equals your titles count -->
+        <attr name="siIndicatorColors" format="reference" />
+
+        <!-- max indicator radius -->
+        <attr name="siRadiusMax" format="dimension" />
+
+        <!-- min indicator radius when moving -->
+        <attr name="siRadiusMin" format="dimension" />
+    </declare-styleable>
+
+    <!-- Circle ImageView -->
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_overlay" format="boolean" />
+    </declare-styleable>
+
+    <!-- Materail Dialog -->
+
+
+    <!-- These top three attributes are not accessible to library users -->
+    <attr name="md_divider" format="color" />
+
+    <!-- Accessible global theming attributes -->
+    <attr name="md_dark_theme" format="boolean" />
+    <attr name="md_background_color" format="color" />
+    <attr name="md_icon" format="reference" />
+    <attr name="md_icon_max_size" format="dimension" />
+    <attr name="md_icon_limit_icon_to_default_size" format="boolean" />
+    <attr name="md_title_color" format="color" />
+    <attr name="md_content_color" format="color" />
+    <attr name="md_positive_color" format="color" />
+    <attr name="md_neutral_color" format="color" />
+    <attr name="md_negative_color" format="color" />
+    <attr name="md_widget_color" format="color" />
+    <attr name="md_item_color" format="color" />
+    <attr name="md_divider_color" format="color" />
+    <attr name="md_list_selector" format="reference" />
+    <attr name="md_btn_stacked_selector" format="reference" />
+    <attr name="md_btn_positive_selector" format="reference" />
+    <attr name="md_btn_neutral_selector" format="reference" />
+    <attr name="md_btn_negative_selector" format="reference" />
+    <attr name="md_title_gravity" format="enum">
+        <enum name="start" value="0" />
+        <enum name="center" value="1" />
+        <enum name="end" value="2" />
+    </attr>
+    <attr name="md_content_gravity" format="enum">
+        <enum name="start" value="0" />
+        <enum name="center" value="1" />
+        <enum name="end" value="2" />
+    </attr>
+    <attr name="md_btnstacked_gravity" format="enum">
+        <enum name="start" value="0" />
+        <enum name="center" value="1" />
+        <enum name="end" value="2" />
+    </attr>
+    <attr name="md_items_gravity" format="enum">
+        <enum name="start" value="0" />
+        <enum name="center" value="1" />
+        <enum name="end" value="2" />
+    </attr>
+    <attr name="md_buttons_gravity" format="enum">
+        <enum name="start" value="0" />
+        <enum name="center" value="1" />
+        <enum name="end" value="2" />
+    </attr>
+
+    <declare-styleable name="MDRootLayout">
+        <attr name="md_reduce_padding_no_title_no_buttons" format="boolean" />
+    </declare-styleable>
+
+    <attr name="md_medium_font" format="string" />
+    <attr name="md_regular_font" format="string" />
+
+    <!-- Floating Actionbar -->
+
+    <declare-styleable name="FloatingActionButton">
+        <attr name="fab_colorPressed" format="color" />
+        <attr name="fab_colorNormal" format="color" />
+        <attr name="fab_colorRipple" format="color" />
+        <attr name="fab_colorDisabled" format="color" />
+        <attr name="fab_shadow" format="boolean" />
+        <attr name="fab_type" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="mini" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

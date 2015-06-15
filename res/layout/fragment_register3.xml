@@ -68,7 +68,7 @@
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/cityEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/stateEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
-                <Spinner
+                <AutoCompleteTextView
                     android:id="@+id/countryEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -1,62 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res/com.bookmyskills"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:background="#80ffffff"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:orientation="vertical" >
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/frameLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
         android:background="@android:color/white"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
-                android:text="Your Name"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/tv_lat"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:text="text" />
 
             <TextView
                 android:id="@+id/tv_lng"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:text="text" />
         </LinearLayout>
-    </FrameLayout>
+    </LinearLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.customcontrols.circleimageview.CircleImageView
         android:id="@+id/profilePicImageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="-5dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="start|top"
+        android:layout_margin="-10dp"
         android:src="@drawable/circle_photo"
         app:border_color="@android:color/white"
         app:border_width="0dp" />
 
-</RelativeLayout>
+</FrameLayout>
