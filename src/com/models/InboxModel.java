@@ -1,5 +1,10 @@
 package com.models;
 
+import com.utils.misc.DrawableProvider;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
 public class InboxModel {
 
 	private String id;
@@ -9,6 +14,13 @@ public class InboxModel {
 	private String dateTime;
 	private String body;
 	private String readUnread;
+	private String status;
+	private Drawable drawable;
+	private Context mContext;
+
+	public InboxModel(Context mContext) {
+		this.mContext = mContext;
+	}
 
 	public String getId() {
 		return id;
@@ -64,6 +76,27 @@ public class InboxModel {
 
 	public void setReadUnread(String readUnread) {
 		this.readUnread = readUnread;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Drawable getDrawable() {
+		return drawable;
+	}
+
+	public void setDrawable(String mString) {
+		DrawableProvider mProvider = new DrawableProvider(mContext);
+		if (mString.length() == 0) {
+
+		} else {
+			drawable = mProvider.getRound(mString.substring(0, 1));
+		}
 	}
 
 }

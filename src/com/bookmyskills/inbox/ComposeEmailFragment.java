@@ -174,7 +174,7 @@ public class ComposeEmailFragment extends Fragment implements OnClickListener,
 						String message = response.getString(StaticInfo.STATUS)
 								.replaceAll("[0-9]", "");
 						((MainActivity) getActivity())
-								.showErrorAlertDialog(message);
+								.showSuccessAlertDialog(message);
 						getActivity().getSupportFragmentManager()
 								.popBackStackImmediate();
 

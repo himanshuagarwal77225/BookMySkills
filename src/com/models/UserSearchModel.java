@@ -47,6 +47,9 @@ public class UserSearchModel {
 	}
 
 	public void setWorkingHour(String workingHour) {
+		if (workingHour == null || workingHour.equalsIgnoreCase("null")) {
+			workingHour = "";
+		}
 		this.workingHour = workingHour;
 	}
 
@@ -55,6 +58,9 @@ public class UserSearchModel {
 	}
 
 	public void setExperience(String experience) {
+		if (experience == null || experience.equalsIgnoreCase("null")) {
+			experience = "";
+		}
 		this.experience = experience;
 	}
 
@@ -66,6 +72,9 @@ public class UserSearchModel {
 	}
 
 	public void setCountry(String country) {
+		if (country == null || country.equalsIgnoreCase("null")) {
+			country = "";
+		}
 		this.country = country;
 	}
 
@@ -74,6 +83,9 @@ public class UserSearchModel {
 	}
 
 	public void setState(String state) {
+		if (state == null || state.equalsIgnoreCase("null")) {
+			state = "";
+		}
 		this.state = state;
 	}
 
@@ -82,6 +94,9 @@ public class UserSearchModel {
 	}
 
 	public void setCity(String city) {
+		if (city == null || city.equalsIgnoreCase("null")) {
+			city = "";
+		}
 		this.city = city;
 	}
 
@@ -90,6 +105,9 @@ public class UserSearchModel {
 	}
 
 	public void setCertification(String certification) {
+		if (certification == null || certification.equalsIgnoreCase("null")) {
+			certification = "";
+		}
 		this.certification = certification;
 	}
 
@@ -98,6 +116,9 @@ public class UserSearchModel {
 	}
 
 	public void setOrganisation(String organisation) {
+		if (organisation == null || organisation.equalsIgnoreCase("null")) {
+			organisation = "";
+		}
 		this.organisation = organisation;
 	}
 
@@ -106,6 +127,9 @@ public class UserSearchModel {
 	}
 
 	public void setAddress(String address) {
+		if (address == null || address.equalsIgnoreCase("null")) {
+			address = "";
+		}
 		this.address = address;
 	}
 
@@ -114,6 +138,9 @@ public class UserSearchModel {
 	}
 
 	public void setPostalCode(String postalCode) {
+		if (postalCode == null || postalCode.equalsIgnoreCase("null")) {
+			postalCode = "";
+		}
 		this.postalCode = postalCode;
 	}
 
@@ -122,6 +149,9 @@ public class UserSearchModel {
 	}
 
 	public void setMobile(String mobile) {
+		if (mobile == null || mobile.equalsIgnoreCase("null")) {
+			mobile = "";
+		}
 		this.mobile = mobile;
 	}
 
@@ -130,6 +160,9 @@ public class UserSearchModel {
 	}
 
 	public void setWebSite(String webSite) {
+		if (webSite == null || webSite.equalsIgnoreCase("null")) {
+			webSite = "";
+		}
 		this.webSite = webSite;
 	}
 
@@ -138,6 +171,9 @@ public class UserSearchModel {
 	}
 
 	public void setEducation(String education) {
+		if (education == null || education.equalsIgnoreCase("null")) {
+			education = "";
+		}
 		this.education = education;
 	}
 
@@ -146,6 +182,10 @@ public class UserSearchModel {
 	}
 
 	public void setOtherQualification(String otherQualification) {
+		if (otherQualification == null
+				|| otherQualification.equalsIgnoreCase("null")) {
+			otherQualification = "";
+		}
 		this.otherQualification = otherQualification;
 	}
 
@@ -154,6 +194,9 @@ public class UserSearchModel {
 	}
 
 	public void setPersonalDetail(String personalDetail) {
+		if (personalDetail == null || personalDetail.equalsIgnoreCase("null")) {
+			personalDetail = "";
+		}
 		this.personalDetail = personalDetail;
 	}
 
@@ -170,6 +213,9 @@ public class UserSearchModel {
 	}
 
 	public void setSkill(String skill) {
+		if (skill == null || skill.equalsIgnoreCase("null")) {
+			skill = "";
+		}
 		this.skill = skill;
 	}
 
@@ -178,6 +224,9 @@ public class UserSearchModel {
 	}
 
 	public void setFirstName(String firstName) {
+		if (firstName == null || firstName.equalsIgnoreCase("null")) {
+			firstName = "";
+		}
 		this.firstName = firstName;
 	}
 
@@ -186,6 +235,9 @@ public class UserSearchModel {
 	}
 
 	public void setLastName(String lastName) {
+		if (lastName == null || lastName.equalsIgnoreCase("null")) {
+			lastName = "";
+		}
 		this.lastName = lastName;
 	}
 
@@ -194,6 +246,9 @@ public class UserSearchModel {
 	}
 
 	public void setEmail(String email) {
+		if (email == null || email.equalsIgnoreCase("null")) {
+			email = "";
+		}
 		this.email = email;
 	}
 
@@ -202,6 +257,9 @@ public class UserSearchModel {
 	}
 
 	public void setUserType(String userType) {
+		if (userType == null || userType.equalsIgnoreCase("null")) {
+			userType = "";
+		}
 		this.userType = userType;
 	}
 
@@ -210,6 +268,9 @@ public class UserSearchModel {
 	}
 
 	public void setLatitude(String latitude) {
+		if (latitude == null || latitude.equalsIgnoreCase("null")) {
+			latitude = "";
+		}
 		this.latitude = latitude;
 	}
 
@@ -218,6 +279,9 @@ public class UserSearchModel {
 	}
 
 	public void setLongitude(String longitude) {
+		if (longitude == null || longitude.equalsIgnoreCase("null")) {
+			longitude = "";
+		}
 		this.longitude = longitude;
 	}
 
@@ -226,6 +290,9 @@ public class UserSearchModel {
 	}
 
 	public void setAccuracy(String accuracy) {
+		if (accuracy == null || accuracy.equalsIgnoreCase("null")) {
+			accuracy = "";
+		}
 		this.accuracy = accuracy;
 	}
 
@@ -234,6 +301,9 @@ public class UserSearchModel {
 	}
 
 	public void setContactMedium(String contactMedium) {
+		if (contactMedium == null || contactMedium.equalsIgnoreCase("null")) {
+			contactMedium = "";
+		}
 		this.contactMedium = contactMedium;
 	}
 
@@ -242,6 +312,9 @@ public class UserSearchModel {
 	}
 
 	public void setUserImage(String userImage) {
+		if (userImage == null || userImage.equalsIgnoreCase("null")) {
+			userImage = "";
+		}
 		this.userImage = userImage;
 	}
 
@@ -250,6 +323,9 @@ public class UserSearchModel {
 	}
 
 	public void setLocation(String location) {
+		if (location == null || location.equalsIgnoreCase("null")) {
+			location = "";
+		}
 		this.location = location;
 	}
 
@@ -258,6 +334,9 @@ public class UserSearchModel {
 	}
 
 	public void setUserName(String userName) {
+		if (userName == null || userName.equalsIgnoreCase("null")) {
+			userName = "";
+		}
 		this.userName = userName;
 	}
 
@@ -266,6 +345,9 @@ public class UserSearchModel {
 	}
 
 	public void setIntroduction(String introduction) {
+		if (introduction == null || introduction.equalsIgnoreCase("null")) {
+			introduction = "";
+		}
 		this.introduction = introduction;
 	}
 
@@ -274,6 +356,9 @@ public class UserSearchModel {
 	}
 
 	public void setDateOfBirth(String dateOfBirth) {
+		if (dateOfBirth == null || dateOfBirth.equalsIgnoreCase("null")) {
+			dateOfBirth = "";
+		}
 		this.dateOfBirth = dateOfBirth;
 	}
 

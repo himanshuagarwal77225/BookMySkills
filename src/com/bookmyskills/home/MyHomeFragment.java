@@ -21,6 +21,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
@@ -28,19 +29,23 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.android.jsonclasses.IParseListener;
 import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
+import com.bookmyskills.MainActivity;
 import com.bookmyskills.R;
+import com.bookmyskills.profiile.ViewProfileFragment;
 import com.customcontrols.dialog.CustomDialog;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -54,6 +59,7 @@ import com.utils.StaticInfo;
 import com.utils.StorageClass;
 import com.utils.map.MapWrapperLayout;
 import com.utils.map.MySupportMapFragment;
+import com.utils.map.OnInfoWindowElemTouchListener;
 import com.utils.misc.CustomTimerTaskMapMarker;
 //@SuppressLint("NewApi")
 //public class MyHomeFragment extends Fragment implements IParseListener,
@@ -290,7 +296,7 @@ import com.utils.network.WebUtils;
 
 @SuppressLint("NewApi")
 public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
-		IParseListener {
+		IParseListener, OnClickListener {
 	private View mCurrentView;
 
 	private GoogleMap mapView;
@@ -327,7 +333,7 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
 					KeyEvent event) {
-				if (actionId == EditorInfo.IME_ACTION_DONE) {
+				if (actionId == EditorInfo.IME_ACTION_GO) {
 					initSearchApi(searchEditText.getText().toString());
 					return true;
 				} else {
@@ -359,6 +365,7 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 	}
 
 	private void setClickListeners() {
+
 	}
 
 	private void getLayoutReferences() {
@@ -413,7 +420,7 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 
 	private void animateToLocation(LatLng mLatLng) {
 		CameraPosition.Builder builder = new CameraPosition.Builder();
-		builder.zoom(9);
+		builder.zoom(getMap().getMaxZoomLevel());
 		builder.target(mLatLng);
 		getMap().getUiSettings().setZoomControlsEnabled(true);
 		getMap().animateCamera(
@@ -448,8 +455,15 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 			Fragment mFragment = getActivity().getSupportFragmentManager()
 					.findFragmentById(R.id.mapContainer);
 			if (mFragment != null) {
-				getActivity().getSupportFragmentManager().beginTransaction()
-						.remove(mFragment).commit();
+				if (getActivity() != null
+						&& getActivity().getSupportFragmentManager() != null) {
+					List<Fragment> mFragmentsList = getActivity()
+							.getSupportFragmentManager().getFragments();
+					if (mFragmentsList.contains(mFragment)) {
+						getActivity().getSupportFragmentManager()
+								.beginTransaction().remove(mFragment).commit();
+					}
+				}
 			}
 		}
 	}
@@ -564,7 +578,15 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 									.optString(StaticInfo.IMAGE));
 							mModel.setContactMedium(mSearchObj
 									.optString(StaticInfo.PREFERRED_CONTACT_MEDIUM));
-							mUserSearchArray.add(mModel);
+							if (mStorageClass.getUserId() == -1) {
+								mUserSearchArray.add(mModel);
+							} else {
+								if (mModel.getId() == mStorageClass.getUserId()) {
+
+								} else {
+									mUserSearchArray.add(mModel);
+								}
+							}
 						}
 					}
 					mStorageClass.setSearchUsersArray(mUserSearchArray);
@@ -586,7 +608,12 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 			mArrayUsers = mStorageClass.getSearchUsersArray();
 			if (mArrayUsers != null) {
 				for (UserSearchModel mModel : mArrayUsers) {
-					addPin(mModel);
+					if (mModel.getId() == StorageClass.getInstance(
+							getActivity()).getUserId()) {
+
+					} else {
+						addPin(mModel);
+					}
 				}
 			}
 		}
@@ -639,8 +666,11 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 	}
 
 	public View getUserInfoWindow(Marker marker, UserSearchModel mModel) {
+		OnInfoWindowElemTouchListener infoButtonListener;
 		View InfoWindow = (ViewGroup) getActivity().getLayoutInflater()
 				.inflate(R.layout.info_window, null);
+		RelativeLayout mLayout = (RelativeLayout) InfoWindow
+				.findViewById(R.id.infoWindow);
 		TextView mtxtTitle = (TextView) InfoWindow.findViewById(R.id.txtTitle);
 		TextView mtxtSkills = (TextView) InfoWindow
 				.findViewById(R.id.txtSkills);
@@ -664,6 +694,33 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 		TimerTask updateProfile = new CustomTimerTaskMapMarker(getActivity(),
 				marker);
 		timer.scheduleAtFixedRate(updateProfile, 1, 5000);
+		mLayout.setOnClickListener(this);
+		infoButtonListener = new OnInfoWindowElemTouchListener(mLayout, marker,
+				null) {
+
+			@Override
+			public void onClickConfirmed(View v, Marker marker,
+					UserSearchModel mModel) {
+				if (mStorageClass.getUserLoggedIn()) {
+					if (mModel == null) {
+						mModel = markerMap.get(marker);
+					}
+					Bundle mBundle = new Bundle();
+					mBundle.putString("userId", String.valueOf(mModel.getId()));
+					ViewProfileFragment nextFrag = new ViewProfileFragment();
+					nextFrag.setArguments(mBundle);
+					getActivity().getSupportFragmentManager()
+							.beginTransaction()
+							.replace(R.id.frame_container, nextFrag, "message")
+							.addToBackStack(null).commitAllowingStateLoss();
+				} else {
+					((MainActivity) getActivity()).loadFragment(1);
+				}
+
+			}
+		};
+		mLayout.setOnTouchListener(infoButtonListener);
+
 		return InfoWindow;
 	}
 
@@ -683,8 +740,15 @@ public class MyHomeFragment extends Fragment implements OnCameraChangeListener,
 			}
 			return skills;
 		} else {
-			return null;
+			String[] mDummy = new String[0];
+			return mDummy;
 		}
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
 
 	}
 

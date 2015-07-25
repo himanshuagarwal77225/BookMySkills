@@ -144,4 +144,13 @@ public class StorageClass {
 		return this.userSearchArray;
 
 	}
+
+	public void setDeviceToken(String registrationId) {
+		edit.putString("device_token", registrationId).commit();
+	}
+
+	public String gettDeviceToken() {
+		return sh.getString("device_token", "");
+	}
+
 }

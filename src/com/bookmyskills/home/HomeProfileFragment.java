@@ -19,6 +19,7 @@ public class HomeProfileFragment extends Fragment implements
 	private ScrollerViewPager viewPager;
 	private MyHomeFragment mObjHome;
 	private SearchUserFragment mObjSearchUser;
+	private View mRootView;
 
 	public HomeProfileFragment() {
 
@@ -33,26 +34,35 @@ public class HomeProfileFragment extends Fragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.fragment_home_profile, container,
+		mRootView = inflater.inflate(R.layout.fragment_home_profile, container,
 				false);
 
-		viewPager = (ScrollerViewPager) view.findViewById(R.id.view_pager);
-		SpringIndicator springIndicator = (SpringIndicator) view
-				.findViewById(R.id.indicator);
+		return mRootView;
+	}
 
-		PagerManager manager = new PagerManager();
-		mObjHome = new MyHomeFragment();
-		mObjSearchUser = new SearchUserFragment();
-		manager.addFragment(mObjHome, "Home");
-		manager.addFragment(mObjSearchUser, "Profile");
-		ModelPagerAdapter adapter = new ModelPagerAdapter(
-				getChildFragmentManager(), manager);
-		viewPager.setAdapter(adapter);
-		viewPager.fixScrollSpeed();
-		springIndicator.setViewPager(viewPager);
-		springIndicator.setOnPageChangeListener(this);
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		if (mRootView != null) {
+			viewPager = (ScrollerViewPager) mRootView
+					.findViewById(R.id.view_pager);
+			SpringIndicator springIndicator = (SpringIndicator) mRootView
+					.findViewById(R.id.indicator);
 
-		return view;
+			PagerManager manager = new PagerManager();
+			mObjHome = new MyHomeFragment();
+			mObjSearchUser = new SearchUserFragment();
+			manager.addFragment(mObjHome, "Home");
+			manager.addFragment(mObjSearchUser, "Profile");
+			ModelPagerAdapter adapter = new ModelPagerAdapter(
+					getChildFragmentManager(), manager);
+			viewPager.setAdapter(adapter);
+			viewPager.fixScrollSpeed();
+			springIndicator.setViewPager(viewPager);
+			springIndicator.setOnPageChangeListener(this);
+
+		} else {
+		}
 	}
 
 	@Override
@@ -73,7 +83,7 @@ public class HomeProfileFragment extends Fragment implements
 	@Override
 	public void onPageSelected(int arg0) {
 		if (arg0 == 1) {
-			 mObjSearchUser.loadData();
+			mObjSearchUser.loadData();
 		}
 	}
 

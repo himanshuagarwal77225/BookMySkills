@@ -372,7 +372,8 @@ public class HomeFragment extends Fragment implements OnMapLoadedCallback,
 			}
 			return skills;
 		} else {
-			return null;
+			String[] mDummy = new String[0];
+			return mDummy;
 		}
 
 	}

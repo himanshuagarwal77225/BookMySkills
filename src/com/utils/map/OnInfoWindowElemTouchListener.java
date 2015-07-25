@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 
 import com.google.android.gms.maps.model.Marker;
+import com.models.UserSearchModel;
 
 public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
 	private final View view;
@@ -18,6 +19,7 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
 
 	private Marker marker;
 	private boolean pressed = false;
+	private UserSearchModel mModel;
 
 	// public OnInfoWindowElemTouchListener(View view, Drawable
 	// bgDrawableNormal,
@@ -29,10 +31,10 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
 	// }
 
 	public OnInfoWindowElemTouchListener(View view, Marker marker,
-			LinkedHashMap<String, String> mData) {
+			UserSearchModel mModel) {
 		this.marker = marker;
 		this.view = view;
-		this.mData = mData;
+		this.mModel = mModel;
 	}
 
 	public OnInfoWindowElemTouchListener(View view, Marker marker) {
@@ -99,7 +101,7 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
 			if (endPress()) {
 				if (marker != null)
 					marker.hideInfoWindow();
-				onClickConfirmed(view, marker, mData);
+				onClickConfirmed(view, marker, mModel);
 			}
 		}
 	};
@@ -112,5 +114,5 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
 	// public abstract void onClickConfirmed(View v, Marker marker);
 
 	public abstract void onClickConfirmed(View v, Marker marker,
-			LinkedHashMap<String, String> mData);
+			UserSearchModel mModel);
 }

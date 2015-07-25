@@ -132,4 +132,24 @@ public class WebUtils {
 	 */
 	public static final String LOGOUT = BASE_URL + "?todo=logout&";
 
+	/**
+	 * @SETGCM {@link requires} <br>
+	 *         user_id<br>
+	 *         token<br>
+	 *         gcm_regid<br>
+	 *         email
+	 * 
+	 */
+	public static final String SETGCM = BASE_URL + "?todo=setgcm&";
+
+	/**
+	 * @SETGCM {@link requires} <br>
+	 *         user_id<br>
+	 *         latitude<br>
+	 *         longitude<br>
+	 *         accuracy
+	 * 
+	 */
+	public static final String TRACK_USER = BASE_URL + "?todo=track_user&";
+
 }

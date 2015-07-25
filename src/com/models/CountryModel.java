@@ -23,6 +23,9 @@ public class CountryModel {
 	}
 
 	public void setCountry(String country) {
+		if (country == null || country.equalsIgnoreCase("null")) {
+			country = "";
+		}
 		this.country = country;
 	}
 
@@ -31,6 +34,9 @@ public class CountryModel {
 	}
 
 	public void setIsoCode2(String isoCode2) {
+		if (isoCode2 == null || isoCode2.equalsIgnoreCase("null")) {
+			isoCode2 = "";
+		}
 		this.isoCode2 = isoCode2;
 	}
 
@@ -39,6 +45,9 @@ public class CountryModel {
 	}
 
 	public void setIsoCode3(String isoCode1) {
+		if (isoCode1 == null || isoCode1.equalsIgnoreCase("null")) {
+			isoCode1 = "";
+		}
 		this.isoCode3 = isoCode1;
 	}
 
@@ -47,6 +56,9 @@ public class CountryModel {
 	}
 
 	public void setAddressFormat(String addressFormat) {
+		if (addressFormat == null || addressFormat.equalsIgnoreCase("null")) {
+			addressFormat = "";
+		}
 		this.addressFormat = addressFormat;
 	}
 
@@ -55,6 +67,10 @@ public class CountryModel {
 	}
 
 	public void setPostCodeRequired(String postCodeRequired) {
+		if (postCodeRequired == null
+				|| postCodeRequired.equalsIgnoreCase("null")) {
+			postCodeRequired = "";
+		}
 		this.postCodeRequired = postCodeRequired;
 	}
 
@@ -63,6 +79,9 @@ public class CountryModel {
 	}
 
 	public void setStatus(String status) {
+		if (status == null || status.equalsIgnoreCase("null")) {
+			status = "";
+		}
 		this.status = status;
 	}
 }

@@ -44,6 +44,15 @@ public class StaticInfo {
 	public static final String OTHER_QUALIFICATION = "other_qualification";
 	public static final String PERSONAL_DETAIL = "personal_detail";
 	public static final String INTRODUCTION = "introduction";
+	public static final String DOB = "dob";
+
+	public static final String INBOX = "inbox";
+	public static final String FROM_ID = "from_id";
+	public static final String TO_ID = "to_id";
+	public static final String TIME = "time";
+	public static final String SUBJECT = "subject";
+	public static final String BODY = "body";
+	public static final String READ_STATUS = "read_status";
 
 	public static final String ISO_CODE_2 = "iso_code_2";
 	public static final String ISO_CODE_3 = "iso_code_3";
@@ -65,5 +74,6 @@ public class StaticInfo {
 	public static final int RESET_PASSWORD_RESPONSE_CODE = 13;
 	public static final int SEND_MESSAGE_RESPONSE_CODE = 14;
 	public static final int LOGOUT_RESPONSE_CODE = 15;
-
+	public static final int GCM_RESPONSE_CODE = 16;
+	public static final int TRACK_USER_RESPONSE_CODE = 17;
 }

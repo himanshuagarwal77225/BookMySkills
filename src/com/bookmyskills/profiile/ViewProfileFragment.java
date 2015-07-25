@@ -15,31 +15,42 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.jsonclasses.IParseListener;
 import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
 import com.bookmyskills.MainActivity;
 import com.bookmyskills.R;
+import com.bookmyskills.inbox.ComposeEmailFragment;
+import com.bookmyskills.inbox.MessageFragment;
 import com.customcontrols.fadingactionbar.FadingActionBarHelper;
-import com.customcontrols.materialdialog.MaterialDialog;
 import com.customcontrols.shimmertextview.ShimmerTextView;
 import com.models.SkillsModel;
 import com.models.UserSearchModel;
@@ -59,7 +70,8 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 	Activity myContext;
 	StorageClass mStroageClass;
 
-	EditText userFullNameEditText = null;
+	EditText firstName = null;
+	EditText lastName = null;
 	EditText livesInEditText = null;
 	EditText introductionEditText = null;
 	EditText emailEditText = null;
@@ -90,6 +102,12 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 
 	private Dialog dialog;
 
+	private CheckBox emaileCheckBox;
+	private CheckBox phoneCheckBox;
+	private CheckBox pushNotificationCheckBox;
+	private LinearLayout mContactMedium;
+	private Button mbtnBukMySkills;
+
 	private enum VIEW_DIALOG {
 		EDIT_PROFILE, ABOUT_ME, CONTACT_INFO, BASIC_INFO, EDUCATION_INFO, SKILL_INFO
 	}
@@ -103,7 +121,7 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 
 		View view = mFadingHelper.createView(inflater);
 		ImageView img = (ImageView) view.findViewById(R.id.image_header);
-		img.setImageResource(R.drawable.profile_header_bg);
+		img.setImageResource(R.drawable.header);
 		setUpViews(view);
 		setUpListeners(view);
 
@@ -143,7 +161,7 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 		mFadingHelper = new FadingActionBarHelper()
 				.actionBarBackground(R.drawable.bms_background)
 				.headerLayout(R.layout.bms_profile_header)
-				.contentLayout(R.layout.fragment_profile);
+				.contentLayout(R.layout.fragment_view_profile);
 		mFadingHelper.initActionBar(getActivity());
 
 		myContext = activity;
@@ -151,6 +169,8 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 	}
 
 	private void setUpViews(View view) {
+		((TextView) view.findViewById(R.id.photoUserTextView))
+				.setVisibility(View.GONE);
 		userFullNameTextView = (ShimmerTextView) view
 				.findViewById(R.id.userFullNameTextView);
 		livesInTextView = (TextView) view.findViewById(R.id.livesInTextView);
@@ -170,6 +190,113 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 		ratingTextView = (TextView) view.findViewById(R.id.ratingTextView);
 		workingHourTextView = (TextView) view
 				.findViewById(R.id.workingHourTextView);
+
+		emaileCheckBox = (CheckBox) view.findViewById(R.id.emaileCheckBox);
+		phoneCheckBox = (CheckBox) view.findViewById(R.id.phoneCheckBox);
+		pushNotificationCheckBox = (CheckBox) view
+				.findViewById(R.id.pushNotificationCheckBox);
+
+		emaileCheckBox.setEnabled(false);
+		phoneCheckBox.setEnabled(false);
+		pushNotificationCheckBox.setEnabled(false);
+		mContactMedium = (LinearLayout) view.findViewById(R.id.contactMedium);
+		mContactMedium.setVisibility(View.GONE);
+		mbtnBukMySkills = (Button) view.findViewById(R.id.btnBookMySkills);
+		mbtnBukMySkills.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showContactMediumDialog();
+			}
+
+		});
+	}
+
+	@SuppressWarnings("rawtypes")
+	private void showContactMediumDialog() {
+
+		AlertDialog.Builder builderSingle = new AlertDialog.Builder(
+				getActivity());
+		builderSingle.setTitle("Select Contact Medium");
+		final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+				getActivity(), android.R.layout.select_dialog_item);
+		String[] itemsToShow = null;
+		if (mUserInfo.getContactMedium() != null
+				&& !(TextUtils.isEmpty(mUserInfo.getContactMedium()))) {
+			String[] mArray = mUserInfo.getContactMedium().split(",");
+			if (mArray != null) {
+				itemsToShow = new String[mArray.length];
+				itemsToShow = mArray;
+			}
+		}
+
+		if (itemsToShow != null && itemsToShow.length > 0) {
+			for (int i = 0; i < itemsToShow.length; i++) {
+				arrayAdapter.add(itemsToShow[i]);
+			}
+		}
+
+		builderSingle.setNegativeButton("cancel",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+
+		if (itemsToShow != null && itemsToShow.length > 0) {
+			builderSingle.setAdapter(arrayAdapter,
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+							String strName = arrayAdapter.getItem(which);
+							if (strName.equalsIgnoreCase("email")) {
+								Intent emailIntent = new Intent(
+										Intent.ACTION_SENDTO, Uri.fromParts(
+												"mailto", mUserInfo.getEmail(),
+												null));
+								emailIntent.putExtra(Intent.EXTRA_SUBJECT,
+										"BMS: New Skill Request");
+								startActivity(Intent.createChooser(emailIntent,
+										"Send email..."));
+							} else if (strName.equalsIgnoreCase("phone")) {
+								if (mUserInfo != null) {
+									if (mUserInfo.getMobile() != null
+											&& TextUtils.isEmpty(mUserInfo
+													.getMobile())) {
+										Intent intent = new Intent(
+												Intent.ACTION_CALL,
+												Uri.parse("tel:" + "+"
+														+ mUserInfo.getMobile()));
+										startActivity(intent);
+									} else {
+										Intent intent = new Intent(
+												Intent.ACTION_CALL,
+												Uri.parse("tel:"
+														+ "+34666777888"));
+										startActivity(intent);
+									}
+								}
+							} else if (strName
+									.equalsIgnoreCase("push notification")) {
+								ComposeEmailFragment nextFrag = new ComposeEmailFragment();
+
+								getActivity()
+										.getSupportFragmentManager()
+										.beginTransaction()
+										.replace(R.id.frame_container,
+												nextFrag, "compose")
+										.addToBackStack(null)
+										.commitAllowingStateLoss();
+							}
+						}
+					});
+			builderSingle.show();
+		}
+
 	}
 
 	private void setUserInfo() {
@@ -243,15 +370,17 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 				@Override
 				public void onPositive(MaterialDialog dialog) {
 					super.onPositive(dialog);
+					String strFirstName = firstName.getText().toString();
+					String strLastName = lastName.getText().toString();
 
-					String userFullNameText = userFullNameEditText.getText()
-							.toString();
-					userFullNameTextView.setText(userFullNameText);
+					mUserInfo.setFirstName(strFirstName);
+					mUserInfo.setLastName(strLastName);
+
+					userFullNameTextView.setText(mUserInfo.getFirstName() + " "
+							+ mUserInfo.getLastName());
 
 					String livesInText = livesInEditText.getText().toString();
 					livesInTextView.setText(livesInText);
-
-					initiateEditProfileApi();
 				}
 			});
 
@@ -413,9 +542,11 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 		switch (view_dialog) {
 
 		case EDIT_PROFILE:
-			userFullNameEditText = (EditText) (view
-					.findViewById(R.id.userFullNameEditText));
-			userFullNameEditText.setText(userFullNameTextView.getText());
+			firstName = (EditText) (view.findViewById(R.id.firstName));
+			firstName.setText(mUserInfo.getFirstName());
+
+			lastName = (EditText) (view.findViewById(R.id.lastName));
+			lastName.setText(mUserInfo.getLastName());
 
 			livesInEditText = (EditText) (view
 					.findViewById(R.id.livesInEditText));
@@ -457,6 +588,7 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 
 			birthdayEditText = (EditText) (view
 					.findViewById(R.id.birthdayEditText));
+			birthdayEditText.setText(mUserInfo.getDateOfBirth());
 			birthdayEditText
 					.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 						@Override
@@ -606,7 +738,8 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 			}
 			return skills;
 		} else {
-			return null;
+			String[] mDummy = new String[0];
+			return mDummy;
 		}
 
 	}
@@ -690,6 +823,9 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 								.optString(StaticInfo.LONGITUDE));
 						mUserInfo.setLatitude(mProfileInfo
 								.optString(StaticInfo.LATITUDE));
+						mUserInfo.setDateOfBirth(mProfileInfo
+								.optString(StaticInfo.DOB));
+
 						String mSkills = mProfileInfo
 								.optString(StaticInfo.SKILL);
 						String[] mSkillsArray = mSkills.split("/");

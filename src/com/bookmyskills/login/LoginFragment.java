@@ -28,6 +28,7 @@ import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
 import com.bookmyskills.MainActivity;
 import com.bookmyskills.R;
+import com.utils.GPSTracker;
 import com.utils.StaticInfo;
 import com.utils.StorageClass;
 import com.utils.network.MiscUtils;
@@ -74,12 +75,7 @@ public class LoginFragment extends android.support.v4.app.Fragment implements
 				// TODO Auto-generated method stub
 				android.support.v4.app.Fragment frag = new RegisterFragment();
 
-				FragmentTransaction ft = getActivity()
-						.getSupportFragmentManager().beginTransaction();
-				ft.replace(R.id.frame_container, frag);
-				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-				ft.addToBackStack(null);
-				ft.commit();
+				((MainActivity) getActivity()).loadChildFragment(frag, null);
 			}
 		});
 
@@ -259,6 +255,13 @@ public class LoginFragment extends android.support.v4.app.Fragment implements
 			break;
 		case StaticInfo.RESET_PASSWORD_RESPONSE_CODE:
 			responseFoResetPasswordApi(response);
+			break;
+		case StaticInfo.GCM_RESPONSE_CODE:
+			responseForGCMApi(response);
+			break;
+		case StaticInfo.TRACK_USER_RESPONSE_CODE:
+			responseForTrackUserApi(response);
+			break;
 		default:
 			break;
 		}
@@ -275,7 +278,7 @@ public class LoginFragment extends android.support.v4.app.Fragment implements
 						String message = response.getString(StaticInfo.STATUS)
 								.replaceAll("[0-9]", "");
 						((MainActivity) getActivity())
-								.showErrorAlertDialog(message);
+								.showSuccessAlertDialog(message);
 					}
 
 				} else {
@@ -314,15 +317,7 @@ public class LoginFragment extends android.support.v4.app.Fragment implements
 						mStorageClass.setFirstName(firstName);
 						mStorageClass.setLastName(lastName);
 						mStorageClass.setToken(userToken);
-						Intent intent = getActivity().getIntent();
-						intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-								| Intent.FLAG_ACTIVITY_NEW_TASK
-								| Intent.FLAG_ACTIVITY_NO_ANIMATION);
-						getActivity().overridePendingTransition(0, 0);
-						getActivity().finish();
-
-						getActivity().overridePendingTransition(0, 0);
-						startActivity(intent);
+						initGcmApi(userId, userToken);
 					}
 				} else {
 					if (getActivity() != null
@@ -337,6 +332,103 @@ public class LoginFragment extends android.support.v4.app.Fragment implements
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private void refreshIntent() {
+		Intent intent = getActivity().getIntent();
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+				| Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		getActivity().overridePendingTransition(0, 0);
+		getActivity().finish();
+
+		getActivity().overridePendingTransition(0, 0);
+		startActivity(intent);
+	}
+
+	private void initGcmApi(String userId, String token) {
+
+		Bundle mParams = new Bundle();
+		mParams.putString("user_id", userId);
+		mParams.putString("token", token);
+		mParams.putString("gcm_regid", StorageClass.getInstance(getActivity())
+				.gettDeviceToken());
+		mParams.putString("email", userName);
+
+		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(
+				getActivity());
+		mJsonRequestResponse.getResponse(
+				MiscUtils.encodeUrl(WebUtils.SETGCM, mParams),
+				StaticInfo.GCM_RESPONSE_CODE, this);
+	}
+
+	private void responseForGCMApi(JSONObject response) {
+		hideProgress();
+		if (response != null) {
+			try {
+				if (response.getString(StaticInfo.STATUS).equalsIgnoreCase(
+						StaticInfo.SUCCESS_STRING)) {
+					initTrackUserApi();
+				} else {
+					if (getActivity() != null
+							&& getActivity() instanceof MainActivity) {
+						String message = response.getString(StaticInfo.STATUS)
+								.replaceAll("[0-9]", "");
+						((MainActivity) getActivity())
+								.showErrorAlertDialog(message);
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	private void responseForTrackUserApi(JSONObject response) {
+		hideProgress();
+		if (response != null) {
+			try {
+				if (response.getString(StaticInfo.STATUS).equalsIgnoreCase(
+						StaticInfo.SUCCESS_STRING)) {
+					refreshIntent();
+				} else {
+					if (getActivity() != null
+							&& getActivity() instanceof MainActivity) {
+						String message = response.getString(StaticInfo.STATUS)
+								.replaceAll("[0-9]", "");
+						((MainActivity) getActivity())
+								.showErrorAlertDialog(message);
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	private void initTrackUserApi() {
+		Bundle mParams = new Bundle();
+		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(
+				getActivity());
+		mParams.putString("user_id", String.valueOf(StorageClass.getInstance(
+				getActivity()).getUserId()));
+		String lat = "", log = "";
+		GPSTracker gpsTracker = new GPSTracker(getActivity());
+		if (gpsTracker.getIsGPSTrackingEnabled()) {
+			lat = String.valueOf(gpsTracker.latitude);
+			log = String.valueOf(gpsTracker.longitude);
+		}
+		mParams.putString("latitude", lat);
+		mParams.putString("longitude", log);
+		mParams.putString("accuracy", "show");
+		mParams.putString("token", StorageClass.getInstance(getActivity())
+				.getToken());
+		mJsonRequestResponse.getResponse(
+				MiscUtils.encodeUrl(WebUtils.TRACK_USER, mParams),
+				StaticInfo.TRACK_USER_RESPONSE_CODE, this);
+
 	}
 
 }

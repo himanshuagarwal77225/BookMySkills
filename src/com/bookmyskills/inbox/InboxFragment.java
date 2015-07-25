@@ -42,6 +42,7 @@ import com.android.jsonclasses.IParseListener;
 import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
 import com.bookmyskills.R;
+import com.bookmyskills.adapters.InboxAdapter;
 import com.customcontrols.dialog.CustomDialog;
 import com.customcontrols.floatingactionbutton.FloatingActionButton;
 import com.customcontrols.swipemenu.SwipeMenu;
@@ -50,7 +51,7 @@ import com.customcontrols.swipemenu.SwipeMenuItem;
 import com.customcontrols.swipemenu.SwipeMenuListView;
 import com.customcontrols.swipemenu.SwipeMenuListView.OnMenuItemClickListener;
 import com.customcontrols.swipemenu.SwipeMenuListView.OnSwipeListener;
-import com.models.UserSearchModel;
+import com.models.InboxModel;
 import com.utils.StaticInfo;
 import com.utils.StorageClass;
 import com.utils.misc.DataItem;
@@ -66,12 +67,21 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 	SwipeRefreshLayout swipeLayout;
 	private List<ApplicationInfo> mAppList;
 	private DataSource mDataSource;
-	private SampleAdapter mAdapter;
 	private SwipeMenuListView mListView;
 	private Dialog dialog;
 	private StorageClass mStorageClass;
 
+	private InboxAdapter mInboxAdapter;
+
+	private ArrayList<InboxModel> mArrayInbox = new ArrayList<InboxModel>();
+
 	public InboxFragment() {
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mInboxAdapter = new InboxAdapter(getActivity());
 	}
 
 	@Override
@@ -94,7 +104,7 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 							@Override
 							public void run() {
 								swipeLayout.setRefreshing(false);
-								mAdapter.notifyDataSetChanged();
+								initInboxApi();
 							}
 						}, 5000);
 					}
@@ -110,6 +120,8 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 			}
 
 		});
+
+		initInboxApi();
 		return rootView;
 	}
 
@@ -137,7 +149,7 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 							@Override
 							public void run() {
 								swipeLayout.setRefreshing(false);
-								mAdapter.notifyDataSetChanged();
+								mInboxAdapter.notifyDataSetChanged();
 							}
 						}, 5000);
 					}
@@ -162,11 +174,7 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 	}
 
 	public void inbox() {
-		mAppList = getActivity().getPackageManager()
-				.getInstalledApplications(0);
-
 		mListView = (SwipeMenuListView) rootView.findViewById(R.id.listView);
-
 		mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -182,12 +190,6 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 					swipeLayout.setEnabled(false);
 			}
 		});
-		mAdapter = new SampleAdapter();
-		// mListView.setAdapter(mAdapter);
-		mDataSource = new DataSource(getActivity());
-		mListView.setAdapter(mAdapter);
-
-		// step 1. create a MenuCreator
 		SwipeMenuCreator creator = new SwipeMenuCreator() {
 
 			@Override
@@ -241,7 +243,7 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 					// delete
 					// delete(item);
 					mAppList.remove(position);
-					mAdapter.notifyDataSetChanged();
+					mInboxAdapter.notifyDataSetChanged();
 					break;
 				}
 				return false;
@@ -378,9 +380,35 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 			try {
 				if (response.getString(StaticInfo.STATUS).equalsIgnoreCase(
 						StaticInfo.SUCCESS_STRING)) {
+					JSONArray inboxArray = response
+							.optJSONArray(StaticInfo.INBOX);
+					if (inboxArray != null) {
+						mArrayInbox = new ArrayList<InboxModel>();
+						for (int i = 0; i < inboxArray.length(); i++) {
+							JSONObject mObj = inboxArray.optJSONObject(i);
+							if (mObj != null) {
+								InboxModel mModel = new InboxModel(
+										getActivity());
+								mModel.setId(mObj.optString(StaticInfo.ID));
+								mModel.setFromId(mObj
+										.getString(StaticInfo.FROM_ID));
+								mModel.setToId(mObj.getString(StaticInfo.TO_ID));
+								mModel.setDateTime(mObj
+										.getString(StaticInfo.TIME));
+								mModel.setSubject(mObj
+										.getString(StaticInfo.SUBJECT));
+								mModel.setBody(mObj.getString(StaticInfo.BODY));
+								mModel.setReadUnread(mObj
+										.getString(StaticInfo.READ_STATUS));
+								mModel.setStatus(mObj
+										.getString(StaticInfo.STATUS));
+								mArrayInbox.add(mModel);
+							}
+						}
+					} else {
 
+					}
 				} else {
-
 					CustomDialog myDialog = new CustomDialog(getActivity());
 					myDialog.createDialog("Unable to authenticate", "Reason : "
 							+ response.getString("status"));
@@ -389,6 +417,12 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 				e.printStackTrace();
 			}
 		}
+		setAdapter();
+	}
+
+	private void setAdapter() {
+		mInboxAdapter.addItems(mArrayInbox);
+		mListView.setAdapter(mInboxAdapter);
 	}
 
 	private int dp2px(int dp) {
@@ -396,77 +430,4 @@ public class InboxFragment extends android.support.v4.app.Fragment implements
 				getResources().getDisplayMetrics());
 	}
 
-	private static class ViewHolder {
-
-		private ImageView imageView;
-
-		private TextView textView;
-
-		private ViewHolder(View view) {
-			imageView = (ImageView) view.findViewById(R.id.imageView);
-			textView = (TextView) view.findViewById(R.id.textView);
-		}
-	}
-
-	private class SampleAdapter extends BaseAdapter {
-
-		@Override
-		public int getCount() {
-			return mDataSource.getCount();
-		}
-
-		@Override
-		public DataItem getItem(int position) {
-			return mDataSource.getItem(position);
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			ViewHolder holder;
-			if (convertView == null) {
-				convertView = View.inflate(getActivity(),
-						R.layout.item_list_app, null);
-				holder = new ViewHolder(convertView);
-				convertView.setTag(holder);
-			} else {
-				holder = (ViewHolder) convertView.getTag();
-			}
-
-			DataItem item = getItem(position);
-
-			final Drawable drawable = item.getDrawable();
-			holder.imageView.setImageDrawable(drawable);
-			holder.textView.setText(item.getLabel());
-
-			// if navigation is supported, show the ">" navigation icon
-			if (item.getNavigationInfo() != DataSource.NO_NAVIGATION) {
-				holder.textView.setCompoundDrawablesWithIntrinsicBounds(
-						null,
-						null,
-						getResources().getDrawable(
-								R.drawable.ic_action_next_item), null);
-			} else {
-				holder.textView.setCompoundDrawablesWithIntrinsicBounds(null,
-						null, null, null);
-			}
-
-			// fix for animation not playing for some below 4.4 devices
-			if (drawable instanceof AnimationDrawable) {
-				holder.imageView.post(new Runnable() {
-					@Override
-					public void run() {
-						((AnimationDrawable) drawable).stop();
-						((AnimationDrawable) drawable).start();
-					}
-				});
-			}
-
-			return convertView;
-		}
-	}
 }

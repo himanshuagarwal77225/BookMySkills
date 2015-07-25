@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -71,6 +72,7 @@ import com.models.CityModel;
 import com.models.CountryModel;
 import com.models.SkillsModel;
 import com.models.StateModel;
+import com.utils.GPSTracker;
 import com.utils.StaticInfo;
 import com.utils.StorageClass;
 import com.utils.network.MiscUtils;
@@ -169,6 +171,12 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 	private int year;
 	private int month;
 	private int day;
+	private String currentPhotoPath = "";
+	private ArrayList<String> mArraySkills = new ArrayList<String>();
+	private ArrayList<String> mArrayWorkingHours = new ArrayList<String>();
+	private ArrayList<String> mArrayRating = new ArrayList<String>();
+	private ArrayList<String> mArrayProfiencenyLevels = new ArrayList<String>();
+	private String regUserId = "";
 	// private DatePickerDialog.OnDateSetListener pickerListener = new
 	// DatePickerDialog.OnDateSetListener() {
 	//
@@ -322,7 +330,28 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 		skills2EditText.setThreshold(2);
 		skills1EditText.setAdapter(skillsAdapter);
 		skills1EditText.setThreshold(2);
+
+		skills2EditText.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				addSkillId(skills2EditText.getText().toString());
+			}
+
+		});
+
+		skills1EditText.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				addSkillId(skills1EditText.getText().toString());
+			}
+
+		});
 		// skillsSubLayout = (LinearLayout)
+
 		// rootView.findViewById(R.id.skillsSubLayout);
 		// lastUsedSpinnerPopulate();
 
@@ -518,9 +547,10 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 								public void onDateSet(DatePicker datePicker,
 										int year, int month, int day) {
 									dobEditText.setText(new StringBuilder()
-											.append(month + 1).append("-")
-											.append(day).append("-")
-											.append(year).append(" "));
+											.append(year).append("/")
+											.append(month + 1).append("/")
+											.append(day));
+
 								}
 							}, calendar.get(Calendar.YEAR), calendar
 									.get(Calendar.MONTH), calendar
@@ -605,12 +635,19 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 			break;
 		case StaticInfo.GETREGISTER_RESPONSE_CODE:
 			responseForRegisterApi(response);
+			break;
+		case StaticInfo.GCM_RESPONSE_CODE:
+			responseForGCMApi(response);
+			break;
+		case StaticInfo.TRACK_USER_RESPONSE_CODE:
+			responseForTrackUserApi(response);
+			break;
 		default:
 			break;
 		}
 	}
 
-	private void responseForRegisterApi(JSONObject response) {
+	private void responseForGCMApi(JSONObject response) {
 		hideProgress();
 		if (response != null) {
 			try {
@@ -621,10 +658,9 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 						String message = response.getString(StaticInfo.STATUS)
 								.replaceAll("[0-9]", "");
 						((MainActivity) getActivity())
-								.showErrorAlertDialog(message);
+								.showSuccessAlertDialog("Registration Successfull!. An Email is sent to your respected Email-Id, Please activate your Account.");
 						getActivity().getSupportFragmentManager()
 								.popBackStackImmediate();
-
 					}
 				} else {
 					if (getActivity() != null
@@ -639,6 +675,103 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 				e.printStackTrace();
 			}
 		}
+
+	}
+
+	private void responseForTrackUserApi(JSONObject response) {
+		hideProgress();
+		if (response != null) {
+			try {
+				if (response.getString(StaticInfo.STATUS).equalsIgnoreCase(
+						StaticInfo.SUCCESS_STRING)) {
+					if (getActivity() != null
+							&& getActivity() instanceof MainActivity) {
+						String message = response.getString(StaticInfo.STATUS)
+								.replaceAll("[0-9]", "");
+						((MainActivity) getActivity())
+								.showSuccessAlertDialog("Registration Successfull!. An Email is sent to your respected Email-Id, Please activate your Account.");
+						getActivity().getSupportFragmentManager()
+								.popBackStackImmediate();
+					}
+				} else {
+					if (getActivity() != null
+							&& getActivity() instanceof MainActivity) {
+						String message = response.getString(StaticInfo.STATUS)
+								.replaceAll("[0-9]", "");
+						((MainActivity) getActivity())
+								.showErrorAlertDialog(message);
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	private void initTrackUserApi(String userId) {
+		Bundle mParams = new Bundle();
+		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(
+				getActivity());
+		mParams.putString("user_id", userId);
+		String lat = "", log = "";
+		GPSTracker gpsTracker = new GPSTracker(getActivity());
+		if (gpsTracker.getIsGPSTrackingEnabled()) {
+			lat = String.valueOf(gpsTracker.latitude);
+			log = String.valueOf(gpsTracker.longitude);
+		}
+		mParams.putString("latitude", lat);
+		mParams.putString("longitude", log);
+		mParams.putString("accuracy", "show");
+		mJsonRequestResponse.getResponse(
+				MiscUtils.encodeUrl(WebUtils.TRACK_USER, mParams),
+				StaticInfo.TRACK_USER_RESPONSE_CODE, this);
+
+	}
+
+	private void responseForRegisterApi(JSONObject response) {
+
+		if (response != null) {
+			try {
+				if (response.getString(StaticInfo.STATUS).equalsIgnoreCase(
+						StaticInfo.SUCCESS_STRING)) {
+					JSONObject userInfo = response.optJSONObject("register");
+					if (userInfo != null) {
+						String userId = userInfo.optString("user_id");
+						regUserId = userId;
+						String token = userInfo.optString("token");
+						initGcmApi(userId, token);
+					}
+				} else {
+					hideProgress();
+					if (getActivity() != null
+							&& getActivity() instanceof MainActivity) {
+						String message = response.getString(StaticInfo.STATUS)
+								.replaceAll("[0-9]", "");
+						((MainActivity) getActivity())
+								.showErrorAlertDialog(message);
+					}
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void initGcmApi(String userId, String token) {
+
+		Bundle mParams = new Bundle();
+		mParams.putString("user_id", userId);
+		mParams.putString("token", token);
+		mParams.putString("gcm_regid", StorageClass.getInstance(getActivity())
+				.gettDeviceToken());
+		mParams.putString("email", email);
+
+		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(
+				getActivity());
+		mJsonRequestResponse.getResponse(
+				MiscUtils.encodeUrl(WebUtils.SETGCM, mParams),
+				StaticInfo.GCM_RESPONSE_CODE, this);
 	}
 
 	private void responseForCityApi(JSONObject response) {
@@ -1391,13 +1524,12 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 			}
 			// Continue only if the File was successfully created
 			if (photoFile != null) {
-				// Uri fileUri = Uri.fromFile(photoFile);
-				// activity.setCapturedImageURI(fileUri);
-				// activity.setCurrentPhotoPath(fileUri.getPath());
-				// takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-				// activity.getCapturedImageURI());
-				// startActivityForResult(takePictureIntent,
-				// REQUEST_TAKE_PHOTO);
+				Uri fileUri = Uri.fromFile(photoFile);
+				activity.setCapturedImageURI(fileUri);
+				activity.setCurrentPhotoPath(fileUri.getPath());
+				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+						activity.getCapturedImageURI());
+				startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
 			}
 		}
 	}
@@ -1416,8 +1548,8 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 			addPhotoToGallery();
 			MainActivity activity = (MainActivity) getActivity();
 			// Show the full sized image.
-			// setFullImageFromFilePath(activity.getCurrentPhotoPath(),
-			// profilePicImageView);
+			setFullImageFromFilePath(activity.getCurrentPhotoPath(),
+					profilePicImageView);
 
 		} else if (requestCode == IMAGE_PICKER_SELECT
 				&& resultCode == Activity.RESULT_OK) {
@@ -1494,11 +1626,13 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 		Bitmap bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
 		imageView.setImageBitmap(bitmap);
 		photoUserTextView.setVisibility(View.GONE);
+		currentPhotoPath = imagePath;
 	}
 
 	public AutoCompleteTextView addMoreEditText(String hint) {
 
-		AutoCompleteTextView editText = new AutoCompleteTextView(getActivity());
+		final AutoCompleteTextView editText = new AutoCompleteTextView(
+				getActivity());
 
 		LinearLayout.LayoutParams editTextLayoutParams = new LinearLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -1532,7 +1666,16 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 			skillsAdapter = new ArrayAdapter<String>(getActivity(),
 					android.R.layout.simple_list_item_1, getSkills());
 			editText.setAdapter(skillsAdapter);
-			editText.setThreshold(2);
+			editText.setThreshold(1);
+			editText.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					addSkillId(editText.getText().toString());
+				}
+
+			});
 		} else if (hint.equalsIgnoreCase("Working Hours")) {
 			editText.setId(skillWorkHrID);
 			editText.setCompoundDrawablesWithIntrinsicBounds(
@@ -1581,10 +1724,24 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 		}
 		LinearLayout.LayoutParams spinnerLayoutParams = new LinearLayout.LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		// spinnerLayoutParams.setMargins(10, 10, 10, 10);
+		spinnerLayoutParams.setMargins(0, 10, 0, 10);
 		spinner.setLayoutParams(spinnerLayoutParams);
 
 		return spinner;
+	}
+
+	public void addSkillId(String mString) {
+		ArrayList<SkillsModel> skillSet = mStorageClass.getSkillsArray();
+
+		if (skillSet != null && skillSet.size() > 0) {
+			for (int i = 0; i < skillSet.size(); i++) {
+				SkillsModel skill = skillSet.get(i);
+				if (skill.getSkill().equalsIgnoreCase(mString)) {
+					mArraySkills.add(String.valueOf(skill.getId()));
+				}
+			}
+		} else {
+		}
 	}
 
 	public String[] getSkills() {
@@ -1598,7 +1755,8 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 			}
 			return skills;
 		} else {
-			return null;
+			String[] mDummy = new String[0];
+			return mDummy;
 		}
 
 	}
@@ -1608,6 +1766,13 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(
 				getActivity());
 		Bundle mParams = new Bundle();
+		String lat = "", log = "";
+
+		GPSTracker gpsTracker = new GPSTracker(getActivity());
+		if (gpsTracker.getIsGPSTrackingEnabled()) {
+			lat = String.valueOf(gpsTracker.latitude);
+			log = String.valueOf(gpsTracker.longitude);
+		}
 		if (userType.equalsIgnoreCase("Work")) {
 			mParams.putString("user_type", "work_seeker");
 			mParams.putString("username", userName);
@@ -1621,6 +1786,11 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 			mParams.putString("dob", dobEditText.getText().toString());
 			mParams.putString("postal_code", pincode);
 			mParams.putString("mobile", phoneNumber);
+			mParams.putString("latitude", lat);
+			mParams.putString("longitude", log);
+			mParams.putString("accuracy", "show");
+			mParams.putString("gcm_regid",
+					StorageClass.getInstance(getActivity()).gettDeviceToken());
 			TelephonyManager telephonyManager = (TelephonyManager) getActivity()
 					.getSystemService(getActivity().TELEPHONY_SERVICE);
 			mParams.putString("imei",
@@ -1636,8 +1806,10 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 				}
 			}
 			mParams.putString("device_email_id", possibleEmail);
-			mParams.putString("skill_id1", skills[0]);
-			mParams.putString("skill_id2", skills[1]);
+			for (int i = 0; i < mArraySkills.size(); i++) {
+				String mKey = "skill_id" + (i + 1);
+				mParams.putString(mKey, mArraySkills.get(i));
+			}
 			mParams.putString("working_hr1", workingHrs[0]);
 			mParams.putString("working_hr2", workingHrs[1]);
 			mParams.putString("proficiency_level1", ratingLevel[0]);
@@ -1659,6 +1831,11 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 			mParams.putString("dob", dobEditText.getText().toString());
 			mParams.putString("postal_code", pincode);
 			mParams.putString("mobile", phoneNumber);
+			mParams.putString("latitude", lat);
+			mParams.putString("longitude", log);
+			mParams.putString("accuracy", "show");
+			mParams.putString("gcm_regid",
+					StorageClass.getInstance(getActivity()).gettDeviceToken());
 			TelephonyManager telephonyManager = (TelephonyManager) getActivity()
 					.getSystemService(getActivity().TELEPHONY_SERVICE);
 			mParams.putString("imei",
@@ -1674,6 +1851,44 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 				}
 			}
 			mParams.putString("device_email_id", possibleEmail);
+		}
+
+		boolean isEmail = false, isPhone = false, isBmsChat = false;
+		if (emaileCheckBox.isChecked()) {
+			isEmail = true;
+		}
+		if (phoneCheckBox.isChecked()) {
+			isPhone = true;
+		}
+		if (pushNotificationCheckBox.isChecked()) {
+			isBmsChat = true;
+		}
+
+		String pcm = "";
+		if (isEmail)
+			pcm = "email";
+		if (isPhone) {
+			if (TextUtils.isEmpty(pcm)) {
+				pcm = "phone";
+			} else {
+				pcm = pcm + "," + "phone";
+			}
+		}
+		if (isBmsChat) {
+			if (TextUtils.isEmpty(pcm)) {
+				pcm = "push notification";
+			} else {
+				pcm = pcm + "," + "push notification";
+			}
+		}
+		mParams.putString("preferred_contact_medium", pcm);
+
+		HashMap<String, File> mAttachFileList = new HashMap<String, File>();
+		MainActivity mAct = (MainActivity) getActivity();
+		if (currentPhotoPath != null && !(TextUtils.isEmpty(currentPhotoPath))) {
+			File mFile = new File(currentPhotoPath);
+			mAttachFileList.put("image", mFile);
+			mJsonRequestResponse.setAttachFileList(mAttachFileList);
 		}
 
 		mJsonRequestResponse.getResponse(

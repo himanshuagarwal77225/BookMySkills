@@ -16,6 +16,12 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.bookmyskills.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.bookmyskills.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature
@@ -42,6 +48,9 @@
     <permission
         android:name="com.bookmyskills.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
+    <permission
+        android:name="com.bookmyskills.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
 
     <uses-permission android:name="com.bookmyskills.permission.MAPS_RECEIVE" />
 
@@ -63,19 +72,46 @@
         <activity
             android:name="com.bookmyskills.MainActivity"
             android:configChanges="screenSize|orientation|keyboardHidden" >
-        </activity><!--
+        </activity>
+        <!--
         <activity
             android:name="com.bookmyskills.inbox.ComposeActivity"
             android:configChanges="screenSize|orientation|keyboardHidden" >
         </activity>
         -->
 
-<meta-data
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+
+                <!--  -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.bookmyskills" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.bookmyskills.GCMIntentService"
+            android:enabled="true" />
+
+        <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyC817x7As6quYBOPz9AZcAiI5mH2vj55GY" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCaSVBnMizIRUakiT4T1rMMiQRK9wd8h9o" />
     </application>
 
 </manifest>

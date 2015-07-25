@@ -23,11 +23,14 @@ import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
 import com.customcontrols.shimmertextview.Shimmer;
 import com.customcontrols.shimmertextview.ShimmerTextView;
+import com.google.android.gcm.CommonUtilities;
+import com.google.android.gcm.GCMRegistrar;
 import com.models.SkillsModel;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.Animator.AnimatorListener;
 import com.utils.StaticInfo;
 import com.utils.StorageClass;
+import com.utils.UnCaughtException;
 import com.utils.network.MiscUtils;
 import com.utils.network.WebUtils;
 
@@ -43,10 +46,21 @@ public class SplashActivity extends ActionBarActivity implements IParseListener 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(
+				SplashActivity.this));
 		mApplication = (InternalApp) getApplication();
 		if (!mApplication.isTabletLayout()) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
+		GCMRegistrar.checkDevice(this);
+		GCMRegistrar.checkManifest(this);
+
+		final String regId = GCMRegistrar.getRegistrationId(this);
+		if (regId.equals("")) {
+			// Automatically registers application on startup.
+			GCMRegistrar.register(this, CommonUtilities.SENDER_ID);
+		}
+
 		initiateSkillsApi();
 		hideActionbar();
 		getAllReferences();
