@@ -60,6 +60,9 @@ public class ComposeEmailFragment extends Fragment implements OnClickListener,
 		mRootView = inflater.inflate(R.layout.fragment_compose_mail, container,
 				false);
 		getReferences();
+		if (getArguments() != null) {
+			selectedUserId = getArguments().getString("userId");
+		}
 		mStorageClass = StorageClass.getInstance(getActivity());
 		mArrayUsers = mStorageClass.getSearchUsersArray();
 		setAdapter();
@@ -92,6 +95,19 @@ public class ComposeEmailFragment extends Fragment implements OnClickListener,
 			});
 			mtxtTo.setThreshold(1);
 		}
+
+		if (!TextUtils.isEmpty(selectedUserId)) {
+			for (UserSearchModel mModel : mArrayUsers) {
+				if (selectedUserId.toString().equalsIgnoreCase(
+						String.valueOf(mModel.getId()))) {
+					mtxtTo.setText(mModel.getFirstName() + " "
+							+ mModel.getLastName());
+					mtxtTo.setEnabled(false);
+					break;
+				}
+			}
+		}
+
 	}
 
 	private String[] getUsersArray() {

@@ -33,6 +33,8 @@ public class UserSearchModel {
 	private String introduction;
 	private String rating;
 	private String dateOfBirth;
+	
+	private String gender;
 
 	public String getRating() {
 		return rating;
@@ -360,6 +362,14 @@ public class UserSearchModel {
 			dateOfBirth = "";
 		}
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }

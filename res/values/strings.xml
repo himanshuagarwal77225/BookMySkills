@@ -332,17 +332,33 @@
         <item>24</item>
         <item>&gt;=25</item>
     </string-array>
-        <string name="certification">Certification</string>
-        <string name="education">Education</string>
-        <string name="birthday">Birthday</string>
-        <string name="gender">Gender</string>
-        <string name="address">Address</string>
-        <string name="phone">Phone</string>
-        <string name="email">Email</string>
-        <string name="contact_information">Contact Information</string>
-        <string name="introduction">Introduction</string>
-        <string name="about_me">About Me</string>
-        <string name="basic_information">Basic Information</string>
-        <string name="forgot_password_">Forgot Password ?</string>
+
+    <string name="certification">Certification</string>
+    <string name="education">Education</string>
+    <string name="birthday">Birthday</string>
+    <string name="gender">Gender</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="introduction">Introduction</string>
+    <string name="about_me">About Me</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="forgot_password_">Forgot Password ?</string>
+
+    <!-- GCM String -->
+
+    <string name="already_registered">Device is already registered on server.</string>
+    <string name="gcm_registered">From GCM: device successfully registered!</string>
+    <string name="gcm_unregistered">From GCM: device successfully unregistered!</string>
+    <string name="gcm_message">From GCM: you got message!</string>
+    <string name="gcm_error">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">From GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering">Trying (attempt %1$d/%2$d) to register device on Demo Server.</string>
+    <string name="server_registered">From Demo Server: successfully added device!</string>
+    <string name="server_unregistered">From Demo Server: successfully removed device!</string>
+    <string name="server_register_error">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
 
 </resources>

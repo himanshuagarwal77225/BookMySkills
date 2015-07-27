@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bookmyskills.MainActivity;
 import com.bookmyskills.R;
 import com.customcontrols.multiplemodel.ModelPagerAdapter;
 import com.customcontrols.multiplemodel.PagerManager;
@@ -60,6 +61,8 @@ public class HomeProfileFragment extends Fragment implements
 			viewPager.fixScrollSpeed();
 			springIndicator.setViewPager(viewPager);
 			springIndicator.setOnPageChangeListener(this);
+
+			((MainActivity) getActivity()).setTitle("Home");
 
 		} else {
 		}

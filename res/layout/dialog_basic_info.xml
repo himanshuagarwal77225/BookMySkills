@@ -9,6 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
         android:text="Gender" />
 
     <Spinner
@@ -19,11 +20,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
         android:text="Birthday" />
 
     <EditText
         android:id="@+id/birthdayEditText"
         android:layout_width="match_parent"
+        android:fontFamily="sans-serif-light"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

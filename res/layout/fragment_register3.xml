@@ -45,6 +45,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="+\nPHOTO"
+                    android:fontFamily="sans-serif-light"
                     android:textColor="@android:color/black" />
             </FrameLayout>
 
@@ -66,6 +67,7 @@
                     android:hint="Address*"
                     android:inputType="textPostalAddress"
                     android:padding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:textColor="@android:color/black" />
 
                 <AutoCompleteTextView
@@ -78,6 +80,7 @@
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
                     android:hint="City*"
+                    android:fontFamily="sans-serif-light"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
@@ -91,6 +94,7 @@
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
                     android:hint="State*"
+                    android:fontFamily="sans-serif-light"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
@@ -104,6 +108,7 @@
                     android:drawablePadding="10dp"
                     android:entries="@array/country_list"
                     android:gravity="center|left"
+                    android:fontFamily="sans-serif-light"
                     android:padding="10dp"
                     android:prompt="@string/country_"
                     android:textColor="@android:color/black" />
@@ -119,6 +124,8 @@
                     android:gravity="center|left"
                     android:hint="Pincode/Zipcode*"
                     android:inputType="number"
+                    android:fontFamily="sans-serif-light"
+                    android:maxLength="6"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
@@ -133,6 +140,7 @@
                     android:gravity="center|left"
                     android:hint="Phone Number*"
                     android:inputType="phone"
+                    android:fontFamily="sans-serif-light"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
@@ -147,6 +155,7 @@
                     android:editable="false"
                     android:gravity="center|left"
                     android:hint="DOB*"
+                    android:fontFamily="sans-serif-light"
                     android:inputType="date"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
@@ -161,6 +170,7 @@
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
                     android:hint="Working Hours*"
+                    android:fontFamily="sans-serif-light"
                     android:inputType="time"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
@@ -175,6 +185,7 @@
                     android:drawablePadding="10dp"
                     android:gravity="center|left"
                     android:hint="Hourly Price*"
+                    android:fontFamily="sans-serif-light"
                     android:inputType="date"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
@@ -185,7 +196,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:text="Preffered Contact Medium" />
+                    android:fontFamily="sans-serif-light"
+                    android:text="Preferred Contact Medium" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -200,6 +212,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:checked="true"
+                        android:fontFamily="sans-serif-light"
                         android:text="Email" />
 
                     <CheckBox
@@ -208,6 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:text="Phone" />
 
                     <CheckBox
@@ -217,7 +231,8 @@
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:checked="true"
-                        android:text="Push Notifications" />
+                        android:fontFamily="sans-serif-light"
+                        android:text="BMS Chat" />
                 </LinearLayout>
 
                 <CheckBox
@@ -226,6 +241,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:text="By registering you confirm that you accept the Terms and Conditions and Privacy Policy" />
             </LinearLayout>
         </LinearLayout>

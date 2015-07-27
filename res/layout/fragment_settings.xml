@@ -22,37 +22,53 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:weightSum="1">
+                android:weightSum="1" >
 
-                <TextView
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
-                    android:layout_marginBottom="5dp"
-                    android:padding="10dp"
-                    android:text="Privacy"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/actionbar_color" />
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical" >
 
-                <ToggleButton
-                    android:id="@+id/profileVisiblitySwitch"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:text="Privacy"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/actionbar_color" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:layout_gravity="right"
-                    android:button="@drawable/toggle_selector"
-                    android:background="@android:color/transparent"
-                    android:checked="true"
-                    android:text="Profile Visibility"
-                    android:textOff=""
-                    android:textOn="" />
+                    android:layout_weight="0.5"
+                    android:gravity="center_vertical" >
 
+                    <ToggleButton
+                        android:id="@+id/profileVisiblitySwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:background="@android:color/transparent"
+                        android:button="@drawable/toggle_selector"
+                        android:checked="true"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="right"
+                        android:textOff=""
+                        android:textOn="" />
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Hide or show your profile"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -68,14 +84,18 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Location Accuracy"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/actionbar_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
                 android:text="Hide, Show or Shift your location"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -83,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:weightSum="3" >
 
@@ -105,6 +126,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center"
                         android:text="Hide"
                         android:textColor="@android:color/black" />
@@ -114,7 +136,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:visibility="gone" >
 
                     <ImageView
                         android:id="@+id/shiftMapImageView"
@@ -129,6 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center"
                         android:text="Shift"
                         android:textColor="@android:color/black" />
@@ -153,6 +177,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="5dp"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center"
                         android:text="Show"
                         android:textColor="@android:color/black" />
@@ -167,6 +192,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
+                android:fontFamily="sans-serif-light"
                 android:gravity="center"
                 android:text="Your real location is shown on map"
                 android:textColor="@android:color/black" />

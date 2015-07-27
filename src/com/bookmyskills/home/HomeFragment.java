@@ -39,6 +39,7 @@ import android.widget.Toast;
 import com.android.jsonclasses.IParseListener;
 import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
+import com.bookmyskills.MainActivity;
 import com.bookmyskills.R;
 import com.customcontrols.dialog.CustomDialog;
 import com.google.android.gms.common.ConnectionResult;
@@ -170,6 +171,12 @@ public class HomeFragment extends Fragment implements OnMapLoadedCallback,
 
 		return view;
 
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		((MainActivity) getActivity()).setTitle("Home");
 	}
 
 	private void initializeMap() {

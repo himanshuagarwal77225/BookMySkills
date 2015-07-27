@@ -30,6 +30,7 @@
                 android:drawablePadding="10dp"
                 android:gravity="center|left"
                 android:hint="To*"
+                android:fontFamily="sans-serif-light"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:textColor="@android:color/black" />
@@ -44,6 +45,7 @@
                 android:drawablePadding="10dp"
                 android:gravity="center|left"
                 android:hint="Subject*"
+                android:fontFamily="sans-serif-light"
                 android:padding="10dp"
                 android:textColor="@android:color/black" />
 
@@ -56,6 +58,7 @@
                 android:drawableLeft="@drawable/email_compose"
                 android:drawablePadding="10dp"
                 android:hint="Body*"
+                android:fontFamily="sans-serif-light"
                 android:inputType="textMultiLine"
                 android:minLines="5"
                 android:padding="10dp" />
@@ -78,6 +81,7 @@
                     android:gravity="center"
                     android:paddingLeft="90dp"
                     android:paddingRight="80dp"
+                    android:fontFamily="sans-serif-light"
                     android:text="Send"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white" />

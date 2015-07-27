@@ -45,6 +45,8 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -78,7 +80,7 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 
 	Activity myContext;
 	StorageClass mStroageClass;
-
+	AQuery mQuery;
 	EditText firstName = null;
 	EditText lastName = null;
 	EditText livesInEditText = null;
@@ -98,7 +100,7 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 	private static final int IMAGE_PICKER_SELECT = 1;
 
 	private ImageView mimgUserAvatar;
-
+private TextView txtAddPhoto;
 	private String currentPhotoPath = "";
 
 	Spinner genderSpinner = null, ratingSpinner = null,
@@ -137,7 +139,7 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 		img.setImageResource(R.drawable.header);
 		setUpViews(view);
 		setUpListeners(view);
-
+		mQuery = new AQuery(getActivity());
 		initiateGetProfilApi();
 
 		ActionBar mActionBar = ((MainActivity) getActivity())
@@ -182,6 +184,7 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 	}
 
 	private void setUpViews(View view) {
+		txtAddPhoto = (TextView) view.findViewById(R.id.photoUserTextView);
 		mimgUserAvatar = (ImageView) view.findViewById(R.id.photoUserImageView);
 		mimgUserAvatar.setOnClickListener(this);
 		userFullNameTextView = (ShimmerTextView) view
@@ -207,6 +210,15 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 		phoneCheckBox = (CheckBox) view.findViewById(R.id.phoneCheckBox);
 		pushNotificationCheckBox = (CheckBox) view
 				.findViewById(R.id.pushNotificationCheckBox);
+		emaileCheckBox
+				.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+
+					}
+				});
 	}
 
 	private void setUserInfo() {
@@ -217,6 +229,14 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 			introductionTextView.setText("");
 		} else {
 			introductionTextView.setText(mUserInfo.getIntroduction());
+		}
+
+		if (mUserInfo.getGender() == null
+				|| mUserInfo.getGender().equalsIgnoreCase("null")
+				|| TextUtils.isEmpty(mUserInfo.getGender())) {
+
+		} else {
+			genderTextView.setText(mUserInfo.getGender());
 		}
 
 		emailTextView.setText(mUserInfo.getEmail());
@@ -951,17 +971,24 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 								.optString(StaticInfo.ACCURACY));
 						mUserInfo.setLongitude(mProfileInfo
 								.optString(StaticInfo.LONGITUDE));
+						if (mProfileInfo.has("gender")) {
+							mUserInfo.setGender(mProfileInfo
+									.optString("gender"));
+						}
+
 						mUserInfo.setLatitude(mProfileInfo
 								.optString(StaticInfo.LATITUDE));
-						if (mProfileInfo.optString("IMAGE") != null
-								|| mProfileInfo.optString("IMAGE")
+						if (mProfileInfo.optString("image") == null
+								|| mProfileInfo.optString("image")
 										.equalsIgnoreCase("null")
 								|| TextUtils.isEmpty(mProfileInfo
-										.optString("IMAGE"))) {
+										.optString("image"))) {
 
 						} else {
-							new AQuery(getActivity()).id(mimgUserAvatar).image(
-									mProfileInfo.optString("IMAGE"));
+							String mImageUrl = WebUtils.IMAGE_URL
+									+ mProfileInfo.optString("image");
+							mQuery.id(mimgUserAvatar).image(mImageUrl);
+							txtAddPhoto.setVisibility(View.GONE);
 						}
 						String mSkills = mProfileInfo
 								.optString(StaticInfo.SKILL);
@@ -1034,6 +1061,7 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 			params.putString("education", mUserInfo.getEducation());
 			params.putString("certification", mUserInfo.getCertification());
 			params.putString("dob", mUserInfo.getDateOfBirth());
+			params.putString("gender", genderTextView.getText().toString());
 
 			TelephonyManager telephonyManager = (TelephonyManager) getActivity()
 					.getSystemService(getActivity().TELEPHONY_SERVICE);
@@ -1047,6 +1075,7 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 					&& !(TextUtils.isEmpty(currentPhotoPath))) {
 				File mFile = new File(currentPhotoPath);
 				mAttachFileList.put("image", mFile);
+				// mJsonRequestResponse.setFile("image", currentPhotoPath);
 				mJsonRequestResponse.setAttachFileList(mAttachFileList);
 			}
 
@@ -1073,4 +1102,5 @@ public class MyProfileFragment extends android.support.v4.app.Fragment
 			dialog.dismiss();
 		}
 	}
+
 }

@@ -5,6 +5,7 @@ public class WebUtils {
 	public static final String LIVE_API = "http://www.bookmyskills.com/apps/api.php";
 
 	public static final String BASE_URL = LIVE_API;
+	
 
 	/**
 	 * @GETSKILL {@link requires}
@@ -151,5 +152,7 @@ public class WebUtils {
 	 * 
 	 */
 	public static final String TRACK_USER = BASE_URL + "?todo=track_user&";
+	
+	public static final String IMAGE_URL = "http://www.bookmyskills.com/apps/images/";
 
 }

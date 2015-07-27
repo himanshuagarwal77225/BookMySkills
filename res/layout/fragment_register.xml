@@ -38,6 +38,36 @@
                 android:visibility="visible" >
 
                 <EditText
+                    android:id="@+id/firstNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/user_name"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center|left"
+                    android:hint="First Name*"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/lastNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:drawableLeft="@drawable/user_name"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center|left"
+                    android:hint="Last Name*"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
                     android:id="@+id/userNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -45,6 +75,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/user_name"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="User Name*"
                     android:inputType="textEmailAddress"
@@ -59,6 +90,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/email_icon"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Email*"
                     android:inputType="textEmailAddress"
@@ -73,6 +105,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/password_icon"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Password*"
                     android:inputType="textPassword"
@@ -87,6 +120,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/password_icon"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Confirm Password*"
                     android:inputType="textPassword"
@@ -99,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:text="I am looking to:" />
 
                 <RadioGroup
@@ -115,6 +150,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:checked="false"
+                        android:fontFamily="sans-serif-light"
                         android:text="Hire" />
 
                     <RadioButton
@@ -123,6 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:checked="true"
+                        android:fontFamily="sans-serif-light"
                         android:text="Work" />
                 </RadioGroup>
             </LinearLayout>
@@ -153,6 +190,7 @@
                             android:layout_gravity="center"
                             android:drawableLeft="@drawable/education"
                             android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
                             android:gravity="center|left"
                             android:hint="Education*"
                             android:padding="10dp"
@@ -164,7 +202,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
-                            android:background="@drawable/add_more" />
+                            android:background="@drawable/add_more"
+                            android:fontFamily="sans-serif-light" />
                     </FrameLayout>
                 </LinearLayout>
 
@@ -187,6 +226,7 @@
                             android:layout_gravity="center"
                             android:drawableLeft="@drawable/certificate"
                             android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
                             android:gravity="center|left"
                             android:hint="Certification"
                             android:inputType="textEmailAddress"
@@ -198,7 +238,8 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
-                            android:background="@drawable/add_more" />
+                            android:background="@drawable/add_more"
+                            android:fontFamily="sans-serif-light" />
                     </FrameLayout>
                 </LinearLayout>
 
@@ -216,6 +257,7 @@
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/skills"
                         android:drawablePadding="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center|left"
                         android:hint="Skills 1*"
                         android:textColor="@android:color/black" />
@@ -227,6 +269,7 @@
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/working_hours"
                         android:drawablePadding="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center|left"
                         android:hint="Working Hours*"
                         android:inputType="time"
@@ -237,6 +280,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:prompt="@string/rating_prompt" />
 
@@ -245,6 +290,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:prompt="@string/last_used" />
                 </LinearLayout>
@@ -268,6 +315,7 @@
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/skills"
                         android:drawablePadding="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center|left"
                         android:hint="Skills 2*"
                         android:textColor="@android:color/black" />
@@ -279,6 +327,7 @@
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/working_hours"
                         android:drawablePadding="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center|left"
                         android:hint="Working Hours*"
                         android:inputType="time"
@@ -289,6 +338,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:prompt="@string/rating_prompt" />
 
@@ -297,6 +348,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:prompt="@string/last_used" />
                 </LinearLayout>
@@ -324,6 +377,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/user_name"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Full Name*"
                     android:inputType="textPersonName"
@@ -338,6 +392,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/organization"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Organization Name*"
                     android:inputType="textPersonName"
@@ -352,6 +407,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/website"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Website"
                     android:inputType="textUri"
@@ -389,6 +445,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:clickable="false"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center"
                         android:text="+\nPHOTO"
                         android:textColor="@android:color/black" />
@@ -403,7 +460,9 @@
                     android:drawableLeft="@drawable/country"
                     android:drawablePadding="10dp"
                     android:entries="@array/country_list"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
+                    android:hint="Country*"
                     android:padding="10dp"
                     android:prompt="@string/country_"
                     android:textColor="@android:color/black" />
@@ -416,6 +475,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/city"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="State*"
                     android:padding="10dp"
@@ -429,6 +489,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/city"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="City*"
                     android:padding="10dp"
@@ -442,6 +503,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/address"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Address*"
                     android:inputType="textPostalAddress"
@@ -456,9 +518,11 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/pincode"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Zipcode/Pincode*"
                     android:inputType="number"
+                    android:maxLength="6"
                     android:padding="10dp"
                     android:textColor="@android:color/black" />
 
@@ -470,6 +534,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/phone"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Phone Number*"
                     android:inputType="phone"
@@ -484,6 +549,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/calendar"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="DOB*"
                     android:padding="10dp"
@@ -497,6 +563,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/working_hours"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Working Hours*"
                     android:inputType="date"
@@ -512,6 +579,7 @@
                     android:layout_margin="10dp"
                     android:drawableLeft="@drawable/hourly_price"
                     android:drawablePadding="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center|left"
                     android:hint="Hourly Price*"
                     android:inputType="date"
@@ -524,7 +592,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:text="Preffered Contact Medium*" />
+                    android:text="Prefered Contact Medium*" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -539,6 +607,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:checked="true"
+                        android:fontFamily="sans-serif-light"
                         android:text="Email" />
 
                     <CheckBox
@@ -547,6 +616,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:text="Phone" />
 
                     <CheckBox
@@ -556,7 +626,8 @@
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
                         android:checked="true"
-                        android:text="Push Notifications" />
+                        android:fontFamily="sans-serif-light"
+                        android:text="BMS Chat" />
                 </LinearLayout>
 
                 <CheckBox
@@ -565,6 +636,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
+                    android:fontFamily="sans-serif-light"
                     android:text="By registering you confirm that you accept the Terms and Conditions and Privacy Policy" />
             </LinearLayout>
 
@@ -598,6 +670,7 @@
                         android:layout_margin="10dp"
                         android:background="@color/app_color"
                         android:drawableLeft="@drawable/previous"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center"
                         android:text="Previous"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -621,6 +694,7 @@
                         android:layout_margin="10dp"
                         android:background="@color/app_color"
                         android:drawableRight="@drawable/next"
+                        android:fontFamily="sans-serif-light"
                         android:gravity="center"
                         android:text="Next"
                         android:textAppearance="?android:attr/textAppearanceMedium"

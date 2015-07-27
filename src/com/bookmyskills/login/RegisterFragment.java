@@ -97,6 +97,8 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 	private FragmentActivity myContext;
 	private Button registerButton;
 	private Button previousButton;
+	private EditText firstNameEditText;
+	private EditText lastNameEditText;
 	private EditText userNameEditText;
 	private EditText emailNameEditText;
 	private EditText passwordEditText;
@@ -104,6 +106,8 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 	private RadioGroup radioTypeGroup;
 	private RadioButton typeRadioButton;
 	private String userName;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private String password;
 	private String cnfPassword;
@@ -250,6 +254,10 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 				false);
 		registerButton = (Button) rootView.findViewById(R.id.registerButton);
 		previousButton = (Button) rootView.findViewById(R.id.previousButton);
+		firstNameEditText = (EditText) rootView
+				.findViewById(R.id.firstNameEditText);
+		lastNameEditText = (EditText) rootView
+				.findViewById(R.id.lastNameEditText);
 		userNameEditText = (EditText) rootView
 				.findViewById(R.id.userNameEditText);
 		passwordEditText = (EditText) rootView
@@ -765,7 +773,17 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 		mParams.putString("token", token);
 		mParams.putString("gcm_regid", StorageClass.getInstance(getActivity())
 				.gettDeviceToken());
-		mParams.putString("email", email);
+		String possibleEmail = "";
+		Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+		Account[] accounts = AccountManager.get(getActivity()).getAccounts();
+		for (Account account : accounts) {
+			if (emailPattern.matcher(account.name).matches()) {
+				possibleEmail = account.name;
+				break;
+			}
+		}
+		if (possibleEmail.length() != 0)
+			mParams.putString("email", possibleEmail);
 
 		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(
 				getActivity());
@@ -1051,168 +1069,187 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 
 	public void stage1Validation() {
 		userName = userNameEditText.getText().toString().trim();
+		firstName = firstNameEditText.getText().toString().trim();
+		lastName = lastNameEditText.getText().toString().trim();
 		email = emailNameEditText.getText().toString().trim();
 		password = passwordEditText.getText().toString().trim();
 		cnfPassword = cnfPasswordEditText.getText().toString().trim();
 		int selectedRadioID = radioTypeGroup.getCheckedRadioButtonId();
 		typeRadioButton = (RadioButton) rootView.findViewById(selectedRadioID);
 		userType = typeRadioButton.getText().toString().trim();
+		if (firstName != null && !TextUtils.isEmpty(firstName)) {
+			if (lastName != null && !TextUtils.isEmpty(lastName)) {
+				if (userName != null && !TextUtils.isEmpty(userName)) {
 
-		if (userName != null && !TextUtils.isEmpty(userName)) {
-			if (email != null && !TextUtils.isEmpty(email)) {
-				if (android.util.Patterns.EMAIL_ADDRESS.matcher(email)
-						.matches()) {
-					if (password != null && !TextUtils.isEmpty(password)) {
-						if (cnfPassword != null
-								&& !TextUtils.isEmpty(cnfPassword)) {
-							if (password.equals(cnfPassword)) {
-								if (userType != null
-										&& !TextUtils.isEmpty(userType)) {
+					if (email != null && !TextUtils.isEmpty(email)) {
+						if (android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+								.matches()) {
+							if (password != null
+									&& !TextUtils.isEmpty(password)) {
+								if (cnfPassword != null
+										&& !TextUtils.isEmpty(cnfPassword)) {
+									if (password.equals(cnfPassword)) {
+										if (userType != null
+												&& !TextUtils.isEmpty(userType)) {
 
-									stage++;
+											stage++;
 
-									stage1LinearLayout.setVisibility(View.GONE);
-									if (userType.equalsIgnoreCase("Work")) {
-										stage2LinearLayout
-												.setVisibility(View.VISIBLE);
-										addMoreSkillsButton
-												.setVisibility(View.VISIBLE);
+											stage1LinearLayout
+													.setVisibility(View.GONE);
+											if (userType
+													.equalsIgnoreCase("Work")) {
+												stage2LinearLayout
+														.setVisibility(View.VISIBLE);
+												addMoreSkillsButton
+														.setVisibility(View.VISIBLE);
 
-										ratingLevel = new String[skillRatingMoreSpinners
-												.size() + 2];
+												ratingLevel = new String[skillRatingMoreSpinners
+														.size() + 2];
 
-										rating1Spinner
-												.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-													@Override
-													public void onItemSelected(
-															AdapterView<?> adapterView,
-															View view, int pos,
-															long l) {
-														if (pos > 0) {
-															ratingLevel[0] = rating1Spinner
-																	.getSelectedItem()
-																	.toString();
-														} else {
-															// Toast.makeText(getActivity(),
-															// "Please rate yourself",
-															// Toast.LENGTH_SHORT).show();
-														}
-													}
+												rating1Spinner
+														.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+															@Override
+															public void onItemSelected(
+																	AdapterView<?> adapterView,
+																	View view,
+																	int pos,
+																	long l) {
+																if (pos > 0) {
+																	ratingLevel[0] = rating1Spinner
+																			.getSelectedItem()
+																			.toString();
+																} else {
+																	// Toast.makeText(getActivity(),
+																	// "Please rate yourself",
+																	// Toast.LENGTH_SHORT).show();
+																}
+															}
 
-													@Override
-													public void onNothingSelected(
-															AdapterView<?> adapterView) {
-													}
-												});
+															@Override
+															public void onNothingSelected(
+																	AdapterView<?> adapterView) {
+															}
+														});
 
-										rating2Spinner
-												.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-													@Override
-													public void onItemSelected(
-															AdapterView<?> adapterView,
-															View view, int pos,
-															long l) {
-														if (pos > 0) {
-															ratingLevel[1] = rating2Spinner
-																	.getSelectedItem()
-																	.toString();
-														} else {
-															// Toast.makeText(getActivity(),
-															// "Please rate yourself",
-															// Toast.LENGTH_SHORT).show();
-														}
-													}
+												rating2Spinner
+														.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+															@Override
+															public void onItemSelected(
+																	AdapterView<?> adapterView,
+																	View view,
+																	int pos,
+																	long l) {
+																if (pos > 0) {
+																	ratingLevel[1] = rating2Spinner
+																			.getSelectedItem()
+																			.toString();
+																} else {
+																	// Toast.makeText(getActivity(),
+																	// "Please rate yourself",
+																	// Toast.LENGTH_SHORT).show();
+																}
+															}
 
-													@Override
-													public void onNothingSelected(
-															AdapterView<?> adapterView) {
-													}
-												});
+															@Override
+															public void onNothingSelected(
+																	AdapterView<?> adapterView) {
+															}
+														});
 
-										lastUsed = new String[skillLastUsedMoreSpinners
-												.size() + 2];
+												lastUsed = new String[skillLastUsedMoreSpinners
+														.size() + 2];
 
-										lastUsed1Spinner
-												.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-													@Override
-													public void onItemSelected(
-															AdapterView<?> adapterView,
-															View view, int pos,
-															long l) {
-														if (pos > 0) {
-															lastUsed[0] = lastUsed1Spinner
-																	.getSelectedItem()
-																	.toString();
-														} else {
-															// Toast.makeText(getActivity(),
-															// "Please fill working hours",
-															// Toast.LENGTH_SHORT).show();
-														}
-													}
+												lastUsed1Spinner
+														.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+															@Override
+															public void onItemSelected(
+																	AdapterView<?> adapterView,
+																	View view,
+																	int pos,
+																	long l) {
+																if (pos > 0) {
+																	lastUsed[0] = lastUsed1Spinner
+																			.getSelectedItem()
+																			.toString();
+																} else {
+																	// Toast.makeText(getActivity(),
+																	// "Please fill working hours",
+																	// Toast.LENGTH_SHORT).show();
+																}
+															}
 
-													@Override
-													public void onNothingSelected(
-															AdapterView<?> adapterView) {
-													}
-												});
-										lastUsed2Spinner
-												.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-													@Override
-													public void onItemSelected(
-															AdapterView<?> adapterView,
-															View view, int pos,
-															long l) {
-														if (pos > 0) {
-															lastUsed[1] = lastUsed2Spinner
-																	.getSelectedItem()
-																	.toString();
-														} else {
-															// Toast.makeText(getActivity(),
-															// "Please fill working hours",
-															// Toast.LENGTH_SHORT).show();
-														}
-													}
+															@Override
+															public void onNothingSelected(
+																	AdapterView<?> adapterView) {
+															}
+														});
+												lastUsed2Spinner
+														.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+															@Override
+															public void onItemSelected(
+																	AdapterView<?> adapterView,
+																	View view,
+																	int pos,
+																	long l) {
+																if (pos > 0) {
+																	lastUsed[1] = lastUsed2Spinner
+																			.getSelectedItem()
+																			.toString();
+																} else {
+																	// Toast.makeText(getActivity(),
+																	// "Please fill working hours",
+																	// Toast.LENGTH_SHORT).show();
+																}
+															}
 
-													@Override
-													public void onNothingSelected(
-															AdapterView<?> adapterView) {
-													}
-												});
+															@Override
+															public void onNothingSelected(
+																	AdapterView<?> adapterView) {
+															}
+														});
 
+											} else {
+												stageOrganizationLinearLayout
+														.setVisibility(View.VISIBLE);
+											}
+
+											previousButton
+													.setVisibility(View.VISIBLE);
+										} else {
+											makeToast("Select Type");
+											radioTypeGroup.requestFocus();
+										}
 									} else {
-										stageOrganizationLinearLayout
-												.setVisibility(View.VISIBLE);
+										makeToast("Password Does't Match");
+										cnfPasswordEditText.requestFocus();
 									}
-
-									previousButton.setVisibility(View.VISIBLE);
 								} else {
-									makeToast("Select Type");
-									radioTypeGroup.requestFocus();
+									makeToast("Enter Confirm Password");
+									cnfPasswordEditText.requestFocus();
 								}
 							} else {
-								makeToast("Password Does't Match");
-								cnfPasswordEditText.requestFocus();
+								makeToast("Enter Password");
+								passwordEditText.requestFocus();
 							}
 						} else {
-							makeToast("Enter Confirm Password");
-							cnfPasswordEditText.requestFocus();
+							makeToast("Invalid Email");
+							emailNameEditText.requestFocus();
 						}
 					} else {
-						makeToast("Enter Password");
-						passwordEditText.requestFocus();
+						makeToast("Enter Email");
+						emailNameEditText.requestFocus();
 					}
 				} else {
-					makeToast("Invalid Email");
-					emailNameEditText.requestFocus();
+					makeToast("Enter User Name");
+					userNameEditText.requestFocus();
 				}
 			} else {
-				makeToast("Enter Email");
-				emailNameEditText.requestFocus();
+				makeToast("Enter Last Name");
+				lastNameEditText.requestFocus();
 			}
-
 		} else {
-			makeToast("Enter User Name");
-			userNameEditText.requestFocus();
+			makeToast("Enter First Name");
+			firstNameEditText.requestFocus();
 		}
 	}
 
@@ -1776,6 +1813,8 @@ public class RegisterFragment extends android.support.v4.app.Fragment implements
 		if (userType.equalsIgnoreCase("Work")) {
 			mParams.putString("user_type", "work_seeker");
 			mParams.putString("username", userName);
+			mParams.putString("first_name", firstName);
+			mParams.putString("last_name", lastName);
 			mParams.putString("email", email);
 			mParams.putString("password", password);
 			mParams.putString("first_name", fullName);

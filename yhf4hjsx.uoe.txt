@@ -1,0 +1,818 @@
+﻿
+Updated the Entire Code and Optimised Code. Implemented API's
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   .classpath
+#	modified:   AndroidManifest.xml
+#	new file:   assets/fonts/.DS_Store
+#	new file:   assets/fonts/Roboto-Light.ttf
+#	new file:   assets/fonts/Roboto-Medium.ttf
+#	new file:   assets/fonts/Roboto-Regular.ttf
+#	new file:   assets/fonts/Roboto_Thin.ttf
+#	new file:   assets/fonts/SansSerif.ttf
+#	new file:   assets/fonts/Trebuchet_MS.ttf
+#	modified:   bin/AndroidManifest.xml
+#	modified:   bin/BookMySkills.apk
+#	modified:   bin/R.txt
+#	modified:   bin/classes.dex
+#	modified:   bin/classes/android/support/v7/appcompat/R$anim.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$attr.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$bool.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$color.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$dimen.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$drawable.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$id.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$integer.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$layout.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$string.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$style.class
+#	modified:   bin/classes/android/support/v7/appcompat/R$styleable.class
+#	modified:   bin/classes/android/support/v7/appcompat/R.class
+#	new file:   bin/classes/android/support/v7/cardview/R$attr.class
+#	new file:   bin/classes/android/support/v7/cardview/R$color.class
+#	new file:   bin/classes/android/support/v7/cardview/R$dimen.class
+#	new file:   bin/classes/android/support/v7/cardview/R$style.class
+#	new file:   bin/classes/android/support/v7/cardview/R$styleable.class
+#	new file:   bin/classes/android/support/v7/cardview/R.class
+#	new file:   bin/classes/com/android/jsonclasses/IParseListener.class
+#	new file:   bin/classes/com/android/jsonclasses/JSONRequestResponse$1.class
+#	new file:   bin/classes/com/android/jsonclasses/JSONRequestResponse$2.class
+#	new file:   bin/classes/com/android/jsonclasses/JSONRequestResponse.class
+#	new file:   bin/classes/com/android/jsonclasses/JSONRequestResponseVideo$1.class
+#	new file:   bin/classes/com/android/jsonclasses/JSONRequestResponseVideo$2.class
+#	new file:   bin/classes/com/android/jsonclasses/JSONRequestResponseVideo.class
+#	new file:   bin/classes/com/android/volley/AuthFailureError.class
+#	new file:   bin/classes/com/android/volley/Cache$Entry.class
+#	new file:   bin/classes/com/android/volley/Cache.class
+#	new file:   bin/classes/com/android/volley/CacheDispatcher$1.class
+#	new file:   bin/classes/com/android/volley/CacheDispatcher.class
+#	new file:   bin/classes/com/android/volley/DefaultRetryPolicy.class
+#	new file:   bin/classes/com/android/volley/ExecutorDelivery$1.class
+#	new file:   bin/classes/com/android/volley/ExecutorDelivery$ResponseDeliveryRunnable.class
+#	new file:   bin/classes/com/android/volley/ExecutorDelivery.class
+#	new file:   bin/classes/com/android/volley/Network.class
+#	new file:   bin/classes/com/android/volley/NetworkDispatcher.class
+#	new file:   bin/classes/com/android/volley/NetworkError.class
+#	new file:   bin/classes/com/android/volley/NetworkResponse.class
+#	new file:   bin/classes/com/android/volley/NoConnectionError.class
+#	new file:   bin/classes/com/android/volley/ParseError.class
+#	new file:   bin/classes/com/android/volley/Request$1.class
+#	new file:   bin/classes/com/android/volley/Request$Method.class
+#	new file:   bin/classes/com/android/volley/Request$Priority.class
+#	new file:   bin/classes/com/android/volley/Request.class
+#	new file:   bin/classes/com/android/volley/RequestQueue$1.class
+#	new file:   bin/classes/com/android/volley/RequestQueue$RequestFilter.class
+#	new file:   bin/classes/com/android/volley/RequestQueue.class
+#	new file:   bin/classes/com/android/volley/Response$ErrorListener.class
+#	new file:   bin/classes/com/android/volley/Response$Listener.class
+#	new file:   bin/classes/com/android/volley/Response.class
+#	new file:   bin/classes/com/android/volley/ResponseDelivery.class
+#	new file:   bin/classes/com/android/volley/RetryPolicy.class
+#	new file:   bin/classes/com/android/volley/ServerError.class
+#	new file:   bin/classes/com/android/volley/TimeoutError.class
+#	new file:   bin/classes/com/android/volley/VolleyError.class
+#	new file:   bin/classes/com/android/volley/VolleyLog$MarkerLog$Marker.class
+#	new file:   bin/classes/com/android/volley/VolleyLog$MarkerLog.class
+#	new file:   bin/classes/com/android/volley/VolleyLog.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/BitmapLruCache.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/ExtHttpClientStack.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/FLog$MarkerLog$Marker.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/FLog$MarkerLog.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/FLog.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/FakeImageCache.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/GsonRequest.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/MultipartRequest.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/MultipartRequestVideo.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/MyVolley.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/SsX509TrustManager.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/SslHttpClient.class
+#	new file:   bin/classes/com/android/volley/examples/toolbox/SslSocketFactory.class
+#	new file:   bin/classes/com/android/volley/toolbox/AndroidAuthenticator.class
+#	new file:   bin/classes/com/android/volley/toolbox/Authenticator.class
+#	new file:   bin/classes/com/android/volley/toolbox/BasicNetwork.class
+#	new file:   bin/classes/com/android/volley/toolbox/ByteArrayPool$1.class
+#	new file:   bin/classes/com/android/volley/toolbox/ByteArrayPool.class
+#	new file:   bin/classes/com/android/volley/toolbox/ClearCacheRequest.class
+#	new file:   bin/classes/com/android/volley/toolbox/DiskBasedCache$CacheHeader.class
+#	new file:   bin/classes/com/android/volley/toolbox/DiskBasedCache$CountingInputStream.class
+#	new file:   bin/classes/com/android/volley/toolbox/DiskBasedCache.class
+#	new file:   bin/classes/com/android/volley/toolbox/HttpClientStack.class
+#	new file:   bin/classes/com/android/volley/toolbox/HttpHeaderParser.class
+#	new file:   bin/classes/com/android/volley/toolbox/HttpStack.class
+#	new file:   bin/classes/com/android/volley/toolbox/HurlStack$UrlRewriter.class
+#	new file:   bin/classes/com/android/volley/toolbox/HurlStack.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$1.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$2.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$3.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$4.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$BatchedImageRequest.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$ImageCache.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$ImageContainer.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader$ImageListener.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageLoader.class
+#	new file:   bin/classes/com/android/volley/toolbox/ImageRequest.class
+#	new file:   bin/classes/com/android/volley/toolbox/JsonArrayRequest.class
+#	new file:   bin/classes/com/android/volley/toolbox/JsonObjectRequest.class
+#	new file:   bin/classes/com/android/volley/toolbox/JsonRequest.class
+#	new file:   bin/classes/com/android/volley/toolbox/NetworkImageView$1$1.class
+#	new file:   bin/classes/com/android/volley/toolbox/NetworkImageView$1.class
+#	new file:   bin/classes/com/android/volley/toolbox/NetworkImageView.class
+#	new file:   bin/classes/com/android/volley/toolbox/NoCache.class
+#	new file:   bin/classes/com/android/volley/toolbox/PoolingByteArrayOutputStream.class
+#	new file:   bin/classes/com/android/volley/toolbox/RequestFuture.class
+#	new file:   bin/classes/com/android/volley/toolbox/StringRequest.class
+#	new file:   bin/classes/com/android/volley/toolbox/Volley.class
+#	modified:   bin/classes/com/bookmyskills/BuildConfig.class
+#	new file:   bin/classes/com/bookmyskills/InternalApp.class
+#	new file:   bin/classes/com/bookmyskills/MainActivity$1.class
+#	new file:   bin/classes/com/bookmyskills/MainActivity$2.class
+#	new file:   bin/classes/com/bookmyskills/MainActivity$3.class
+#	new file:   bin/classes/com/bookmyskills/MainActivity$4.class
+#	new file:   bin/classes/com/bookmyskills/MainActivity.class
+#	modified:   bin/classes/com/bookmyskills/Manifest$permission.class
+#	modified:   bin/classes/com/bookmyskills/Manifest.class
+#	modified:   bin/classes/com/bookmyskills/R$anim.class
+#	modified:   bin/classes/com/bookmyskills/R$array.class
+#	modified:   bin/classes/com/bookmyskills/R$attr.class
+#	modified:   bin/classes/com/bookmyskills/R$bool.class
+#	modified:   bin/classes/com/bookmyskills/R$color.class
+#	modified:   bin/classes/com/bookmyskills/R$dimen.class
+#	modified:   bin/classes/com/bookmyskills/R$drawable.class
+#	modified:   bin/classes/com/bookmyskills/R$id.class
+#	modified:   bin/classes/com/bookmyskills/R$integer.class
+#	modified:   bin/classes/com/bookmyskills/R$layout.class
+#	new file:   bin/classes/com/bookmyskills/R$menu.class
+#	new file:   bin/classes/com/bookmyskills/R$raw.class
+#	modified:   bin/classes/com/bookmyskills/R$string.class
+#	modified:   bin/classes/com/bookmyskills/R$style.class
+#	modified:   bin/classes/com/bookmyskills/R$styleable.class
+#	modified:   bin/classes/com/bookmyskills/R.class
+#	new file:   bin/classes/com/bookmyskills/SplashActivity$1.class
+#	new file:   bin/classes/com/bookmyskills/SplashActivity$2.class
+#	new file:   bin/classes/com/bookmyskills/SplashActivity.class
+#	new file:   bin/classes/com/bookmyskills/about/AboutFragment.class
+#	new file:   bin/classes/com/bookmyskills/about/ContactUsFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/about/ContactUsFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/about/ContactUsFragment.class
+#	new file:   bin/classes/com/bookmyskills/about/PrivacyPolicyFragment.class
+#	new file:   bin/classes/com/bookmyskills/about/TermsConditionFragment.class
+#	new file:   bin/classes/com/bookmyskills/adapters/NavDrawerListAdapter$ViewHolder.class
+#	new file:   bin/classes/com/bookmyskills/adapters/NavDrawerListAdapter.class
+#	new file:   bin/classes/com/bookmyskills/adapters/UserProfileAdapter$Holder.class
+#	new file:   bin/classes/com/bookmyskills/adapters/UserProfileAdapter.class
+#	new file:   bin/classes/com/bookmyskills/home/HomeFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/home/HomeFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/home/HomeFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/home/HomeFragment.class
+#	new file:   bin/classes/com/bookmyskills/home/HomeProfileFragment.class
+#	new file:   bin/classes/com/bookmyskills/home/MyHomeFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/home/MyHomeFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/home/MyHomeFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/home/MyHomeFragment.class
+#	new file:   bin/classes/com/bookmyskills/home/SearchFragment.class
+#	new file:   bin/classes/com/bookmyskills/home/SearchUserFragment.class
+#	new file:   bin/classes/com/bookmyskills/inbox/ComposeEmailFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/inbox/ComposeEmailFragment.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$1$1.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$10.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$3$1.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$4.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$5.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$6.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$7.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$8.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$9.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$SampleAdapter$1.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$SampleAdapter.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment$ViewHolder.class
+#	new file:   bin/classes/com/bookmyskills/inbox/InboxFragment.class
+#	new file:   bin/classes/com/bookmyskills/inbox/MessageFragment.class
+#	new file:   bin/classes/com/bookmyskills/login/LoginFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/login/LoginFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/login/LoginFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/login/LoginFragment$4.class
+#	new file:   bin/classes/com/bookmyskills/login/LoginFragment$5.class
+#	new file:   bin/classes/com/bookmyskills/login/LoginFragment$6.class
+#	new file:   bin/classes/com/bookmyskills/login/LoginFragment.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$10.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$11.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$12.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$13.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$14.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$15.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$16.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$4.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$5.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$6.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$7$1.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$7.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$8$1.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$8.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment$9.class
+#	new file:   bin/classes/com/bookmyskills/login/RegisterFragment.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$4$1$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$4$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$4.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$5.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$6.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$7$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$7.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$8$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$8.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$9.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment$VIEW_DIALOG.class
+#	new file:   bin/classes/com/bookmyskills/profiile/MyProfileFragment.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$4$1$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$4$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$4.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$5.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$6.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$7$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$7.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$8$1.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$8.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$9.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment$VIEW_DIALOG.class
+#	new file:   bin/classes/com/bookmyskills/profiile/ViewProfileFragment.class
+#	new file:   bin/classes/com/bookmyskills/settings/SettingsFragment$1.class
+#	new file:   bin/classes/com/bookmyskills/settings/SettingsFragment$2.class
+#	new file:   bin/classes/com/bookmyskills/settings/SettingsFragment$3.class
+#	new file:   bin/classes/com/bookmyskills/settings/SettingsFragment.class
+#	new file:   bin/classes/com/customcontrols/circleimageview/CircleImageView.class
+#	new file:   bin/classes/com/customcontrols/dialog/CustomDialog$1.class
+#	new file:   bin/classes/com/customcontrols/dialog/CustomDialog.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/FadingActionBarHelper.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/FadingActionBarHelperBase$1.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/FadingActionBarHelperBase$2.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/FadingActionBarHelperBase$3.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/FadingActionBarHelperBase$4.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/FadingActionBarHelperBase.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/ObservableScrollView.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/ObservableScrollable.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/ObservableWebViewWithHeader.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/OnScrollChangedCallback.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/RootLayout.class
+#	new file:   bin/classes/com/customcontrols/fadingactionbar/Utils.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/AbsListViewScrollDetector.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/FloatingActionButton$1.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/FloatingActionButton$2.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/FloatingActionButton$AbsListViewScrollDetectorImpl.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/FloatingActionButton$RecyclerViewScrollDetectorImpl.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/FloatingActionButton$ScrollViewScrollDetectorImpl.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/FloatingActionButton$TYPE.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/FloatingActionButton.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/ObservableScrollView$OnScrollChangedListener.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/ObservableScrollView.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/RecyclerViewScrollDetector.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/ScrollDirectionListener.class
+#	new file:   bin/classes/com/customcontrols/floatingactionbutton/ScrollViewScrollDetector.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper$Builder$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper$Builder$2.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper$Builder$3.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper$Builder$4.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper$Builder$5.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper$Builder$6.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper$Builder.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/AlertDialogWrapper.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/DialogAction.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/DialogBase.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/DialogInit.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/DialogUtils$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/DialogUtils$2.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/DialogUtils.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/GravityEnum.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MDButton.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MDRootLayout$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MDRootLayout$2.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MDRootLayout.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MDTintHelper.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$1$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$2.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$3.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$Builder.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$ButtonCallback.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$DialogException.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$InputCallback.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$ListCallback.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$ListCallbackMultiChoice.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$ListCallbackSingleChoice.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$ListType.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog$NotImplementedException.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialog.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialogAdapter.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialogPreference$SavedState$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialogPreference$SavedState.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialDialogPreference.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialEditTextPreference$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialEditTextPreference$SavedState$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialEditTextPreference$SavedState.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialEditTextPreference.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialListPreference$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialListPreference$SavedState$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialListPreference$SavedState.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialListPreference.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialMultiSelectListPreference$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialMultiSelectListPreference$SavedState$1.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialMultiSelectListPreference$SavedState.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialMultiSelectListPreference.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialSimpleListAdapter.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialSimpleListItem$Builder.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/MaterialSimpleListItem.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/Theme.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/ThemeSingleton.class
+#	new file:   bin/classes/com/customcontrols/materialdialog/TypefaceHelper.class
+#	new file:   bin/classes/com/customcontrols/materialprogress/CustomView.class
+#	new file:   bin/classes/com/customcontrols/materialprogress/ProgressBarCircularIndeterminate.class
+#	new file:   bin/classes/com/customcontrols/materialprogress/Utils.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/AAModelListAdapter.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/BaseItemView.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/BaseListAdapter.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/BaseViewHolder.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/IItemView.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/IPosition.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/IViewHolder.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/ItemEntity.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/ItemEntityUtil.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/ModelHolderAdapter.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/ModelListAdapter.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/ModelPagerAdapter.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/ModelStatePagerAdapter.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/PagerManager.class
+#	new file:   bin/classes/com/customcontrols/multiplemodel/ViewManager.class
+#	new file:   bin/classes/com/customcontrols/rippleview/RippleView$1.class
+#	new file:   bin/classes/com/customcontrols/rippleview/RippleView$2.class
+#	new file:   bin/classes/com/customcontrols/rippleview/RippleView$OnRippleCompleteListener.class
+#	new file:   bin/classes/com/customcontrols/rippleview/RippleView$RippleType.class
+#	new file:   bin/classes/com/customcontrols/rippleview/RippleView.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/Shimmer$1$1.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/Shimmer$1.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/Shimmer$2.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/Shimmer.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/ShimmerButton.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/ShimmerTextView.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/ShimmerViewBase.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/ShimmerViewHelper$AnimationSetupCallback.class
+#	new file:   bin/classes/com/customcontrols/shimmertextview/ShimmerViewHelper.class
+#	new file:   bin/classes/com/customcontrols/springindicator/FixedSpeedScroller.class
+#	new file:   bin/classes/com/customcontrols/springindicator/Point.class
+#	new file:   bin/classes/com/customcontrols/springindicator/ScrollerViewPager.class
+#	new file:   bin/classes/com/customcontrols/springindicator/SpringIndicator$1.class
+#	new file:   bin/classes/com/customcontrols/springindicator/SpringIndicator$2.class
+#	new file:   bin/classes/com/customcontrols/springindicator/SpringIndicator.class
+#	new file:   bin/classes/com/customcontrols/springindicator/SpringView.class
+#	new file:   bin/classes/com/customcontrols/springindicator/TabClickListener.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenu.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuAdapter.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuCreator.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuItem.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuLayout$1.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuLayout.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuListView$1.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuListView$OnMenuItemClickListener.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuListView$OnSwipeListener.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuListView.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuView$OnSwipeItemClickListener.class
+#	new file:   bin/classes/com/customcontrols/swipemenu/SwipeMenuView.class
+#	modified:   bin/classes/com/google/android/gms/R$attr.class
+#	modified:   bin/classes/com/google/android/gms/R$color.class
+#	modified:   bin/classes/com/google/android/gms/R$drawable.class
+#	modified:   bin/classes/com/google/android/gms/R$id.class
+#	modified:   bin/classes/com/google/android/gms/R$integer.class
+#	new file:   bin/classes/com/google/android/gms/R$raw.class
+#	modified:   bin/classes/com/google/android/gms/R$string.class
+#	modified:   bin/classes/com/google/android/gms/R$style.class
+#	modified:   bin/classes/com/google/android/gms/R$styleable.class
+#	modified:   bin/classes/com/google/android/gms/R.class
+#	new file:   bin/classes/com/models/CityModel.class
+#	new file:   bin/classes/com/models/CountryModel.class
+#	new file:   bin/classes/com/models/InboxModel.class
+#	new file:   bin/classes/com/models/NavDrawerModel.class
+#	new file:   bin/classes/com/models/SkillsModel.class
+#	new file:   bin/classes/com/models/StateModel.class
+#	new file:   bin/classes/com/models/UserSearchModel.class
+#	new file:   bin/classes/com/utils/StaticInfo.class
+#	new file:   bin/classes/com/utils/StaticUtils.class
+#	new file:   bin/classes/com/utils/StorageClass.class
+#	new file:   bin/classes/com/utils/font/CustomTextView.class
+#	new file:   bin/classes/com/utils/font/FontManager.class
+#	new file:   bin/classes/com/utils/map/GetDirection.class
+#	new file:   bin/classes/com/utils/map/MapWrapperLayout.class
+#	new file:   bin/classes/com/utils/map/MySupportMapFragment$CurrentLocationProvider.class
+#	new file:   bin/classes/com/utils/map/MySupportMapFragment.class
+#	new file:   bin/classes/com/utils/map/OnInfoWindowElemTouchListener$1.class
+#	new file:   bin/classes/com/utils/map/OnInfoWindowElemTouchListener.class
+#	new file:   bin/classes/com/utils/misc/ColorGenerator.class
+#	new file:   bin/classes/com/utils/misc/CustomTimerTaskMapMarker$1$1$1.class
+#	new file:   bin/classes/com/utils/misc/CustomTimerTaskMapMarker$1$1.class
+#	new file:   bin/classes/com/utils/misc/CustomTimerTaskMapMarker$1.class
+#	new file:   bin/classes/com/utils/misc/CustomTimerTaskMapMarker.class
+#	new file:   bin/classes/com/utils/misc/DataItem.class
+#	new file:   bin/classes/com/utils/misc/DataSource.class
+#	new file:   bin/classes/com/utils/misc/DrawableProvider.class
+#	new file:   bin/classes/com/utils/misc/TextDrawable$Builder.class
+#	new file:   bin/classes/com/utils/misc/TextDrawable$IBuilder.class
+#	new file:   bin/classes/com/utils/misc/TextDrawable$IConfigBuilder.class
+#	new file:   bin/classes/com/utils/misc/TextDrawable$IShapeBuilder.class
+#	new file:   bin/classes/com/utils/misc/TextDrawable.class
+#	new file:   bin/classes/com/utils/network/MiscUtils.class
+#	new file:   bin/classes/com/utils/network/WebUtils.class
+#	new file:   bin/dexedLibs/actionbarsherlock-4.2.0-1995b16855a0ad04d57a69b0063210fc.jar
+#	new file:   bin/dexedLibs/android-support-v4-4c41953f001ba04ceb76e9f68f67fbe1.jar
+#	new file:   bin/dexedLibs/android-support-v7-appcompat-6066f410127ff8ebdbc814bf587aed8d.jar
+#	new file:   bin/dexedLibs/android-support-v7-cardview-d7975382057fbd9cf46635b9c097c79c.jar
+#	new file:   bin/dexedLibs/android-support-v7-recyclerview-16c4152fb29ec97f43c487fc08e9c9f8.jar
+#	new file:   bin/dexedLibs/appcompat_v7-915114aa412406635e127afc984729e8.jar
+#	new file:   bin/dexedLibs/cardview-73458fd6e036388ba545f4a87ef444db.jar
+#	new file:   bin/dexedLibs/google-play-services-5e42f8b91e95e8d4f12439695d661d7f.jar
+#	new file:   bin/dexedLibs/google-play-services_lib-7cba118ccc5b85976734583bba65e2d5.jar
+#	new file:   bin/dexedLibs/gson-2.2.4-c788b6e4c6910e18751ad575eaab040d.jar
+#	new file:   bin/dexedLibs/httpclient-4.2.5-b75cae8609e715ad1259bfe2d7979598.jar
+#	new file:   bin/dexedLibs/httpmime-4.2.5-49fda29857e08112fe7321134518a603.jar
+#	new file:   bin/dexedLibs/khandroid-httpclient-4.2.3-0e8bf7815b22621d4bea53f40d9ee6a7.jar
+#	new file:   bin/dexedLibs/nineoldandroids-2.4.0-efc3a1df5b0b064176afddff5ac6fa50.jar
+#	modified:   bin/jarlist.cache
+#	new file:   bin/res/crunch/drawable-hdpi/check_alpha.png
+#	new file:   bin/res/crunch/drawable-hdpi/check_sm.9.png
+#	new file:   bin/res/crunch/drawable-hdpi/check_sm1.9.png
+#	new file:   bin/res/crunch/drawable-hdpi/edit.png
+#	new file:   bin/res/crunch/drawable-hdpi/fab_shadow.png
+#	new file:   bin/res/crunch/drawable-hdpi/fab_shadow_mini.png
+#	new file:   bin/res/crunch/drawable-hdpi/ic_action_next_item.png
+#	new file:   bin/res/crunch/drawable-hdpi/ic_add_white_24dp.png
+#	new file:   bin/res/crunch/drawable-hdpi/ic_drawer.png
+#	new file:   bin/res/crunch/drawable-hdpi/off.png
+#	new file:   bin/res/crunch/drawable-hdpi/on.png
+#	new file:   bin/res/crunch/drawable-mdpi/check_sm.9.png
+#	new file:   bin/res/crunch/drawable-mdpi/edit.png
+#	new file:   bin/res/crunch/drawable-mdpi/fab_shadow.png
+#	new file:   bin/res/crunch/drawable-mdpi/fab_shadow_mini.png
+#	new file:   bin/res/crunch/drawable-mdpi/ic_action_next_item.png
+#	new file:   bin/res/crunch/drawable-mdpi/ic_add_white_24dp.png
+#	new file:   bin/res/crunch/drawable-mdpi/ic_drawer.png
+#	new file:   bin/res/crunch/drawable-mdpi/off.png
+#	new file:   bin/res/crunch/drawable-mdpi/on.png
+#	new file:   bin/res/crunch/drawable-xhdpi/check_sm.9.png
+#	new file:   bin/res/crunch/drawable-xhdpi/edit.png
+#	new file:   bin/res/crunch/drawable-xhdpi/fab_shadow.png
+#	new file:   bin/res/crunch/drawable-xhdpi/fab_shadow_mini.png
+#	new file:   bin/res/crunch/drawable-xhdpi/ic_action_next_item.png
+#	new file:   bin/res/crunch/drawable-xhdpi/ic_add_white_24dp.png
+#	new file:   bin/res/crunch/drawable-xhdpi/ic_drawer.png
+#	new file:   bin/res/crunch/drawable-xhdpi/off.png
+#	new file:   bin/res/crunch/drawable-xhdpi/on.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/check_sm.9.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/edit.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/fab_shadow.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/fab_shadow_mini.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/ic_action_next_item.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/ic_add_white_24dp.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/ic_drawer.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/off.png
+#	new file:   bin/res/crunch/drawable-xxhdpi/on.png
+#	new file:   bin/res/crunch/drawable/banner_second.png
+#	new file:   bin/res/crunch/drawable/bms_background.9.png
+#	new file:   bin/res/crunch/drawable/email_compose.png
+#	new file:   bin/res/crunch/drawable/email_send.png
+#	new file:   bin/res/crunch/drawable/email_subject.png
+#	new file:   bin/res/crunch/drawable/profile_header_bg.9.png
+#	modified:   bin/resources.ap_
+#	modified:   gen/android/support/v7/appcompat/R.java
+#	new file:   gen/android/support/v7/cardview/R.java
+#	modified:   gen/com/bookmyskills/R.java
+#	modified:   gen/com/google/android/gms/R.java
+#	modified:   ic_launcher-web.png
+#	new file:   libs/actionbarsherlock-4.2.0.jar
+#	new file:   libs/android-support-v4.jar
+#	new file:   libs/android-support-v7-recyclerview.jar
+#	new file:   libs/gson-2.2.4.jar
+#	new file:   libs/httpclient-4.2.5.jar
+#	new file:   libs/httpmime-4.2.5.jar
+#	new file:   libs/khandroid-httpclient-4.2.3.jar
+#	new file:   proguard-project.txt
+#	modified:   project.properties
+#	new file:   res/anim-v21/fab_press_elevation.xml
+#	new file:   res/anim/decelerate_cubic.xml
+#	new file:   res/anim/popup_enter.xml
+#	new file:   res/anim/popup_exit.xml
+#	new file:   res/drawable-hdpi/check_alpha.png
+#	new file:   res/drawable-hdpi/check_sm.9.png
+#	new file:   res/drawable-hdpi/check_sm1.9.png
+#	new file:   res/drawable-hdpi/edit.png
+#	new file:   res/drawable-hdpi/fab_shadow.png
+#	new file:   res/drawable-hdpi/fab_shadow_mini.png
+#	new file:   res/drawable-hdpi/ic_action_next_item.png
+#	new file:   res/drawable-hdpi/ic_add_white_24dp.png
+#	new file:   res/drawable-hdpi/ic_drawer.png
+#	new file:   res/drawable-hdpi/off.png
+#	new file:   res/drawable-hdpi/on.png
+#	new file:   res/drawable-mdpi/check_sm.9.png
+#	new file:   res/drawable-mdpi/edit.png
+#	new file:   res/drawable-mdpi/fab_shadow.png
+#	new file:   res/drawable-mdpi/fab_shadow_mini.png
+#	new file:   res/drawable-mdpi/ic_action_next_item.png
+#	new file:   res/drawable-mdpi/ic_add_white_24dp.png
+#	new file:   res/drawable-mdpi/ic_drawer.png
+#	new file:   res/drawable-mdpi/off.png
+#	new file:   res/drawable-mdpi/on.png
+#	new file:   res/drawable-xhdpi/check_sm.9.png
+#	new file:   res/drawable-xhdpi/edit.png
+#	new file:   res/drawable-xhdpi/fab_shadow.png
+#	new file:   res/drawable-xhdpi/fab_shadow_mini.png
+#	new file:   res/drawable-xhdpi/ic_action_next_item.png
+#	new file:   res/drawable-xhdpi/ic_add_white_24dp.png
+#	new file:   res/drawable-xhdpi/ic_drawer.png
+#	new file:   res/drawable-xhdpi/off.png
+#	new file:   res/drawable-xhdpi/on.png
+#	new file:   res/drawable-xxhdpi/check_sm.9.png
+#	new file:   res/drawable-xxhdpi/edit.png
+#	new file:   res/drawable-xxhdpi/fab_shadow.png
+#	new file:   res/drawable-xxhdpi/fab_shadow_mini.png
+#	new file:   res/drawable-xxhdpi/ic_action_next_item.png
+#	new file:   res/drawable-xxhdpi/ic_add_white_24dp.png
+#	new file:   res/drawable-xxhdpi/ic_drawer.png
+#	new file:   res/drawable-xxhdpi/off.png
+#	new file:   res/drawable-xxhdpi/on.png
+#	new file:   res/drawable/banner_second.png
+#	new file:   res/drawable/bms_background.9.png
+#	new file:   res/drawable/circle.xml
+#	new file:   res/drawable/email_compose.png
+#	new file:   res/drawable/email_send.png
+#	new file:   res/drawable/email_subject.png
+#	new file:   res/drawable/fab__gradient.xml
+#	new file:   res/drawable/fab__gradient_light.xml
+#	new file:   res/drawable/md_btn_selected.xml
+#	new file:   res/drawable/md_btn_selected_dark.xml
+#	new file:   res/drawable/md_btn_selector.xml
+#	new file:   res/drawable/md_btn_selector_dark.xml
+#	new file:   res/drawable/md_item_selected.xml
+#	new file:   res/drawable/md_item_selected_dark.xml
+#	new file:   res/drawable/md_selector.xml
+#	new file:   res/drawable/md_selector_dark.xml
+#	new file:   res/drawable/md_transparent.xml
+#	new file:   res/drawable/nav_list_item_activated.xml
+#	new file:   res/drawable/nav_list_item_bg.xml
+#	new file:   res/drawable/profile_header_bg.9.png
+#	new file:   res/drawable/skills_gradient_bg.xml
+#	new file:   res/drawable/toggle_selector.xml
+#	new file:   res/layout-ldrtl/md_listitem_multichoice.xml
+#	new file:   res/layout-ldrtl/md_listitem_singlechoice.xml
+#	new file:   res/layout-ldrtl/md_simplelist_item.xml
+#	modified:   res/layout/activity_main.xml
+#	modified:   res/layout/activity_splash.xml
+#	new file:   res/layout/bms_profile_header.xml
+#	new file:   res/layout/dialog_about_me.xml
+#	new file:   res/layout/dialog_basic_info.xml
+#	new file:   res/layout/dialog_contact_info.xml
+#	new file:   res/layout/dialog_education_info.xml
+#	new file:   res/layout/dialog_profile.xml
+#	new file:   res/layout/dialog_skill_info.xml
+#	modified:   res/layout/drawer_list_item.xml
+#	new file:   res/layout/fab__header_container.xml
+#	new file:   res/layout/fab__listview_container.xml
+#	new file:   res/layout/fab__scrollview_container.xml
+#	new file:   res/layout/fab__webview_container.xml
+#	modified:   res/layout/fragment_about.xml
+#	new file:   res/layout/fragment_compose_mail.xml
+#	modified:   res/layout/fragment_contact_us.xml
+#	new file:   res/layout/fragment_home_profile.xml
+#	modified:   res/layout/fragment_inbox.xml
+#	modified:   res/layout/fragment_login.xml
+#	new file:   res/layout/fragment_message.xml
+#	new file:   res/layout/fragment_my_home.xml
+#	modified:   res/layout/fragment_privacy_policy.xml
+#	modified:   res/layout/fragment_profile.xml
+#	modified:   res/layout/fragment_register.xml
+#	modified:   res/layout/fragment_register3.xml
+#	modified:   res/layout/fragment_register_organization.xml
+#	modified:   res/layout/fragment_search.xml
+#	new file:   res/layout/fragment_search_user.xml
+#	modified:   res/layout/fragment_settings.xml
+#	modified:   res/layout/fragment_terms_conditions.xml
+#	new file:   res/layout/info_window.xml
+#	modified:   res/layout/item_list_app.xml
+#	new file:   res/layout/item_user_search_profile.xml
+#	modified:   res/layout/map_info_window.xml
+#	new file:   res/layout/md_dialog_basic.xml
+#	new file:   res/layout/md_dialog_custom.xml
+#	new file:   res/layout/md_dialog_input.xml
+#	new file:   res/layout/md_dialog_list.xml
+#	new file:   res/layout/md_dialog_progress.xml
+#	new file:   res/layout/md_dialog_progress_indeterminate.xml
+#	new file:   res/layout/md_listitem.xml
+#	new file:   res/layout/md_listitem_multichoice.xml
+#	new file:   res/layout/md_listitem_singlechoice.xml
+#	new file:   res/layout/md_simplelist_item.xml
+#	new file:   res/layout/md_stub_actionbuttons.xml
+#	new file:   res/layout/md_stub_inputpref.xml
+#	new file:   res/layout/md_stub_progress.xml
+#	new file:   res/layout/md_stub_progress_indeterminate.xml
+#	new file:   res/layout/md_stub_titleframe.xml
+#	new file:   res/layout/pin_view.xml
+#	modified:   res/layout/progress_bar.xml
+#	new file:   res/layout/user_profile_header.xml
+#	new file:   res/menu/main.xml
+#	new file:   res/values-v11/styles.xml
+#	new file:   res/values-v14/styles.xml
+#	new file:   res/values-w820dp/dimens.xml
+#	new file:   res/values/arrays.xml
+#	new file:   res/values/attrs.xml
+#	modified:   res/values/color.xml
+#	modified:   res/values/dimens.xml
+#	modified:   res/values/strings.xml
+#	modified:   res/values/styles.xml
+#	new file:   src/com/android/jsonclasses/IParseListener.java
+#	new file:   src/com/android/jsonclasses/JSONRequestResponse.java
+#	new file:   src/com/android/jsonclasses/JSONRequestResponseVideo.java
+#	new file:   src/com/android/volley/AuthFailureError.java
+#	new file:   src/com/android/volley/Cache.java
+#	new file:   src/com/android/volley/CacheDispatcher.java
+#	new file:   src/com/android/volley/DefaultRetryPolicy.java
+#	new file:   src/com/android/volley/ExecutorDelivery.java
+#	new file:   src/com/android/volley/Network.java
+#	new file:   src/com/android/volley/NetworkDispatcher.java
+#	new file:   src/com/android/volley/NetworkError.java
+#	new file:   src/com/android/volley/NetworkResponse.java
+#	new file:   src/com/android/volley/NoConnectionError.java
+#	new file:   src/com/android/volley/ParseError.java
+#	new file:   src/com/android/volley/Request.java
+#	new file:   src/com/android/volley/RequestQueue.java
+#	new file:   src/com/android/volley/Response.java
+#	new file:   src/com/android/volley/ResponseDelivery.java
+#	new file:   src/com/android/volley/RetryPolicy.java
+#	new file:   src/com/android/volley/ServerError.java
+#	new file:   src/com/android/volley/TimeoutError.java
+#	new file:   src/com/android/volley/VolleyError.java
+#	new file:   src/com/android/volley/VolleyLog.java
+#	new file:   src/com/android/volley/examples/toolbox/BitmapLruCache.java
+#	new file:   src/com/android/volley/examples/toolbox/ExtHttpClientStack.java
+#	new file:   src/com/android/volley/examples/toolbox/FLog.java
+#	new file:   src/com/android/volley/examples/toolbox/FakeImageCache.java
+#	new file:   src/com/android/volley/examples/toolbox/GsonRequest.java
+#	new file:   src/com/android/volley/examples/toolbox/MultipartRequest.java
+#	new file:   src/com/android/volley/examples/toolbox/MultipartRequestVideo.java
+#	new file:   src/com/android/volley/examples/toolbox/MyVolley.java
+#	new file:   src/com/android/volley/examples/toolbox/SsX509TrustManager.java
+#	new file:   src/com/android/volley/examples/toolbox/SslHttpClient.java
+#	new file:   src/com/android/volley/examples/toolbox/SslSocketFactory.java
+#	new file:   src/com/android/volley/toolbox/AndroidAuthenticator.java
+#	new file:   src/com/android/volley/toolbox/Authenticator.java
+#	new file:   src/com/android/volley/toolbox/BasicNetwork.java
+#	new file:   src/com/android/volley/toolbox/ByteArrayPool.java
+#	new file:   src/com/android/volley/toolbox/ClearCacheRequest.java
+#	new file:   src/com/android/volley/toolbox/DiskBasedCache.java
+#	new file:   src/com/android/volley/toolbox/HttpClientStack.java
+#	new file:   src/com/android/volley/toolbox/HttpHeaderParser.java
+#	new file:   src/com/android/volley/toolbox/HttpStack.java
+#	new file:   src/com/android/volley/toolbox/HurlStack.java
+#	new file:   src/com/android/volley/toolbox/ImageLoader.java
+#	new file:   src/com/android/volley/toolbox/ImageRequest.java
+#	new file:   src/com/android/volley/toolbox/JsonArrayRequest.java
+#	new file:   src/com/android/volley/toolbox/JsonObjectRequest.java
+#	new file:   src/com/android/volley/toolbox/JsonRequest.java
+#	new file:   src/com/android/volley/toolbox/NetworkImageView.java
+#	new file:   src/com/android/volley/toolbox/NoCache.java
+#	new file:   src/com/android/volley/toolbox/PoolingByteArrayOutputStream.java
+#	new file:   src/com/android/volley/toolbox/RequestFuture.java
+#	new file:   src/com/android/volley/toolbox/StringRequest.java
+#	new file:   src/com/android/volley/toolbox/Volley.java
+#	new file:   src/com/bookmyskills/InternalApp.java
+#	new file:   src/com/bookmyskills/MainActivity.java
+#	new file:   src/com/bookmyskills/SplashActivity.java
+#	new file:   src/com/bookmyskills/about/AboutFragment.java
+#	new file:   src/com/bookmyskills/about/ContactUsFragment.java
+#	new file:   src/com/bookmyskills/about/PrivacyPolicyFragment.java
+#	new file:   src/com/bookmyskills/about/TermsConditionFragment.java
+#	new file:   src/com/bookmyskills/adapters/InboxAdapter.java
+#	new file:   src/com/bookmyskills/adapters/NavDrawerListAdapter.java
+#	new file:   src/com/bookmyskills/adapters/UserProfileAdapter.java
+#	new file:   src/com/bookmyskills/home/HomeFragment.java
+#	new file:   src/com/bookmyskills/home/HomeProfileFragment.java
+#	new file:   src/com/bookmyskills/home/MyHomeFragment.java
+#	new file:   src/com/bookmyskills/home/SearchFragment.java
+#	new file:   src/com/bookmyskills/home/SearchUserFragment.java
+#	new file:   src/com/bookmyskills/inbox/ComposeActivity.java
+#	new file:   src/com/bookmyskills/inbox/ComposeEmailFragment.java
+#	new file:   src/com/bookmyskills/inbox/InboxFragment.java
+#	new file:   src/com/bookmyskills/inbox/MessageFragment.java
+#	new file:   src/com/bookmyskills/login/LoginFragment.java
+#	new file:   src/com/bookmyskills/login/RegisterFragment.java
+#	new file:   src/com/bookmyskills/profiile/MyProfileFragment.java
+#	new file:   src/com/bookmyskills/profiile/ViewProfileFragment.java
+#	new file:   src/com/bookmyskills/settings/SettingsFragment.java
+#	new file:   src/com/customcontrols/circleimageview/CircleImageView.java
+#	new file:   src/com/customcontrols/dialog/CustomDialog.java
+#	new file:   src/com/customcontrols/fadingactionbar/FadingActionBarHelper.java
+#	new file:   src/com/customcontrols/fadingactionbar/FadingActionBarHelperBase.java
+#	new file:   src/com/customcontrols/fadingactionbar/ObservableScrollView.java
+#	new file:   src/com/customcontrols/fadingactionbar/ObservableScrollable.java
+#	new file:   src/com/customcontrols/fadingactionbar/ObservableWebViewWithHeader.java
+#	new file:   src/com/customcontrols/fadingactionbar/OnScrollChangedCallback.java
+#	new file:   src/com/customcontrols/fadingactionbar/RootLayout.java
+#	new file:   src/com/customcontrols/fadingactionbar/Utils.java
+#	new file:   src/com/customcontrols/floatingactionbutton/AbsListViewScrollDetector.java
+#	new file:   src/com/customcontrols/floatingactionbutton/FloatingActionButton.java
+#	new file:   src/com/customcontrols/floatingactionbutton/ObservableScrollView.java
+#	new file:   src/com/customcontrols/floatingactionbutton/RecyclerViewScrollDetector.java
+#	new file:   src/com/customcontrols/floatingactionbutton/ScrollDirectionListener.java
+#	new file:   src/com/customcontrols/floatingactionbutton/ScrollViewScrollDetector.java
+#	new file:   src/com/customcontrols/materialdialog/AlertDialogWrapper.java
+#	new file:   src/com/customcontrols/materialdialog/DialogAction.java
+#	new file:   src/com/customcontrols/materialdialog/DialogBase.java
+#	new file:   src/com/customcontrols/materialdialog/DialogInit.java
+#	new file:   src/com/customcontrols/materialdialog/DialogUtils.java
+#	new file:   src/com/customcontrols/materialdialog/GravityEnum.java
+#	new file:   src/com/customcontrols/materialdialog/MDButton.java
+#	new file:   src/com/customcontrols/materialdialog/MDRootLayout.java
+#	new file:   src/com/customcontrols/materialdialog/MDTintHelper.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialDialog.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialDialogAdapter.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialDialogPreference.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialEditTextPreference.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialListPreference.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialMultiSelectListPreference.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialSimpleListAdapter.java
+#	new file:   src/com/customcontrols/materialdialog/MaterialSimpleListItem.java
+#	new file:   src/com/customcontrols/materialdialog/Theme.java
+#	new file:   src/com/customcontrols/materialdialog/ThemeSingleton.java
+#	new file:   src/com/customcontrols/materialdialog/TypefaceHelper.java
+#	new file:   src/com/customcontrols/materialprogress/CustomView.java
+#	new file:   src/com/customcontrols/materialprogress/ProgressBarCircularIndeterminate.java
+#	new file:   src/com/customcontrols/materialprogress/Utils.java
+#	new file:   src/com/customcontrols/multiplemodel/AAModelListAdapter.java
+#	new file:   src/com/customcontrols/multiplemodel/BaseItemView.java
+#	new file:   src/com/customcontrols/multiplemodel/BaseListAdapter.java
+#	new file:   src/com/customcontrols/multiplemodel/BaseViewHolder.java
+#	new file:   src/com/customcontrols/multiplemodel/IItemView.java
+#	new file:   src/com/customcontrols/multiplemodel/IPosition.java
+#	new file:   src/com/customcontrols/multiplemodel/IViewHolder.java
+#	new file:   src/com/customcontrols/multiplemodel/ItemEntity.java
+#	new file:   src/com/customcontrols/multiplemodel/ItemEntityUtil.java
+#	new file:   src/com/customcontrols/multiplemodel/ModelHolderAdapter.java
+#	new file:   src/com/customcontrols/multiplemodel/ModelListAdapter.java
+#	new file:   src/com/customcontrols/multiplemodel/ModelPagerAdapter.java
+#	new file:   src/com/customcontrols/multiplemodel/ModelStatePagerAdapter.java
+#	new file:   src/com/customcontrols/multiplemodel/PagerManager.java
+#	new file:   src/com/customcontrols/multiplemodel/ViewManager.java
+#	new file:   src/com/customcontrols/rippleview/RippleView.java
+#	new file:   src/com/customcontrols/shimmertextview/Shimmer.java
+#	new file:   src/com/customcontrols/shimmertextview/ShimmerButton.java
+#	new file:   src/com/customcontrols/shimmertextview/ShimmerTextView.java
+#	new file:   src/com/customcontrols/shimmertextview/ShimmerViewBase.java
+#	new file:   src/com/customcontrols/shimmertextview/ShimmerViewHelper.java
+#	new file:   src/com/customcontrols/springindicator/FixedSpeedScroller.java
+#	new file:   src/com/customcontrols/springindicator/Point.java
+#	new file:   src/com/customcontrols/springindicator/ScrollerViewPager.java
+#	new file:   src/com/customcontrols/springindicator/SpringIndicator.java
+#	new file:   src/com/customcontrols/springindicator/SpringView.java
+#	new file:   src/com/customcontrols/springindicator/TabClickListener.java
+#	new file:   src/com/customcontrols/swipemenu/SwipeMenu.java
+#	new file:   src/com/customcontrols/swipemenu/SwipeMenuAdapter.java
+#	new file:   src/com/customcontrols/swipemenu/SwipeMenuCreator.java
+#	new file:   src/com/customcontrols/swipemenu/SwipeMenuItem.java
+#	new file:   src/com/customcontrols/swipemenu/SwipeMenuLayout.java
+#	new file:   src/com/customcontrols/swipemenu/SwipeMenuListView.java
+#	new file:   src/com/customcontrols/swipemenu/SwipeMenuView.java
+#	new file:   src/com/models/CityModel.java
+#	new file:   src/com/models/CountryModel.java
+#	new file:   src/com/models/InboxModel.java
+#	new file:   src/com/models/NavDrawerModel.java
+#	new file:   src/com/models/SkillsModel.java
+#	new file:   src/com/models/StateModel.java
+#	new file:   src/com/models/UserSearchModel.java
+#	new file:   src/com/utils/StaticInfo.java
+#	new file:   src/com/utils/StaticUtils.java
+#	new file:   src/com/utils/StorageClass.java
+#	new file:   src/com/utils/font/CustomTextView.java
+#	new file:   src/com/utils/font/FontManager.java
+#	new file:   src/com/utils/map/GetDirection.java
+#	new file:   src/com/utils/map/MapWrapperLayout.java
+#	new file:   src/com/utils/map/MySupportMapFragment.java
+#	new file:   src/com/utils/map/OnInfoWindowElemTouchListener.java
+#	new file:   src/com/utils/misc/ColorGenerator.java
+#	new file:   src/com/utils/misc/CustomTimerTaskMapMarker.java
+#	new file:   src/com/utils/misc/DataItem.java
+#	new file:   src/com/utils/misc/DataSource.java
+#	new file:   src/com/utils/misc/DrawableProvider.java
+#	new file:   src/com/utils/misc/TextDrawable.java
+#	new file:   src/com/utils/network/MiscUtils.java
+#	new file:   src/com/utils/network/WebUtils.java
+#
+

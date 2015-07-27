@@ -3,6 +3,7 @@ package com.bookmyskills;
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +25,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -39,6 +41,7 @@ import android.widget.TextView;
 import com.android.jsonclasses.IParseListener;
 import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
+import com.androidquery.AQuery;
 import com.bookmyskills.about.AboutFragment;
 import com.bookmyskills.adapters.NavDrawerListAdapter;
 import com.bookmyskills.home.HomeFragment;
@@ -48,6 +51,7 @@ import com.bookmyskills.login.LoginFragment;
 import com.bookmyskills.profiile.MyProfileFragment;
 import com.bookmyskills.settings.SettingsFragment;
 import com.models.NavDrawerModel;
+import com.models.UserSearchModel;
 import com.utils.StaticInfo;
 import com.utils.StorageClass;
 import com.utils.UnCaughtException;
@@ -69,6 +73,7 @@ public class MainActivity extends ActionBarActivity implements
 	private InternalApp mApplication;
 	private Dialog dialog;
 
+	private AQuery mQuery;
 	private SoftReference<HomeProfileFragment> refHomeProfileFragment;
 	private SoftReference<LoginFragment> refLoginFragment;
 	private SoftReference<AboutFragment> refAboutFragment;
@@ -82,10 +87,10 @@ public class MainActivity extends ActionBarActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mApplication = (InternalApp) getApplication();
-
+		mQuery = new AQuery(this);
 		setContentView(R.layout.activity_main);
-		Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(
-				MainActivity.this));
+		// Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(
+		// MainActivity.this));
 		if (!mApplication.isTabletLayout()) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
@@ -120,9 +125,8 @@ public class MainActivity extends ActionBarActivity implements
 					R.array.nav_drawer_items_logged_in);
 			View header = LayoutInflater.from(this).inflate(
 					R.layout.user_profile_header, null);
-			TextView mTxtUserName = (TextView) header
-					.findViewById(R.id.userName);
-			ImageView mImageUser = (ImageView) header
+			mTxtUserName = (TextView) header.findViewById(R.id.userName);
+			mImageUser = (ImageView) header
 					.findViewById(R.id.photoUserImageView);
 			mTxtUserName.setText(mStorageClass.getFirstName() + " "
 					+ mStorageClass.getLastName());
@@ -149,6 +153,9 @@ public class MainActivity extends ActionBarActivity implements
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.string.drawer_open, R.string.drawer_close) {
 			public void onDrawerOpened(android.view.View drawerView) {
+				if (userLoggedIn) {
+					callGetProfileWS();
+				}
 			};
 
 			public void onDrawerClosed(android.view.View drawerView) {
@@ -481,9 +488,49 @@ public class MainActivity extends ActionBarActivity implements
 		case StaticInfo.LOGOUT_RESPONSE_CODE:
 			resposneForLogoutApi(response);
 			break;
-
+		case StaticInfo.GETPROFILE_RESPONSE_CODE:
+			responseForGetProfileApi(response);
+			break;
 		default:
 			break;
+		}
+	}
+
+	private void responseForGetProfileApi(JSONObject response) {
+		if (response != null) {
+			try {
+				if (response.getString(StaticInfo.STATUS).equalsIgnoreCase(
+						StaticInfo.SUCCESS_STRING)) {
+					JSONArray profileArray = response
+							.optJSONArray(StaticInfo.PROFILE);
+					if (profileArray != null) {
+						JSONObject mProfileInfo = profileArray.optJSONObject(0);
+						if (mProfileInfo.optString("image") == null
+								|| mProfileInfo.optString("image")
+										.equalsIgnoreCase("null")
+								|| TextUtils.isEmpty(mProfileInfo
+										.optString("image"))) {
+
+						} else {
+							String mImageUrl = WebUtils.IMAGE_URL
+									+ mProfileInfo.optString("image");
+							if (mImageUser != null)
+								mQuery.id(mImageUser).image(mImageUrl);
+						}
+
+						if (mTxtUserName != null) {
+							mTxtUserName.setText(mProfileInfo
+									.optString(StaticInfo.FIRST_NAME)
+									+ " "
+									+ mProfileInfo
+											.optString(StaticInfo.LAST_NAME));
+						}
+					}
+				} else {
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -598,6 +645,8 @@ public class MainActivity extends ActionBarActivity implements
 	// Required for camera operations in order to save the image file on resume.
 	private String mCurrentPhotoPath = null;
 	private Uri mCapturedImageURI = null;
+	private ImageView mImageUser;
+	private TextView mTxtUserName;
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -630,4 +679,18 @@ public class MainActivity extends ActionBarActivity implements
 	public void setCapturedImageURI(Uri mCapturedImageURI) {
 		this.mCapturedImageURI = mCapturedImageURI;
 	}
+
+	private void callGetProfileWS() {
+		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(this);
+		Bundle params = new Bundle();
+		params.putString("id",
+				String.valueOf(StorageClass.getInstance(this).getUserId()));
+		params.putString("token", StorageClass.getInstance(this).getToken());
+		params.putString("user_id",
+				String.valueOf(StorageClass.getInstance(this).getUserId()));
+		mJsonRequestResponse.getResponse(
+				MiscUtils.encodeUrl(WebUtils.GETPROFILE, params),
+				StaticInfo.GETPROFILE_RESPONSE_CODE, this);
+	}
+
 }

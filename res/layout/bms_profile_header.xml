@@ -7,7 +7,6 @@
         android:id="@+id/image_header"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="fitXY"
         android:src="@drawable/circle_photo" />
 
     <ImageView
@@ -15,7 +14,7 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_centerInParent="true"
-        android:scaleType="fitXY"
+        android:visibility="gone"
         android:src="@drawable/circle_photo" />
 
 </RelativeLayout>

@@ -16,12 +16,15 @@
 
     <com.customcontrols.shimmertextview.ShimmerTextView
         android:id="@+id/txtShimmer"
+        style="@style/MyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:drawableTop="@drawable/ic_launcher"
         android:text="@string/app_main_name"
         android:textColor="#444"
+        android:gravity="center"
+        android:fontFamily="sans-serif-light"
         android:textSize="50sp"
         android:visibility="gone" />
 

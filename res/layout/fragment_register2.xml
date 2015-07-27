@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-            
 
             <LinearLayout
                 android:id="@+id/stage2LinearLayout"
@@ -31,6 +30,7 @@
                     android:id="@+id/educationLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:orientation="vertical" >
 
                     <FrameLayout
@@ -50,6 +50,7 @@
                             android:hint="Education*"
                             android:padding="10dp"
                             android:singleLine="true"
+                            android:fontFamily="sans-serif-light"
                             android:textColor="@android:color/black" />
 
                         <Button
@@ -58,6 +59,7 @@
                             android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_margin="10dp"
+                            android:fontFamily="sans-serif-light"
                             android:background="@drawable/add_more" />
                     </FrameLayout>
                 </LinearLayout>
@@ -66,6 +68,7 @@
                     android:id="@+id/certificationLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:orientation="vertical" >
 
                     <FrameLayout
@@ -83,6 +86,7 @@
                             android:drawablePadding="10dp"
                             android:gravity="center|left"
                             android:hint="Certification"
+                            android:fontFamily="sans-serif-light"
                             android:inputType="textEmailAddress"
                             android:padding="10dp"
                             android:textColor="@android:color/black" />
@@ -91,6 +95,7 @@
                             android:id="@+id/addMoreCertificateButton"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
+                            android:fontFamily="sans-serif-light"
                             android:layout_gravity="right|center_vertical"
                             android:background="@drawable/add_more" />
                     </FrameLayout>
@@ -99,6 +104,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:orientation="horizontal" >
 
                     <EditText
@@ -113,6 +119,7 @@
                         android:gravity="center|left"
                         android:hint="Skills 1*"
                         android:padding="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:textColor="@android:color/black" />
 
                     <EditText
@@ -128,12 +135,14 @@
                         android:hint="Working Hours*"
                         android:inputType="time"
                         android:padding="10dp"
+                        android:fontFamily="sans-serif-light"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:orientation="horizontal" >
 
                     <Spinner
@@ -162,6 +171,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
                     android:orientation="vertical" >
 
                     <LinearLayout
@@ -181,6 +191,7 @@
                             android:gravity="center|left"
                             android:hint="Skills 2*"
                             android:padding="10dp"
+                            android:fontFamily="sans-serif-light"
                             android:textColor="@android:color/black" />
 
                         <EditText
@@ -195,6 +206,7 @@
                             android:gravity="center|left"
                             android:hint="Working Hours*"
                             android:inputType="time"
+                            android:fontFamily="sans-serif-light"
                             android:padding="10dp"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
@@ -202,6 +214,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
                         android:orientation="horizontal" >
 
                         <Spinner
@@ -231,6 +244,7 @@
                             android:layout_height="20dp"
                             android:layout_gravity="right|center_vertical"
                             android:layout_margin="10dp"
+                            android:fontFamily="sans-serif-light"
                             android:background="@drawable/add_more" />
                     </LinearLayout>
 
@@ -238,11 +252,10 @@
                         android:id="@+id/skillsLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
                         android:orientation="vertical" >
                     </LinearLayout>
                 </LinearLayout>
-
-                
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

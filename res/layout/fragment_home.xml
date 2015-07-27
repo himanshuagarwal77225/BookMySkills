@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:fontFamily="sans-serif-light"
         android:ems="10"
         android:hint="Search" />
 

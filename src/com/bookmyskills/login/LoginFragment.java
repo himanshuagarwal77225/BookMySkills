@@ -1,8 +1,12 @@
 package com.bookmyskills.login;
 
+import java.util.regex.Pattern;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -13,6 +17,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -280,7 +285,6 @@ public class LoginFragment extends android.support.v4.app.Fragment implements
 						((MainActivity) getActivity())
 								.showSuccessAlertDialog(message);
 					}
-
 				} else {
 					if (getActivity() != null
 							&& getActivity() instanceof MainActivity) {
@@ -353,7 +357,17 @@ public class LoginFragment extends android.support.v4.app.Fragment implements
 		mParams.putString("token", token);
 		mParams.putString("gcm_regid", StorageClass.getInstance(getActivity())
 				.gettDeviceToken());
-		mParams.putString("email", userName);
+		String possibleEmail = "";
+		Pattern emailPattern = Patterns.EMAIL_ADDRESS;
+		Account[] accounts = AccountManager.get(getActivity()).getAccounts();
+		for (Account account : accounts) {
+			if (emailPattern.matcher(account.name).matches()) {
+				possibleEmail = account.name;
+				break;
+			}
+		}
+		if (possibleEmail.length() != 0)
+			mParams.putString("email", possibleEmail);
 
 		JSONRequestResponse mJsonRequestResponse = new JSONRequestResponse(
 				getActivity());

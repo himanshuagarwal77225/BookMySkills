@@ -11,6 +11,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:text="Terms &amp; Condtions"
+        android:fontFamily="sans-serif-light"
         android:textColor="@android:color/black"
         android:textSize="30sp" />
 

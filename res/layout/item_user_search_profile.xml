@@ -41,6 +41,7 @@
                     android:layout_toEndOf="@id/userPhoto"
                     android:layout_toRightOf="@+id/userPhoto"
                     android:text="Himanshu"
+                    android:fontFamily="sans-serif-light"
                     android:textSize="20sp" />
 
                 <TextView
@@ -51,6 +52,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="25 yrs old"
+                    android:fontFamily="sans-serif-light"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -69,7 +71,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
-                    android:text="CA, USA"
+                    android:text=""
+                    android:fontFamily="sans-serif-light"
                     android:textSize="15sp" />
 
                 <TextView
@@ -80,6 +83,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/userLocation"
                     android:layout_centerVertical="true"
+                    android:fontFamily="sans-serif-light"
                     android:layout_marginTop="5dp"
                     android:text="Android\niOS"
                     android:textSize="15sp" />

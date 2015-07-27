@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-light"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -35,12 +36,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-light"
                 android:text="text" />
 
             <TextView
                 android:id="@+id/tv_lng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:text="text" />

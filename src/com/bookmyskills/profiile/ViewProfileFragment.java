@@ -46,10 +46,10 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.jsonclasses.IParseListener;
 import com.android.jsonclasses.JSONRequestResponse;
 import com.android.volley.VolleyError;
+import com.androidquery.AQuery;
 import com.bookmyskills.MainActivity;
 import com.bookmyskills.R;
 import com.bookmyskills.inbox.ComposeEmailFragment;
-import com.bookmyskills.inbox.MessageFragment;
 import com.customcontrols.fadingactionbar.FadingActionBarHelper;
 import com.customcontrols.shimmertextview.ShimmerTextView;
 import com.models.SkillsModel;
@@ -69,7 +69,7 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 
 	Activity myContext;
 	StorageClass mStroageClass;
-
+	AQuery mQuery;
 	EditText firstName = null;
 	EditText lastName = null;
 	EditText livesInEditText = null;
@@ -81,9 +81,12 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 	EditText educationEditText = null;
 	EditText certificationEditText = null;
 	AutoCompleteTextView skillEditText = null;
-
+	private ImageView mimgUserAvatar;
+	private TextView txtAddPhoto;
 	Spinner genderSpinner = null, ratingSpinner = null,
 			workingHourSpinner = null;
+
+	private LinearLayout mlayoutContactInfo;
 
 	private ShimmerTextView userFullNameTextView;
 	private TextView livesInTextView, introductionTextView, emailTextView,
@@ -119,18 +122,24 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+		mFadingHelper = new FadingActionBarHelper()
+				.actionBarBackground(R.drawable.bms_background)
+				.headerLayout(R.layout.bms_profile_header)
+				.contentLayout(R.layout.fragment_view_profile);
+		mFadingHelper.initActionBar(getActivity());
 		View view = mFadingHelper.createView(inflater);
 		ImageView img = (ImageView) view.findViewById(R.id.image_header);
 		img.setImageResource(R.drawable.header);
 		setUpViews(view);
 		setUpListeners(view);
-
+		mQuery = new AQuery(getActivity());
 		initiateGetProfilApi();
 
 		ActionBar mActionBar = ((MainActivity) getActivity())
 				.getSupportActionBar();
 		mActionBar.setBackgroundDrawable(new ColorDrawable(getResources()
 				.getColor(R.color.app_color)));
+		mActionBar.setTitle("Profile");
 
 		return view;
 	}
@@ -157,18 +166,14 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-
-		mFadingHelper = new FadingActionBarHelper()
-				.actionBarBackground(R.drawable.bms_background)
-				.headerLayout(R.layout.bms_profile_header)
-				.contentLayout(R.layout.fragment_view_profile);
-		mFadingHelper.initActionBar(getActivity());
-
 		myContext = activity;
 		mStroageClass = StorageClass.getInstance(getActivity());
 	}
 
 	private void setUpViews(View view) {
+		mlayoutContactInfo = (LinearLayout) view.findViewById(R.id.contactInfo);
+		txtAddPhoto = (TextView) view.findViewById(R.id.photoUserTextView);
+		mimgUserAvatar = (ImageView) view.findViewById(R.id.photoUserImageView);
 		((TextView) view.findViewById(R.id.photoUserTextView))
 				.setVisibility(View.GONE);
 		userFullNameTextView = (ShimmerTextView) view
@@ -282,21 +287,28 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 								}
 							} else if (strName
 									.equalsIgnoreCase("push notification")) {
-								ComposeEmailFragment nextFrag = new ComposeEmailFragment();
-
-								getActivity()
-										.getSupportFragmentManager()
-										.beginTransaction()
-										.replace(R.id.frame_container,
-												nextFrag, "compose")
-										.addToBackStack(null)
-										.commitAllowingStateLoss();
+								navigateToComposeFragment();
 							}
 						}
+
 					});
 			builderSingle.show();
 		}
 
+	}
+
+	private void navigateToComposeFragment() {
+		ComposeEmailFragment nextFrag = new ComposeEmailFragment();
+		String userId = "";
+		if (getArguments() != null) {
+			Bundle mBundle = new Bundle();
+			userId = getArguments().getString("userId");
+			mBundle.putString("userId", userId);
+			nextFrag.setArguments(mBundle);
+		}
+		getActivity().getSupportFragmentManager().beginTransaction()
+				.replace(R.id.frame_container, nextFrag, "compose")
+				.addToBackStack(null).commitAllowingStateLoss();
 	}
 
 	private void setUserInfo() {
@@ -826,6 +838,19 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 						mUserInfo.setDateOfBirth(mProfileInfo
 								.optString(StaticInfo.DOB));
 
+						if (mProfileInfo.optString("image") == null
+								|| mProfileInfo.optString("image")
+										.equalsIgnoreCase("null")
+								|| TextUtils.isEmpty(mProfileInfo
+										.optString("image"))) {
+
+						} else {
+							String mImageUrl = WebUtils.IMAGE_URL
+									+ mProfileInfo.optString("image");
+							mQuery.id(mimgUserAvatar).image(mImageUrl);
+							txtAddPhoto.setVisibility(View.GONE);
+						}
+
 						String mSkills = mProfileInfo
 								.optString(StaticInfo.SKILL);
 						String[] mSkillsArray = mSkills.split("/");
@@ -856,6 +881,23 @@ public class ViewProfileFragment extends android.support.v4.app.Fragment
 								.optString(StaticInfo.FIRST_NAME));
 						mUserInfo.setId(Integer.parseInt(mProfileInfo
 								.optString(StaticInfo.ID)));
+
+						if (mUserInfo.getEmail() == null
+								&& mUserInfo.getMobile() == null) {
+							mlayoutContactInfo.setVisibility(View.GONE);
+						} else {
+							if (mUserInfo.getEmail().equalsIgnoreCase("null")
+									&& mUserInfo.getMobile().equalsIgnoreCase(
+											"null")) {
+								mlayoutContactInfo.setVisibility(View.GONE);
+							} else {
+								if (TextUtils.isEmpty(mUserInfo.getEmail())
+										&& TextUtils.isEmpty(mUserInfo
+												.getMobile())) {
+									mlayoutContactInfo.setVisibility(View.GONE);
+								}
+							}
+						}
 
 						setUserInfo();
 					}

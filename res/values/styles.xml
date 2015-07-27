@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -41,12 +41,12 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="MD_ActionButtonStacked" parent="@style/MD_ActionButton" >
+    <style name="MD_ActionButtonStacked" parent="@style/MD_ActionButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:paddingLeft">@dimen/md_button_padding_horizontal_internalexternal</item>
         <!--
         <item name="android:paddingStart">@dimen/md_button_padding_horizontal_internalexternal
-        </item>
+        </item>
         -->
         <item name="android:paddingRight">@dimen/md_button_padding_horizontal_internalexternal</item>
         <!-- <item name="android:paddingEnd">@dimen/md_button_padding_horizontal_internalexternal</item> -->
@@ -59,7 +59,7 @@
         <item name="android:focusable">true</item>
     </style>
 
-    <style name="MD_ActionButton.Text" >
+    <style name="MD_ActionButton.Text">
         <item name="android:textSize">@dimen/md_button_textsize</item>
         <item name="android:singleLine">true</item>
         <item name="android:layout_gravity">center_vertical</item>
@@ -74,5 +74,7 @@
         <item name="android:windowEnterAnimation">@anim/popup_enter</item>
         <item name="android:windowExitAnimation">@anim/popup_exit</item>
     </style>
+
+    <style name="MyTextView"></style>
 
 </resources>

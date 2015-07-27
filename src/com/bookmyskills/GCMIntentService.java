@@ -44,6 +44,9 @@ import com.utils.StorageClass;
  */
 public class GCMIntentService extends GCMBaseIntentService {
 
+	private static NotificationManager notificationManager;
+	public final static int NOTIFICATION_ID = 100;
+
 	private static final String TAG = "GCMIntentService";
 	private int startId;
 
@@ -83,6 +86,16 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 	@Override
 	protected void onMessage(final Context context, final Intent intent) {
+		if (intent != null) {
+			Bundle b = intent.getExtras();
+			if (b != null) {
+				String message_noti = b.getString("message");
+				Intent notificationIntent = new Intent(context,
+						MainActivity.class);
+				generateNotification(getApplicationContext(), message_noti,
+						"0", notificationIntent);
+			}
+		}
 	}
 
 	public JSONObject getotherparam(Bundle mPushBundle) {
@@ -118,6 +131,34 @@ public class GCMIntentService extends GCMBaseIntentService {
 	protected boolean onRecoverableError(Context context, String errorId) {
 		Log.i(TAG, "Received recoverable error: " + errorId);
 		return super.onRecoverableError(context, errorId);
+	}
+
+	private static void generateNotification(Context context, String message,
+			String number, Intent notificationIntent) {
+
+		int icon = R.drawable.ic_launcher;
+		long when = System.currentTimeMillis();
+		String title = context.getString(R.string.app_name);
+
+		int i = 0;
+		if (!TextUtils.isEmpty(number) && TextUtils.isDigitsOnly(number)) {
+			try {
+				i = Integer.parseInt(number);
+			} catch (NumberFormatException e) {
+			}
+		}
+		NotificationCompat.Builder noti = new NotificationCompat.Builder(
+				context).setContentTitle(title).setContentText(message)
+				.setSmallIcon(icon).setAutoCancel(true).setWhen(when);
+		notificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		PendingIntent intent = PendingIntent.getActivity(context,
+				NOTIFICATION_ID, notificationIntent, 0);
+		noti.setContentIntent(intent);
+		Notification notification = noti.build();
+		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
 
 }

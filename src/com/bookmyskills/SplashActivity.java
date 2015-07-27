@@ -46,8 +46,8 @@ public class SplashActivity extends ActionBarActivity implements IParseListener 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
-		Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(
-				SplashActivity.this));
+		// Thread.setDefaultUncaughtExceptionHandler(new UnCaughtException(
+		// SplashActivity.this));
 		mApplication = (InternalApp) getApplication();
 		if (!mApplication.isTabletLayout()) {
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

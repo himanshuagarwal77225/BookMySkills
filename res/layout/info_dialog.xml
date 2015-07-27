@@ -12,6 +12,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -24,6 +25,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="text" />
 
@@ -32,6 +34,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="TextView" />
 
@@ -44,6 +47,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="OK"
         android:textColor="#01adf3"
